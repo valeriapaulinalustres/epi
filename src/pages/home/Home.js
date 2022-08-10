@@ -1,0 +1,84 @@
+import {useState, useContext} from 'react';
+import BarChart from '../../components/BarChart';
+import DataContext from '../../context/DataContext';
+import './home.css';
+
+
+
+function Home() {
+
+  const [ultimoMesHome, setUltimoMesHome] = useState(false)
+
+  const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue } = useContext(DataContext);
+
+let anioEnCurso = 2022;
+let mesPrevio = "18 a 22";
+let ultimaSE = 30;
+
+
+  return (
+    <div className='home-container'>
+      <h2>Vigilancia de Enfermedades de Notificación Obligatoria</h2>
+      <h3>{anio}</h3>
+      <a href="#pio">link a pio</a>
+      <div className='btnElegir-page'>
+      <button className={ultimoMesHome ? "button" : "buttonActive"} onClick={()=>setUltimoMesHome(false)}>Acumulado 2022</button>
+      <button className={ultimoMesHome ? "buttonActive" : "button"} onClick={()=>setUltimoMesHome(true)}>Ver último mes</button>
+      </div>
+      
+   
+      {ultimoMesHome 
+     
+     ?
+      <div className='totalesGraphs-container'>
+        <h3>SE x a {ultimaSE}</h3>
+      <h3>Total de casos notificados:</h3>
+        <div className='totales-page-container'>
+          <div className='recuadro amarillo'>Sífilis: <p className='totalNumber'>120</p></div>
+          <div className='recuadro rojo'>Tuberculosis: {}</div>
+          <div className='recuadro naranja'>Dengue: {}</div>
+          <div className='recuadro verde'>HIV: {}</div>
+          <div className='recuadro turquesa'>ETI: {}</div>
+          <div className='recuadro violeta'>x: {}</div>
+        </div>
+        <div className='graphs-container'>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+
+        </div>
+      </div>
+
+      :
+      <div className='totalesGraphs-container'>
+        <h3>SE 1 a {ultimaSE}</h3>
+      <h3>Total de casos notificados:</h3>
+        <div className='totales-page-container'>
+        <div className='recuadro amarillo'>Sífilis: <p className='totalNumber'>{numeroTotalGeneralNotificadosSifilis}</p></div>
+          <div className='recuadro rojo'>Tuberculosis: <p className='totalNumber'>{numeroTotalNotificadosTuberculosis}</p></div>
+          <div className='recuadro naranja'>Dengue: <p className='totalNumber'>{numeroTotalNotificadosDengue}</p></div>
+          <div className='recuadro verde'>HIV: <p className='totalNumber'>{numeroTotalGeneralNotificadosHiv}</p></div>
+          <div className='recuadro turquesa'>ETI: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro violeta'>x: <p className='totalNumber'>{}</p></div>
+        </div>
+        <div className='graphs-container'>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart /></div>
+        <h4 id="pio">pio</h4>
+
+</div>
+      </div>
+}
+      
+    </div>
+  )
+}
+
+export default Home

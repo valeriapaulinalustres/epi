@@ -1,0 +1,43 @@
+
+.file-select {
+    position: relative;
+    display: inline-block;
+    margin-top: 60px;
+    
+  }
+  
+  .file-select::before {
+    background-color: var(--rojo);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    content: 'Seleccionar'; /* testo por defecto */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .file-select input[type="file"] {
+    opacity: 0;
+    width: 200px;
+    height: 32px;
+    display: inline-block;
+  }
+  
+  #src-file1::before {
+    content: 'Seleccionar Archivo';
+  }
+
+  .upload-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ 
+    margin-bottom: 200px;
+  }
+  

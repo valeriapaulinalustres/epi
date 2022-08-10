@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding:0
+}
+
+:root{
+    --rojo: #C8102D;
+    --verde: #3BB50E;
+    --turquesa: #0B8E60;
+    --naranja: #D45011;
+    --amarillo: #D4D411;
+    --violeta: #63128D;
+    --gris-claro: #F4F5FA;
+    --gris-oscuro: #828282;
+  
+  }
+
+h2{
+    margin: 40px 10px 10px 10px;
+    text-align: center;
+}
+
+h3{
+    margin: 10px;
+    text-align: center;
+  
+}
+
+.button{
+    border-radius: 5px;
+    padding: 10px ;
+    margin: 10px 10px;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    background-color: var(--rojo);
+    box-shadow: 5px 5px 8px gray;
+    border: none;
+    cursor: pointer;
+}
+
+.buttonActive{
+    border-radius: 5px;
+    padding: 10px ;
+    margin: 10px 10px;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    background-color: var(--turquesa);
+    box-shadow: 5px 5px 5px  gray;
+    border: none;
+    cursor: pointer;
+}
+
+
+.page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btnElegir-page{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.totales-page-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.graphs-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.totalesGraphs-container{
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.recuadro{
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 5px 5px 5px gray;
+    margin: 10px;
+    padding: 10px;
+}
+
+.rojo{
+    background-color: var(--rojo);
+}
+
+.turquesa{
+    background-color: var(--turquesa);
+}
+
+.verde{
+    background-color: var(--verde);
+}
+
+.naranja{
+    background-color: var(--naranja);
+}
+
+.amarillo{
+    background-color: var(--amarillo);
+}
+
+.violeta{
+    background-color: var(--violeta);
+}
+
+.totalNumber{
+    font-size: 60px;
+    font-weight: bold;
+   text-align: right;
+}
+
+@media only screen and (max-width:500px) {
+.btnElegir-page{
+   
+    flex-direction: column;
+    
+}
+}

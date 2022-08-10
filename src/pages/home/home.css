@@ -1,0 +1,21 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-charts-container{
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+    margin-top: 70px;
+    margin-bottom: 120px;
+}
+
+
+
+
+.barChart-home{
+    margin-bottom: 100px;
+}
