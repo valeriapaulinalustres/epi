@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content: center;
    
-background-color: var(--turquesa);
+background-color: var(--rojo);
     position: absolute;
     z-index: 3;
     width: 200px;
@@ -28,7 +28,7 @@ background-color: var(--turquesa);
 }
 
 .x{
-    background-color: var(--turquesa);
+    background-color: var(--salmon);
     
  
     position: absolute;
@@ -42,22 +42,22 @@ background-color: var(--turquesa);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: var(--salmon);
 }
 
 
 .nav-links{
    
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-top: 0.5px solid black;
-    border-bottom: 0.5px solid black;
+    border-left: 1px solid var(--naranja);
+    border-right: 1px solid var(--naranja);
+    border-top: 0.5px solid var(--naranja);
+    border-bottom: 0.5px solid var(--naranja);
  
     text-align: center;
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
-    color: white;
+    color: var(--naranja);
   
     
 

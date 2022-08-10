@@ -17,7 +17,7 @@ function Footer() {
     isActive
       ? {
         color: '#ffffff',
-        background: '#C8102D',
+        background: '#FF003C',
         borderRadius: 8,
         paddingLeft: 6,
         paddingRight: 6,

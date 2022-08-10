@@ -4,11 +4,11 @@
 }
 
 :root{
-    --rojo: #C8102D;
-    --verde: #3BB50E;
-    --turquesa: #0B8E60;
-    --naranja: #D45011;
-    --amarillo: #D4D411;
+    --rojo: #FF003C;
+    --rosa: #ffc6d3;
+    --lila: #d7afff;
+    --naranja: #FF9700;
+    --salmon: #ffd18d;
     --violeta: #63128D;
     --gris-claro: #F4F5FA;
     --gris-oscuro: #828282;
@@ -30,13 +30,14 @@ h3{
     border-radius: 5px;
     padding: 10px ;
     margin: 10px 10px;
-    color: white;
+    color: var(--naranja);
     font-weight: bold;
     width: 150px;
-    background-color: var(--rojo);
-    box-shadow: 5px 5px 8px gray;
+    background-color: white;
+    box-shadow: 2px 2px 2px gray;
     border: none;
     cursor: pointer;
+    border: 2px solid var(--naranja);
 }
 
 .buttonActive{
@@ -46,8 +47,8 @@ h3{
     color: white;
     font-weight: bold;
     width: 150px;
-    background-color: var(--turquesa);
-    box-shadow: 5px 5px 5px  gray;
+    background-color: var(--rojo);
+    box-shadow: 2px 2px 2px  gray;
     border: none;
     cursor: pointer;
 }
@@ -103,7 +104,7 @@ h3{
     height: 100px;
     border-radius: 5px;
     color: white;
-    box-shadow: 5px 5px 5px gray;
+    box-shadow: 2px 2px 2px gray;
     margin: 10px;
     padding: 10px;
 }
@@ -112,20 +113,20 @@ h3{
     background-color: var(--rojo);
 }
 
-.turquesa{
-    background-color: var(--turquesa);
+.salmon{
+    background-color: var(--salmon);
 }
 
-.verde{
-    background-color: var(--verde);
+.rosa{
+    background-color: var(--rosa);
 }
 
 .naranja{
     background-color: var(--naranja);
 }
 
-.amarillo{
-    background-color: var(--amarillo);
+.lila{
+    background-color: var(--lila);
 }
 
 .violeta{

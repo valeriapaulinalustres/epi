@@ -28,12 +28,12 @@ const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificado
      ?
       <div className='totalesGraphs-container'>
         <div className='totales-page-container'>
-          <div className='recuadro amarillo'>Total último mes: <p className='totalNumber'>120</p></div>
-          <div className='recuadro rojo'>Confirmados: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro naranja'>Probables: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro verde'>Descartados: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro turquesa'>Gestantes: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro violeta'>Congénitos: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro naranja'>Total último mes: <p className='totalNumber'>120</p></div>
+          <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
         </div>
         <div className='graphs-container'>
         <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoSifilis} /></div>
@@ -48,12 +48,12 @@ const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificado
       :
       <div className='totalesGraphs-container'>
         <div className='totales-page-container'>
-        <div className='recuadro amarillo'>Total 2022: <p className='totalNumber'>{numeroTotalGeneralNotificadosSifilis}</p></div>
-          <div className='recuadro rojo'>Confirmados: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro naranja'>Probables: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro verde'>Descartados: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro turquesa'>Gestantes: <p className='totalNumber'>{numeroTotalNotificadosSifilisEmbarazadas}</p></div>
-          <div className='recuadro violeta'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosSifilisCongenita}</p></div>
+        <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalGeneralNotificadosSifilis}</p></div>
+          <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{numeroTotalNotificadosSifilisEmbarazadas}</p></div>
+          <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosSifilisCongenita}</p></div>
         </div>
         <div className='graphs-container'>
         <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoSifilis} /></div>

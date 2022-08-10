@@ -12,22 +12,23 @@ function Navbar(props) {
 
   //-----------------links hover and navlink style----------------------
   const mouseEnter = ({ currentTarget }) => {
-    gsap.to(currentTarget, { color: "#000000" });
+    gsap.to(currentTarget, { color: "#ffffff", backgroundColor:"#ffd18d"});
   };
   const mouseLeave = ({ currentTarget }) => {
-    gsap.to(currentTarget, { color: "#ffffff" });
+    gsap.to(currentTarget, { color: "#FF9700", backgroundColor: "#ffffff" });
   };
 
   const styleLinks = ({ isActive }) =>
     isActive
       ? {
         color: '#ffffff',
-        background: '#C8102D',
+        backgroundColor: '#FF003C',
         paddingLeft: 6,
         paddingRight: 6,
       }
       : {
-        color: '#ffffff',
+        color: '#FF9700',
+        backgroundColor: "#ffffff"
       }
 
   //-----------------------------NavBar animation------------------

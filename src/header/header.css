@@ -28,8 +28,8 @@
 }
 
 .logo {
-    content: url(/public/logoBlanco.png);
-    width: 250px;
+    content: url(/public/logoEpi.png);
+    width: 150px;
     margin: 20px 10px 20px 30px;
     align-self: center;
 }
