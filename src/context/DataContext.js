@@ -11,9 +11,9 @@ const [baseCompleta, setBaseCompleta] = useState([]);
 
 //PROBANDO
 const anio = 2022
-console.log(baseCompleta)
+//console.log(baseCompleta)
 const fem = baseCompleta.filter(el=>el.SEXO == "F")
-console.log(fem)
+//console.log(fem)
 
 
 //==================================================
@@ -33,6 +33,18 @@ function calcularPorSexo (arr, sexo) {
 
 function calcularEventoPorSexo (enfermedad, sexo) {
   return baseCompleta.filter(el=>el.EVENTO == enfermedad && el.SEXO == sexo)
+}
+
+function calcularConfirmados (evento, clasificacion) {
+  return baseCompleta.filter(el=>el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento)
+}
+
+function calcularConfirmadosTuberculosis () {
+
+return  baseCompleta.filter(el=>el.CLASIFICACION_MANUAL == "Baciloscopía positiva").length 
++ baseCompleta.filter(el=>el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis").length 
++ baseCompleta.filter(el=>el.CLASIFICACION_MANUAL == "Mycobacterium tuberculosis").length
+  
 }
 
 
@@ -66,6 +78,21 @@ const numeroTotalGeneralNotificadosSifilisMasculino = calcularPorSexo(arrayTotal
 
 const numeroTotalGeneralNotificadosSifilisSd = calcularPorSexo(arrayTotalGeneralNotificadosSifilis, "NA")
 
+//---------------clasificaciones totales
+//confirmados
+
+
+const numeroConfirmadosTotalSifilis = parseInt(calcularConfirmados("Sífilis", "Caso confimado en banco de sangre").length) + parseInt(calcularConfirmados("Caso confirmado de sífilis sin especificar").length) + parseInt(calcularConfirmados("Caso confirmado de sífilis temprana").length)
+
+const numeroConfirmadosTotalSiflisCongenita = parseInt(calcularConfirmados("Sífilis congénita", "Caso de Sífilis congénita confirmada por laboratorio").length)
+
+const numeroConfirmadosTotalSifilisEmbarazadas = parseInt(calcularConfirmados("Sífilis en Embarazadas", "Caso confirmado de Sífilis").length)
+
+const numeroConfirmadosTotalGeneralSifilis = numeroConfirmadosTotalSifilis + numeroConfirmadosTotalSiflisCongenita + numeroConfirmadosTotalSifilisEmbarazadas
+
+
+
+
 
 
 //------------HIV----------------------------------------------------------------------------
@@ -86,7 +113,19 @@ const numeroTotalGeneralNotificadosHiv = arrayTotalGeneralNotificadosHiv.length;
 //------------por sexo
 const numeroTotalGeneralNotificadosHivFemenino = calcularPorSexo(arrayTotalGeneralNotificadosHiv, "F");
 const numeroTotalGeneralNotificadosHivMasculino = calcularPorSexo(arrayTotalGeneralNotificadosHiv, "M");
-const numeroTotalGeneralNotificadosHivSd = calcularPorSexo(arrayTotalGeneralNotificadosHiv, "NA")
+const numeroTotalGeneralNotificadosHivSd = calcularPorSexo(arrayTotalGeneralNotificadosHiv, "NA") 
+
+//---------------clasificaciones totales
+//confirmados
+
+const numeroConfirmadosTotalHiv = parseInt(calcularConfirmados("VIH", "Caso confirmado de VIH").length)
+
+const numeroConfirmadosTotalHivEmbarazo = parseInt(calcularConfirmados("VIH en embarazo", "Caso confirmado de VIH").length)
+
+const numeroConfirmadosTotalHivPerinatal = parseInt(calcularConfirmados("VIH - Expuesto perinatal", "Caso confirmado de VIH perinatal").length)
+
+const numeroConfirmadosTotalGeneralHiv = numeroConfirmadosTotalHiv + numeroConfirmadosTotalHivEmbarazo + numeroConfirmadosTotalHivPerinatal
+
 
 
 
@@ -107,6 +146,15 @@ const numeroTotalNotificadosTuberculosisA = calcularPorSexo(arrayTotalNotificado
 
 const numeroTotalNotificadosTuberculosisSd = parseInt(numeroTotalNotificadosTuberculosisNA) + parseInt(numeroTotalNotificadosTuberculosisA)
 
+
+//---------------clasificaciones totales
+//confirmados
+
+const numeroConfirmadosTotalTuberculosis = calcularConfirmadosTuberculosis()
+
+
+
+
 //-------------Dengue---------------------------------------------------------------------
 //-------------array total
 const arrayTotalNotificadosDengue = calcularTotalNotificados("Dengue");
@@ -123,7 +171,7 @@ const numeroTotalNotificadosDengueSd = calcularPorSexo(arrayTotalNotificadosDeng
 
 
 
-console.log(numeroTotalGeneralNotificadosSifilisSd);
+console.log(numeroConfirmadosTotalTuberculosis);
 
 
 
@@ -133,7 +181,7 @@ console.log(numeroTotalGeneralNotificadosSifilisSd);
 
 
 
- const data = { anio, setBaseCompleta, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd }
+ const data = { anio, baseCompleta, setBaseCompleta, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis }
 
   return (
     <DataContext.Provider value={data}>

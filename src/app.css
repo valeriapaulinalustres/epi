@@ -107,6 +107,7 @@ h3{
     box-shadow: 2px 2px 2px gray;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .rojo{

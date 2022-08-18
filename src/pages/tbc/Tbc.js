@@ -8,7 +8,7 @@ function Tbc() {
 
   const [ultimoMesTbc, setUltimoMesTbc] = useState(false)
 
-  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd } = useContext(DataContext);
+  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis } = useContext(DataContext);
 
 
   let tbcTotalMasculino = 90;
@@ -49,7 +49,7 @@ function Tbc() {
     <div className='totalesGraphs-container'>
       <div className='totales-page-container'>
       <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalNotificadosTuberculosis}</p></div>
-        <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalTuberculosis}</p></div>
         <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
         <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
         <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>

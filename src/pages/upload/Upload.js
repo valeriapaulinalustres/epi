@@ -7,7 +7,7 @@ import DataContext from '../../context/DataContext';
 
 function Upload() {
 
-  const { setBaseCompleta } = useContext(DataContext);
+  const { setBaseCompleta, baseCompleta } = useContext(DataContext);
 
 
 
@@ -39,7 +39,7 @@ function Upload() {
 
     promise.then((d) => {
       setBaseCompleta(d)
-      console.log(d)
+      //console.log(d)
     });
   };
 
@@ -58,7 +58,12 @@ function Upload() {
             readExcel(file);
 
           }}
-        /></div>
+        />
+      </div>
+      {baseCompleta.length != 0
+        ? <p>Archivo cargado</p>
+        : <p>No hay archivos cargados</p>
+      }
 
     </div>
   )

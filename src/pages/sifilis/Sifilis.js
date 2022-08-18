@@ -3,17 +3,34 @@ import DoughnutChart from '../../components/DoughnutChart';
 import BarChart from '../../components/BarChart';
 import './sifilis.css';
 import DataContext from '../../context/DataContext';
+import Toast from 'sweetalert2';
+
+
 
 function Sifilis() {
 
 const [ultimoMesSifilis, setUltimoMesSifilis] = useState(false)
 
-const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas  } = useContext(DataContext);
+const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis  } = useContext(DataContext);
 
 
   
 
   const totalPorSexoSifilis = [numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisSd]
+
+//--------ALERTS----------------
+
+function detallarConfirmadosSifilis (){
+  
+  Toast.fire({
+    title: `Confirmados en gestantes: ${numeroConfirmadosTotalSifilisEmbarazadas}, \n 
+    Confirmados congénitos: ${numeroConfirmadosTotalSiflisCongenita}, \n
+    Confirmados restantes: ${numeroConfirmadosTotalSifilis}` 
+  
+  })
+
+}
+
 
   return (
     <div className='page-container'>
@@ -28,8 +45,8 @@ const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificado
      ?
       <div className='totalesGraphs-container'>
         <div className='totales-page-container'>
-          <div className='recuadro naranja'>Total último mes: <p className='totalNumber'>120</p></div>
-          <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro naranja'>Total último mes: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro salmon' >Confirmados: <p className='totalNumber'>{}</p></div>
           <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
           <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
           <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
@@ -49,7 +66,7 @@ const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificado
       <div className='totalesGraphs-container'>
         <div className='totales-page-container'>
         <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalGeneralNotificadosSifilis}</p></div>
-          <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro salmon' onClick={detallarConfirmadosSifilis}>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalGeneralSifilis}</p></div>
           <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
           <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
           <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{numeroTotalNotificadosSifilisEmbarazadas}</p></div>

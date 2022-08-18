@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function DoughnutChart({datos}) {
 
-console.log(datos)
+//console.log(datos)
 
 
     const data = {
