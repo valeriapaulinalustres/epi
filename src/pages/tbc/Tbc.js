@@ -8,7 +8,7 @@ function Tbc() {
 
   const [ultimoMesTbc, setUltimoMesTbc] = useState(false)
 
-  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis } = useContext(DataContext);
+  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis } = useContext(DataContext);
 
 
   let tbcTotalMasculino = 90;
@@ -23,7 +23,7 @@ function Tbc() {
     <button className={ultimoMesTbc ? "button" : "buttonActive"} onClick={()=>setUltimoMesTbc(false)}>Acumulado 2022</button>
     <button className={ultimoMesTbc ? "buttonActive" : "button"} onClick={()=>setUltimoMesTbc(true)}>Ver último mes</button>
     </div>
-
+   
    {ultimoMesTbc 
    
    ?
@@ -31,8 +31,8 @@ function Tbc() {
       <div className='totales-page-container'>
         <div className='recuadro naranja'>Total último mes: <p className='totalNumber'>{}</p></div>
         <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro rosa'>Descartados: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro lila'>Sospechosos: <p className='totalNumber'>{}</p></div>
         <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
         <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
       </div>
@@ -50,8 +50,8 @@ function Tbc() {
       <div className='totales-page-container'>
       <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalNotificadosTuberculosis}</p></div>
         <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalTuberculosis}</p></div>
-        <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro rosa'>Descartados: <p className='totalNumber'>{numeroDescartadosTotalTuberculosis}</p></div>
+        <div className='recuadro lila'>Sospechosos: <p className='totalNumber'>{}</p></div>
         <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
         <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
       </div>

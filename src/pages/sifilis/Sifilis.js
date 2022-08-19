@@ -11,7 +11,7 @@ function Sifilis() {
 
 const [ultimoMesSifilis, setUltimoMesSifilis] = useState(false)
 
-const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis  } = useContext(DataContext);
+const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroProbablesTotalGeneralSifilis,  numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas } = useContext(DataContext);
 
 
   
@@ -31,6 +31,24 @@ function detallarConfirmadosSifilis (){
 
 }
 
+function detallarProbablesSifilis (){
+  Toast.fire({
+    title: `Probables en gestantes: ${numeroProbablesTotalSifilisEmbarazadas}, \n 
+    Probables en congénitos: ${numeroProbablesTotalSifilisCongenita}, \n
+    Probables en restantes: ${numeroProbablesTotalSifilis}` 
+  
+  })
+}
+
+function detallarDescartadosSifilis () {
+  Toast.fire({
+    title: `Descartados en gestantes: ${numeroDescartadosTotalSifilisEmbarazadas}, \n 
+    Descartados en congénitos: ${numeroDescartadosTotalSifilisCongenita}, \n
+    Descartados en restantes: ${numeroDescartadosTotalSifilis}` 
+  
+  })
+}
+
 
   return (
     <div className='page-container'>
@@ -38,8 +56,9 @@ function detallarConfirmadosSifilis (){
       <div className='btnElegir-page'>
       <button className={ultimoMesSifilis ? "button" : "buttonActive"} onClick={()=>setUltimoMesSifilis(false)}>Acumulado 2022</button>
       <button className={ultimoMesSifilis ? "buttonActive" : "button"} onClick={()=>setUltimoMesSifilis(true)}>Ver último mes</button>
+      
       </div>
-
+   
      {ultimoMesSifilis 
      
      ?
@@ -67,8 +86,8 @@ function detallarConfirmadosSifilis (){
         <div className='totales-page-container'>
         <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalGeneralNotificadosSifilis}</p></div>
           <div className='recuadro salmon' onClick={detallarConfirmadosSifilis}>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalGeneralSifilis}</p></div>
-          <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro rosa' onClick={detallarProbablesSifilis}>Probables: <p className='totalNumber'>{numeroProbablesTotalGeneralSifilis}</p></div>
+          <div className='recuadro lila' onClick={detallarDescartadosSifilis}>Descartados: <p className='totalNumber'>{numeroDescartadosTotalGeneralSifilis}</p></div>
           <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{numeroTotalNotificadosSifilisEmbarazadas}</p></div>
           <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosSifilisCongenita}</p></div>
         </div>

@@ -8,7 +8,7 @@ function Dengue() {
 
 const [ultimoMesDengue, setUltimoMesDengue] = useState(false)
 
-const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd } = useContext(DataContext);
+const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue } = useContext(DataContext);
 
 
   const totalPorSexoTbc = [numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd]
@@ -49,9 +49,9 @@ const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenin
     <div className='totalesGraphs-container'>
       <div className='totales-page-container'>
       <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalNotificadosDengue}</p></div>
-        <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalDengue}</p></div>
+        <div className='recuadro rosa'>Probables: <p className='totalNumber'>{numeroProbablesTotalDengue}</p></div>
+        <div className='recuadro lila'>Descartados: <p className='totalNumber'>{numeroDescartadosTotalDengue}</p></div>
         <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
         <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
       </div>

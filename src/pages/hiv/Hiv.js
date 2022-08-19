@@ -9,7 +9,7 @@ function Hiv() {
 
   const [ultimoMesHiv, setUltimoMesHiv] = useState(false)
 
-  const { anio,  numeroTotalGeneralNotificadosHiv, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal  } = useContext(DataContext);
+  const { anio,  numeroTotalGeneralNotificadosHiv, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas  } = useContext(DataContext);
 
 
   let tbcTotalMasculino = 90;
@@ -30,6 +30,23 @@ function Hiv() {
   
   }
   
+  function detallarProbablesHiv () {
+    Toast.fire({
+      title: `Probables en gestantes: ${numeroProbablesTotalHivEmbarazo}, \n 
+      Probables perinatal: ${numeroProbablesTotalHivPerinatal}, \n
+      Probables restantes: ${numeroProbablesTotalHiv}` 
+    
+    })
+  }
+
+  function detallarDescartadosHiv () {
+    Toast.fire({
+      title: `Descartados en gestantes: ${numeroDescartadosTotalHivEmbarazadas}, \n 
+      Descartados perinatal: ${numeroDescartadosTotalHivPerinatal}, \n
+      Descartados restantes: ${numeroDescartadosTotalHiv}` 
+    
+    })
+  }
 
   return (
     <div className='page-container'>
@@ -38,7 +55,7 @@ function Hiv() {
       <button className={ultimoMesHiv ? "button" : "buttonActive"} onClick={()=>setUltimoMesHiv(false)}>Acumulado 2022</button>
       <button className={ultimoMesHiv ? "buttonActive" : "button"} onClick={()=>setUltimoMesHiv(true)}>Ver último mes</button>
       </div>
-
+  
      {ultimoMesHiv 
      
      ?
@@ -66,8 +83,8 @@ function Hiv() {
         <div className='totales-page-container'>
         <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalGeneralNotificadosHiv}</p></div>
           <div className='recuadro salmon' onClick={detallarConfirmadosHiv}>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalGeneralHiv}</p></div>
-          <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro rosa' onClick={detallarProbablesHiv}>Probables: <p className='totalNumber'>{numeroProbablesTotalGeneralHiv}</p></div>
+          <div className='recuadro lila' onClick={detallarDescartadosHiv}>Descartados: <p className='totalNumber'>{numeroDescartadosTotalGeneralHiv}</p></div>
           <div className='recuadro rosa'>Gestantes:<p className='totalNumber'>{numeroTotalNotificadosHivEmbarazo}</p></div>
           <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosHivPerinatal}</p></div>
         </div>
