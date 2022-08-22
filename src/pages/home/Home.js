@@ -33,7 +33,7 @@ let ultimaSE = 30;
         <h3>SE x a {ultimaSE}</h3>
       <h3>Total de casos notificados:</h3>
         <div className='totales-page-container'>
-          <div className='recuadro naranja'>Sífilis: <p className='totalNumber'>120</p></div>
+          <div className='recuadro lila'>Sífilis: <p className='totalNumber'>120</p></div>
           <div className='recuadro salmon'>Tuberculosis: {}</div>
           <div className='recuadro rosa'>Dengue: {}</div>
           <div className='recuadro lila'>HIV: {}</div>
@@ -53,7 +53,7 @@ let ultimaSE = 30;
         <h3>SE 1 a {ultimaSE}</h3>
       <h3>Total de casos notificados:</h3>
         <div className='totales-page-container'>
-        <div className='recuadro naranja'>Sífilis: <p className='totalNumber'>{numeroTotalGeneralNotificadosSifilis}</p></div>
+        <div className='recuadro lila'>Sífilis: <p className='totalNumber'>{numeroTotalGeneralNotificadosSifilis}</p></div>
           <div className='recuadro salmon'>Tuberculosis: <p className='totalNumber'>{numeroTotalNotificadosTuberculosis}</p></div>
           <div className='recuadro rosa'>Dengue: <p className='totalNumber'>{numeroTotalNotificadosDengue}</p></div>
           <div className='recuadro lila'>HIV: <p className='totalNumber'>{numeroTotalGeneralNotificadosHiv}</p></div>

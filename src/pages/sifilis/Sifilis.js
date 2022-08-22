@@ -67,7 +67,8 @@ function detallarDescartadosSifilis () {
           <div className='recuadro naranja'>Total último mes: <p className='totalNumber'>{}</p></div>
           <div className='recuadro salmon' >Confirmados: <p className='totalNumber'>{}</p></div>
           <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro lila'>Sospechosos: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro salmón'>Descartados: <p className='totalNumber'>{}</p></div>
           <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
           <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
         </div>
@@ -87,7 +88,8 @@ function detallarDescartadosSifilis () {
         <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalGeneralNotificadosSifilis}</p></div>
           <div className='recuadro salmon' onClick={detallarConfirmadosSifilis}>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalGeneralSifilis}</p></div>
           <div className='recuadro rosa' onClick={detallarProbablesSifilis}>Probables: <p className='totalNumber'>{numeroProbablesTotalGeneralSifilis}</p></div>
-          <div className='recuadro lila' onClick={detallarDescartadosSifilis}>Descartados: <p className='totalNumber'>{numeroDescartadosTotalGeneralSifilis}</p></div>
+          <div className='recuadro lila'>Sospechosos: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro salmon' onClick={detallarDescartadosSifilis}>Descartados: <p className='totalNumber'>{numeroDescartadosTotalGeneralSifilis}</p></div>
           <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{numeroTotalNotificadosSifilisEmbarazadas}</p></div>
           <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosSifilisCongenita}</p></div>
         </div>

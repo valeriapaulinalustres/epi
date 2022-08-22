@@ -3,16 +3,27 @@ import DoughnutChart from '../../components/DoughnutChart';
 import BarChart from '../../components/BarChart';
 import '../sifilis/sifilis.css';
 import DataContext from '../../context/DataContext';
+import Toast from 'sweetalert2';
 
 function Dengue() {
 
 const [ultimoMesDengue, setUltimoMesDengue] = useState(false)
 
-const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue } = useContext(DataContext);
+const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue } = useContext(DataContext);
 
 
   const totalPorSexoTbc = [numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd]
  
+//Alerts
+
+function detallarEmbarazadasDengue (){
+  
+  Toast.fire({
+    title: `Gestantes confirmadas: ${numeroEmbarazadasConfirmadasDengue}, \n 
+    Gestantes descartadas: ${numeroEmbarazadasDescartadasDengue}. \n
+    ` 
+  })
+}
 
   return (
     <div className='page-container'>
@@ -32,7 +43,7 @@ const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenin
      <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
      <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
      <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
-     <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
+     <div className='recuadro salmon'>Sospechosos: <p className='totalNumber'>{}</p></div>
    </div>
    <div className='graphs-container'>
    <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
@@ -52,8 +63,8 @@ const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenin
         <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalDengue}</p></div>
         <div className='recuadro rosa'>Probables: <p className='totalNumber'>{numeroProbablesTotalDengue}</p></div>
         <div className='recuadro lila'>Descartados: <p className='totalNumber'>{numeroDescartadosTotalDengue}</p></div>
-        <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro rosa' onClick={detallarEmbarazadasDengue}>Gestantes: <p className='totalNumber'>{numeroEmbarazadasNotificadoTotalDengue}</p></div>
+        <div className='recuadro salmon'>Sospechosos: <p className='totalNumber'>{}</p></div>
       </div>
       <div className='graphs-container'>
       <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>

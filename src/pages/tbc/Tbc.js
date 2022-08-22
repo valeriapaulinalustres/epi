@@ -3,18 +3,31 @@ import DoughnutChart from '../../components/DoughnutChart';
 import BarChart from '../../components/BarChart';
 import '../sifilis/sifilis.css';
 import DataContext from '../../context/DataContext';
+import Toast from 'sweetalert2';
 
 function Tbc() {
 
   const [ultimoMesTbc, setUltimoMesTbc] = useState(false)
 
-  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis } = useContext(DataContext);
+  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis  } = useContext(DataContext);
 
 
   let tbcTotalMasculino = 90;
   let tbcTotalFemenino = 10;
 
   const totalPorSexoTbc = [numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisSd]
+
+//Alerts
+
+function detallarEmbarazadasTuberculosis (){
+  
+  Toast.fire({
+    title: `Gestantes confirmadas: ${numeroEmbarazadasConfirmadasTuberculosis}, \n 
+    Gestantes descartadas: ${numeroEmbarazadasDescartadasTuberculosis}. \n
+    ` 
+  })
+}
+
 
   return (
     <div className='page-container'>
@@ -34,7 +47,7 @@ function Tbc() {
         <div className='recuadro rosa'>Descartados: <p className='totalNumber'>{}</p></div>
         <div className='recuadro lila'>Sospechosos: <p className='totalNumber'>{}</p></div>
         <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro salmon'>x<p className='totalNumber'>{}</p></div>
       </div>
       <div className='graphs-container'>
       <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
@@ -52,8 +65,8 @@ function Tbc() {
         <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalTuberculosis}</p></div>
         <div className='recuadro rosa'>Descartados: <p className='totalNumber'>{numeroDescartadosTotalTuberculosis}</p></div>
         <div className='recuadro lila'>Sospechosos: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro rosa' onClick={detallarEmbarazadasTuberculosis}>Gestantes: <p className='totalNumber'>{numeroEmbarazadasNotificadasTotalTuberculosis}</p></div>
+        <div className='recuadro salmon'>x<p className='totalNumber'>{}</p></div>
       </div>
       <div className='graphs-container'>
       <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
