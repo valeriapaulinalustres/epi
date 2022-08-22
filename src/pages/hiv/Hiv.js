@@ -65,8 +65,8 @@ function Hiv() {
           <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
           <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
           <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
-          <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro salmon'>Gestantes: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro rosa'>Congénitos: <p className='totalNumber'>{}</p></div>
         </div>
         <div className='graphs-container'>
         <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
@@ -85,8 +85,8 @@ function Hiv() {
           <div className='recuadro salmon' onClick={detallarConfirmadosHiv}>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalGeneralHiv}</p></div>
           <div className='recuadro rosa' onClick={detallarProbablesHiv}>Probables: <p className='totalNumber'>{numeroProbablesTotalGeneralHiv}</p></div>
           <div className='recuadro lila' onClick={detallarDescartadosHiv}>Descartados: <p className='totalNumber'>{numeroDescartadosTotalGeneralHiv}</p></div>
-          <div className='recuadro rosa'>Gestantes:<p className='totalNumber'>{numeroTotalNotificadosHivEmbarazo}</p></div>
-          <div className='recuadro salmon'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosHivPerinatal}</p></div>
+          <div className='recuadro salmon'>Gestantes:<p className='totalNumber'>{numeroTotalNotificadosHivEmbarazo}</p></div>
+          <div className='recuadro rosa'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosHivPerinatal}</p></div>
         </div>
         <div className='graphs-container'>
         <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>

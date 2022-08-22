@@ -9,7 +9,7 @@ function Dengue() {
 
 const [ultimoMesDengue, setUltimoMesDengue] = useState(false)
 
-const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue } = useContext(DataContext);
+const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroSospechososTotalDengue } = useContext(DataContext);
 
 
   const totalPorSexoTbc = [numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd]
@@ -42,8 +42,8 @@ function detallarEmbarazadasDengue (){
      <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
      <div className='recuadro rosa'>Probables: <p className='totalNumber'>{}</p></div>
      <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
-     <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
-     <div className='recuadro salmon'>Sospechosos: <p className='totalNumber'>{}</p></div>
+     <div className='recuadro salmon'>Gestantes: <p className='totalNumber'>{}</p></div>
+     <div className='recuadro rosa'>Sospechosos: <p className='totalNumber'>{}</p></div>
    </div>
    <div className='graphs-container'>
    <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
@@ -63,8 +63,8 @@ function detallarEmbarazadasDengue (){
         <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalDengue}</p></div>
         <div className='recuadro rosa'>Probables: <p className='totalNumber'>{numeroProbablesTotalDengue}</p></div>
         <div className='recuadro lila'>Descartados: <p className='totalNumber'>{numeroDescartadosTotalDengue}</p></div>
-        <div className='recuadro rosa' onClick={detallarEmbarazadasDengue}>Gestantes: <p className='totalNumber'>{numeroEmbarazadasNotificadoTotalDengue}</p></div>
-        <div className='recuadro salmon'>Sospechosos: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>Gestantes: <p className='totalNumber'>{numeroEmbarazadasNotificadoTotalDengue}</p></div>
+        <div className='recuadro rosa'>Sospechosos: <p className='totalNumber'>{numeroSospechososTotalDengue}</p></div>
       </div>
       <div className='graphs-container'>
       <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
