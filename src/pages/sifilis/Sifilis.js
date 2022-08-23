@@ -14,9 +14,17 @@ const [ultimoMesSifilis, setUltimoMesSifilis] = useState(false)
 const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroProbablesTotalGeneralSifilis,  numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas } = useContext(DataContext);
 
 
-  
+  //Gráfico notificados según sexo
 
   const totalPorSexoSifilis = [numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisSd]
+
+  const labelsSexoSifilis =['maculino', 'femenino', 'SD']
+
+  const backgroundColorSifilis = ['rgba(255, 151, 0, 0.2)', 'rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
+
+  const borderColorSifilis = ['rgba(255, 151, 0, 1)', 'rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+
+  const titleSexoSifilis = "Casos notificados según sexo. Morón, 2022."
 
 //--------ALERTS----------------
 
@@ -92,7 +100,7 @@ function detallarDescartadosSifilis () {
           <div className='recuadro rosa'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosSifilisCongenita}</p></div>
         </div>
         <div className='graphs-container'>
-        <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoSifilis} /></div>
+        <div className='doughnutChart-sifilis'><DoughnutChart title={titleSexoSifilis} datos={totalPorSexoSifilis} labels={labelsSexoSifilis} backgroundColor={backgroundColorSifilis} borderColor={borderColorSifilis}/></div>
         <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoSifilis} /></div>
         <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoSifilis} /></div>
         <div className='barChart-sifilis'><BarChart /></div>

@@ -5,31 +5,19 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 
-function DoughnutChart({datos}) {
+function DoughnutChart({title, datos, labels, backgroundColor, borderColor}) {
 
 //console.log(datos)
 
 
     const data = {
-        labels: ['maculino', 'femenino', 'SD'],
+        labels: labels,
         datasets: [
           {
-            label: 'clasificación de notificados',
+            label: "hola",
             data: datos,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(200, 189, 135, 0.2)'
-             
-              
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(200, 189, 135, 0.2)'
-             
-              
-            ],
+            backgroundColor: backgroundColor,
+            borderColor: borderColor,
             borderWidth: 1,
           },
         ],
@@ -37,7 +25,7 @@ function DoughnutChart({datos}) {
 
     return (
         <div>
-            <h2>DoughnutChart</h2>
+            <h3>{title}</h3>
             <Doughnut data={data} />
 
         </div>
