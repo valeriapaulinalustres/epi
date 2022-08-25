@@ -9,13 +9,36 @@ function Hiv() {
 
   const [ultimoMesHiv, setUltimoMesHiv] = useState(false)
 
-  const { anio,  numeroTotalGeneralNotificadosHiv, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas  } = useContext(DataContext);
+  const { anio,  numeroTotalGeneralNotificadosHiv, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron  } = useContext(DataContext);
 
 
   let tbcTotalMasculino = 90;
   let tbcTotalFemenino = 10;
 
   const totalPorSexoTbc = [numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivSd]
+
+//Gráfico notificados según sexo
+
+const totalPorSexoHiv = [numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivSd]
+const labelsSexoHiv =['Maculino', 'Femenino', 'SD']
+const backgroundColorHiv = ['rgba(255, 151, 0, 0.2)', 'rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
+const borderColorHiv = ['rgba(255, 151, 0, 1)', 'rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+const titleSexoHiv = "Casos notificados según sexo. Morón, 2022."
+
+ //Gráfico embarazadas sobre total de notificadas mujeres
+
+ const embarazadasEnMujeresHiv = [numeroTotalNotificadosHivEmbarazo, parseInt(numeroTotalGeneralNotificadosHivFemenino-numeroTotalNotificadosHivEmbarazo)]
+ const labelsEmbarazoHiv =['Gestantes', 'No gestantes',]
+ const backgroundColorEmbarazoHiv= ['rgba(255, 151, 0, 0.2)', 'rgba(255, 0, 60, 0.2)']
+ const borderColorEmbarazoHiv = ['rgba(255, 151, 0, 1)', 'rgba(255, 0, 60, 1)']
+ const titleEmbarazoHiv = "Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, 2022."
+//Gráfico notificados Morón/Total
+
+const notificadosHivEstablecimientoCarga = [numeroTotalGeneralHivMoron, numeroTotalGeneralHivNoMoron]
+const labelsEstablecimientoHiv =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
+const backgroundColorEstablecimientoHiv= ['rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
+const borderColorEstablecimientoHiv = ['rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+const titleEstablecimientoHiv = "Casos notificados según Establecimiento de carga. Morón, 2022."
 
 //----------ALERTS-----------------------
 
@@ -67,6 +90,7 @@ function Hiv() {
           <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
           <div className='recuadro salmon'>Gestantes: <p className='totalNumber'>{}</p></div>
           <div className='recuadro rosa'>Congénitos: <p className='totalNumber'>{}</p></div>
+          <div className='recuadro lila'>Notificados por Morón: <p className='totalNumber'>{}</p></div>
         </div>
         <div className='graphs-container'>
         <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
@@ -87,10 +111,12 @@ function Hiv() {
           <div className='recuadro lila' onClick={detallarDescartadosHiv}>Descartados: <p className='totalNumber'>{numeroDescartadosTotalGeneralHiv}</p></div>
           <div className='recuadro salmon'>Gestantes:<p className='totalNumber'>{numeroTotalNotificadosHivEmbarazo}</p></div>
           <div className='recuadro rosa'>Congénitos: <p className='totalNumber'>{numeroTotalNotificadosHivPerinatal}</p></div>
+          <div className='recuadro lila'>Notificados por Morón: <p className='totalNumber'>{porcentajeNotificadosHivMoron}%</p></div>
         </div>
         <div className='graphs-container'>
-        <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
-        <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
+        <div className='doughnutChart-sifilis'><DoughnutChart title={titleSexoHiv} datos={totalPorSexoHiv} labels={labelsSexoHiv} backgroundColor={backgroundColorHiv} borderColor={borderColorHiv} /></div>
+        <div className='doughnutChart-sifilis'><DoughnutChart title={titleEmbarazoHiv} datos={embarazadasEnMujeresHiv} labels={labelsEmbarazoHiv} backgroundColor={backgroundColorEmbarazoHiv} borderColor={borderColorEmbarazoHiv}/></div>
+        <div className='doughnutChart-sifilis'><DoughnutChart  title={titleEstablecimientoHiv} datos={notificadosHivEstablecimientoCarga} labels={labelsEstablecimientoHiv} backgroundColor={backgroundColorEstablecimientoHiv} borderColor={borderColorEstablecimientoHiv}/></div>
 
         <div className='barChart-sifilis'><BarChart /></div>
         <div className='barChart-sifilis'><BarChart /></div>

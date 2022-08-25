@@ -9,11 +9,29 @@ function Dengue() {
 
 const [ultimoMesDengue, setUltimoMesDengue] = useState(false)
 
-const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroSospechososTotalDengue } = useContext(DataContext);
+const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroSospechososTotalDengue, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron } = useContext(DataContext);
 
 
   const totalPorSexoTbc = [numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd]
  
+//Gráfico notificados según sexo
+
+const totalPorSexoDengue = [numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueSd]
+const labelsSexoDengue =['Maculino', 'Femenino', 'SD']
+const backgroundColorDengue = ['rgba(255, 151, 0, 0.2)', 'rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
+const borderColorDengue = ['rgba(255, 151, 0, 1)', 'rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+const titleSexoDengue = "Casos notificados según sexo. Morón, 2022."
+
+
+//Gráfico notificados Morón/Total
+
+const notificadosDengueEstablecimientoCarga = [numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron]
+const labelsEstablecimientoDengue =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
+const backgroundColorEstablecimientoDengue= ['rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
+const borderColorEstablecimientoDengue = ['rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+const titleEstablecimientoDengue = "Casos notificados según Establecimiento de carga. Morón, 2022."
+
+
 //Alerts
 
 function detallarEmbarazadasDengue (){
@@ -44,7 +62,9 @@ function detallarEmbarazadasDengue (){
      <div className='recuadro lila'>Descartados: <p className='totalNumber'>{}</p></div>
      <div className='recuadro salmon'>Gestantes: <p className='totalNumber'>{}</p></div>
      <div className='recuadro rosa'>Sospechosos: <p className='totalNumber'>{}</p></div>
+     <div className='recuadro lila'>Notificados por Morón: <p className='totalNumber'>{}%</p></div>
    </div>
+
    <div className='graphs-container'>
    <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
         <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
@@ -65,10 +85,11 @@ function detallarEmbarazadasDengue (){
         <div className='recuadro lila'>Descartados: <p className='totalNumber'>{numeroDescartadosTotalDengue}</p></div>
         <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>Gestantes: <p className='totalNumber'>{numeroEmbarazadasNotificadoTotalDengue}</p></div>
         <div className='recuadro rosa'>Sospechosos: <p className='totalNumber'>{numeroSospechososTotalDengue}</p></div>
+        <div className='recuadro lila'>Notificados por Morón: <p className='totalNumber'>{porcentajeNotificadosDengueMoron}%</p></div>
       </div>
       <div className='graphs-container'>
-      <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
-        <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
+      <div className='doughnutChart-sifilis'><DoughnutChart title={titleSexoDengue} datos={totalPorSexoDengue} labels={labelsSexoDengue} backgroundColor={backgroundColorDengue} borderColor={borderColorDengue}/></div>
+        <div className='doughnutChart-sifilis'><DoughnutChart  title={titleEstablecimientoDengue} datos={notificadosDengueEstablecimientoCarga} labels={labelsEstablecimientoDengue} backgroundColor={backgroundColorEstablecimientoDengue} borderColor={borderColorEstablecimientoDengue}/></div>
 
         <div className='barChart-sifilis'><BarChart /></div>
         <div className='barChart-sifilis'><BarChart /></div>

@@ -9,13 +9,29 @@ function Tbc() {
 
   const [ultimoMesTbc, setUltimoMesTbc] = useState(false)
 
-  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEnEstudioTotalTuberculosis  } = useContext(DataContext);
+  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEnEstudioTotalTuberculosis, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron  } = useContext(DataContext);
 
 
   let tbcTotalMasculino = 90;
   let tbcTotalFemenino = 10;
 
-  const totalPorSexoTbc = [numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisSd]
+  //const totalPorSexoTbc = [numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisSd]
+
+//Gráfico notificados según sexo
+
+const totalPorSexoTbc = [numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisSd]
+const labelsSexoTbc =['Maculino', 'Femenino', 'SD']
+const backgroundColorTbc = ['rgba(255, 151, 0, 0.2)', 'rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
+const borderColorTbc = ['rgba(255, 151, 0, 1)', 'rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+const titleSexoTbc = "Casos notificados según sexo. Morón, 2022."
+
+ //Gráfico notificados Morón/Total
+
+ const notificadosTbcEstablecimientoCarga = [numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron]
+ const labelsEstablecimientoTbc =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
+ const backgroundColorEstablecimientoTbc= ['rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
+ const borderColorEstablecimientoTbc = ['rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+ const titleEstablecimientoTbc = "Casos notificados según Establecimiento de carga. Morón, 2022."
 
 //Alerts
 
@@ -46,7 +62,8 @@ function detallarEmbarazadasTuberculosis (){
         <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{}</p></div>
         <div className='recuadro rosa'>Descartados: <p className='totalNumber'>{}</p></div>
         <div className='recuadro lila'>Sospechosos: <p className='totalNumber'>{}</p></div>
-        <div className='recuadro rosa'>Gestantes: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro salmon'>Gestantes: <p className='totalNumber'>{}</p></div>
+        <div className='recuadro rosa'>Notificados por Morón: <p className='totalNumber'>{}%</p></div>
       </div>
       <div className='graphs-container'>
       <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
@@ -64,10 +81,13 @@ function detallarEmbarazadasTuberculosis (){
         <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalTuberculosis}</p></div>
         <div className='recuadro rosa'>Descartados: <p className='totalNumber'>{numeroDescartadosTotalTuberculosis}</p></div>
         <div className='recuadro lila'>En estudio: <p className='totalNumber'>{numeroEnEstudioTotalTuberculosis}</p></div>
-        <div className='recuadro rosa' onClick={detallarEmbarazadasTuberculosis}>Gestantes: <p className='totalNumber'>{numeroEmbarazadasNotificadasTotalTuberculosis}</p></div>
+        <div className='recuadro salmon' onClick={detallarEmbarazadasTuberculosis}>Gestantes: <p className='totalNumber'>{numeroEmbarazadasNotificadasTotalTuberculosis}</p></div>
+        <div className='recuadro rosa'>Notificados por Morón: <p className='totalNumber'>{porcentajeNotificadosTuberculosisMoron}%</p></div>
       </div>
+      
       <div className='graphs-container'>
-      <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
+      <div className='doughnutChart-sifilis'><DoughnutChart title={titleSexoTbc} datos={totalPorSexoTbc} labels={labelsSexoTbc} backgroundColor={backgroundColorTbc} borderColor={borderColorTbc}/></div>
+        <div className='doughnutChart-sifilis'><DoughnutChart  title={titleEstablecimientoTbc} datos={notificadosTbcEstablecimientoCarga} labels={labelsEstablecimientoTbc} backgroundColor={backgroundColorEstablecimientoTbc} borderColor={borderColorEstablecimientoTbc}/></div>
 
         <div className='barChart-sifilis'><BarChart /></div>
         <div className='barChart-sifilis'><BarChart /></div>
