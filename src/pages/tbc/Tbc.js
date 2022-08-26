@@ -4,6 +4,7 @@ import BarChart from '../../components/BarChart';
 import '../sifilis/sifilis.css';
 import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
+import Colors from '../../components/Colors'
 
 function Tbc() {
 
@@ -11,6 +12,7 @@ function Tbc() {
 
   const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEnEstudioTotalTuberculosis, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron  } = useContext(DataContext);
 
+  const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
   let tbcTotalMasculino = 90;
   let tbcTotalFemenino = 10;
@@ -21,16 +23,16 @@ function Tbc() {
 
 const totalPorSexoTbc = [numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisSd]
 const labelsSexoTbc =['Maculino', 'Femenino', 'SD']
-const backgroundColorTbc = ['rgba(255, 151, 0, 0.2)', 'rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
-const borderColorTbc = ['rgba(255, 151, 0, 1)', 'rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+const backgroundColorTbc = [salmonTransparente, lilaTransparente, rosaTransparente]
+const borderColorTbc = [salmon, lila, rosa]
 const titleSexoTbc = "Casos notificados según sexo. Morón, 2022."
 
  //Gráfico notificados Morón/Total
 
  const notificadosTbcEstablecimientoCarga = [numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron]
  const labelsEstablecimientoTbc =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
- const backgroundColorEstablecimientoTbc= ['rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
- const borderColorEstablecimientoTbc = ['rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+ const backgroundColorEstablecimientoTbc= [lilaTransparente, rosaTransparente]
+ const borderColorEstablecimientoTbc = [lila, rosa]
  const titleEstablecimientoTbc = "Casos notificados según Establecimiento de carga. Morón, 2022."
 
 //Alerts

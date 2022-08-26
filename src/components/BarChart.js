@@ -20,47 +20,62 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  indexAxis: 'y',
-  elements: {
-    bar: {
-      borderWidth: 2,
-    },
-  },
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'right',
-    },
-    title: {
-      display: true,
-      text: 'Sífilis',
-    },
-  },
-};
 
-const labels = ['Confirmados','Descartados'];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Mujeres',
-      data: [30,50],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+function BarChart({ title, barLabels, label1, label2, label3, data1, data2, data3, borderColor1, borderColor2, borderColor3, bgColor1, bgColor2, bgColor3}) {
+
+  const options = {
+    indexAxis: 'y',
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
     },
-    {
-      label: 'Varones',
-      data: [90,20],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'right',
+      },
+      title: {
+        display: true,
+        text: title,
+      },
     },
+  };
+
+
+  const labels = barLabels;
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: label1,
+        data: data1,
+        borderColor: borderColor1,
+        backgroundColor: bgColor1,
+      },
+      {
+        label: label2,
+        data: data2,
+        borderColor: borderColor2,
+        backgroundColor: bgColor2,
+      },
     
-  ],
-};
+      {
+        label: label3,
+        data: data3,
+        borderColor: borderColor3,
+        backgroundColor: bgColor3,
+      },
+      
+    ],
+  };
 
-function BarChart() {
+
+
+
+  
   return <Bar options={options} data={data} />;
 }
 

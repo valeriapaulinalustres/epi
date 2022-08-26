@@ -4,6 +4,7 @@ import BarChart from '../../components/BarChart';
 import '../sifilis/sifilis.css';
 import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
+import Colors from '../../components/Colors'
 
 function Dengue() {
 
@@ -11,6 +12,7 @@ const [ultimoMesDengue, setUltimoMesDengue] = useState(false)
 
 const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroSospechososTotalDengue, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron } = useContext(DataContext);
 
+const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
   const totalPorSexoTbc = [numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd]
  
@@ -18,8 +20,8 @@ const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenin
 
 const totalPorSexoDengue = [numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueSd]
 const labelsSexoDengue =['Maculino', 'Femenino', 'SD']
-const backgroundColorDengue = ['rgba(255, 151, 0, 0.2)', 'rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
-const borderColorDengue = ['rgba(255, 151, 0, 1)', 'rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+const backgroundColorDengue = [salmonTransparente, lilaTransparente, rosaTransparente]
+const borderColorDengue = [salmon, lila, rosa]
 const titleSexoDengue = "Casos notificados según sexo. Morón, 2022."
 
 
@@ -27,8 +29,8 @@ const titleSexoDengue = "Casos notificados según sexo. Morón, 2022."
 
 const notificadosDengueEstablecimientoCarga = [numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron]
 const labelsEstablecimientoDengue =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
-const backgroundColorEstablecimientoDengue= ['rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
-const borderColorEstablecimientoDengue = ['rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+const backgroundColorEstablecimientoDengue= [lilaTransparente, rosaTransparente]
+const borderColorEstablecimientoDengue = [lila, rosa]
 const titleEstablecimientoDengue = "Casos notificados según Establecimiento de carga. Morón, 2022."
 
 

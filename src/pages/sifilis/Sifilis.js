@@ -4,40 +4,54 @@ import BarChart from '../../components/BarChart';
 import './sifilis.css';
 import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
-
+import Colors from '../../components/Colors'
 
 
 function Sifilis() {
 
 const [ultimoMesSifilis, setUltimoMesSifilis] = useState(false)
 
-const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroProbablesTotalGeneralSifilis,  numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron } = useContext(DataContext);
+const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroProbablesTotalGeneralSifilis,  numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis } = useContext(DataContext);
+
+const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
 
   //Gráfico notificados según sexo
 
   const totalPorSexoSifilis = [numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisSd]
   const labelsSexoSifilis =['Maculino', 'Femenino', 'SD']
-  const backgroundColorSifilis = ['rgba(255, 151, 0, 0.2)', 'rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
-  const borderColorSifilis = ['rgba(255, 151, 0, 1)', 'rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+  const backgroundColorSifilis = [salmonTransparente, lilaTransparente, rosaTransparente]
+  const borderColorSifilis = [salmon, lila, rosa]
   const titleSexoSifilis = "Casos notificados según sexo. Morón, 2022."
 
   //Gráfico embarazadas sobre total de notificadas mujeres
 
   const embarazadasEnMujeresSifilis = [numeroTotalNotificadosSifilisEmbarazadas, parseInt(numeroTotalGeneralNotificadosSifilisFemenino-numeroTotalNotificadosSifilisEmbarazadas)]
   const labelsEmbarazoSifilis =['Gestantes', 'No gestantes',]
-  const backgroundColorEmbarazoSifilis= ['rgba(255, 151, 0, 0.2)', 'rgba(255, 0, 60, 0.2)']
-  const borderColorEmbarazoSifilis = ['rgba(255, 151, 0, 1)', 'rgba(255, 0, 60, 1)']
+  const backgroundColorEmbarazoSifilis= [lilaTransparente, rosaTransparente]
+  const borderColorEmbarazoSifilis = [lila, rosa]
   const titleEmbarazoSifilis = "Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, 2022."
 
   //Gráfico notificados Morón/Total
 
   const notificadosSifilisEstablecimientoCarga = [numeroTotalGeneralSifilisMoron, numeroTotalGeneralSifilisNoMoron]
   const labelsEstablecimientoSifilis =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
-  const backgroundColorEstablecimientoSifilis= ['rgba(136, 19, 255, 0.2)', 'rgba(255, 0, 60, 0.2)']
-  const borderColorEstablecimientoSifilis = ['rgba(136, 19, 255, 1)', 'rgba(255, 0, 60, 1)']
+  const backgroundColorEstablecimientoSifilis= [salmonTransparente, rosaTransparente]
+  const borderColorEstablecimientoSifilis = [salmon, rosa]
   const titleEstablecimientoSifilis = "Casos notificados según Establecimiento de carga. Morón, 2022."
   
+
+  //Gráfico tabla probables y confirmados
+
+  const titleConfProbSifilis = "Casos confirmados y probables. Morón, 2022"
+  const labelsConfProbSifilis = ['Confirmados','Probables']
+  const label1Sifilis = "Mujeres";
+const label2Sifilis = "Varones";
+const label3Sifilis = "SD";
+const femeninoConfProbSifilis = [numeroConfirmadosFemeninosSifilis, ];
+const masculinoConfProbSifilis = [numeroConfirmadosMasculinosSifilis, ];
+const sdConfProbSifilis = [numeroConfirmadosSDSifilis, ]
+
 
 //--------ALERTS----------------
 
@@ -118,7 +132,7 @@ function detallarDescartadosSifilis () {
         <div className='doughnutChart-sifilis'><DoughnutChart title={titleSexoSifilis} datos={totalPorSexoSifilis} labels={labelsSexoSifilis} backgroundColor={backgroundColorSifilis} borderColor={borderColorSifilis}/></div>
         <div className='doughnutChart-sifilis'><DoughnutChart title={titleEmbarazoSifilis} datos={embarazadasEnMujeresSifilis} labels={labelsEmbarazoSifilis} backgroundColor={backgroundColorEmbarazoSifilis} borderColor={borderColorEmbarazoSifilis} /></div>
         <div className='doughnutChart-sifilis'><DoughnutChart  title={titleEstablecimientoSifilis} datos={notificadosSifilisEstablecimientoCarga} labels={labelsEstablecimientoSifilis} backgroundColor={backgroundColorEstablecimientoSifilis} borderColor={borderColorEstablecimientoSifilis}/></div>
-        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart title={titleConfProbSifilis}barLabels={labelsConfProbSifilis} label1={label1Sifilis} label2={label2Sifilis} label3={label3Sifilis} data1={femeninoConfProbSifilis} data2={masculinoConfProbSifilis} data3={sdConfProbSifilis} borderColor1={lila} borderColor2={salmon} borderColor3={rosa} bgColor1={lilaTransparente} bgColor2={salmonTransparente} bgColor3={rosaTransparente}/></div>
         <div className='barChart-sifilis'><BarChart /></div>
         <div className='barChart-sifilis'><BarChart /></div>
 </div>
