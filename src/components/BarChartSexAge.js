@@ -22,25 +22,21 @@ ChartJS.register(
 
 
 
-function BarChart({
+function BarChartSexAge({
   title,
   barLabels,
   label1,
   label2,
-  label3,
   data1,
   data2,
-  data3,
   borderColor1,
   borderColor2,
-  borderColor3,
   bgColor1,
   bgColor2,
-  bgColor3,
 }) {
 
   const options = {
-    indexAxis: 'y',
+    indexAxis: 'x',
     elements: {
       bar: {
         borderWidth: 2,
@@ -49,7 +45,7 @@ function BarChart({
     responsive: true,
     plugins: {
       legend: {
-        position: 'right',
+        position: 'bottom',
       },
       title: {
         display: true,
@@ -77,13 +73,6 @@ function BarChart({
         backgroundColor: bgColor2,
       },
 
-      {
-        label: label3,
-        data: data3,
-        borderColor: borderColor3,
-        backgroundColor: bgColor3,
-      },
-
 
     ],
   };
@@ -95,4 +84,4 @@ function BarChart({
   return <Bar options={options} data={data} />;
 }
 
-export default BarChart
+export default BarChartSexAge

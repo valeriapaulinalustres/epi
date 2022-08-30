@@ -11,7 +11,7 @@ function Sifilis() {
 
 const [ultimoMesSifilis, setUltimoMesSifilis] = useState(false)
 
-const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroProbablesTotalGeneralSifilis,  numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis } = useContext(DataContext);
+const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroProbablesTotalGeneralSifilis,  numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis } = useContext(DataContext);
 
 const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
@@ -22,7 +22,7 @@ const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, ros
   const labelsSexoSifilis =['Maculino', 'Femenino', 'SD']
   const backgroundColorSifilis = [salmonTransparente, lilaTransparente, rosaTransparente]
   const borderColorSifilis = [salmon, lila, rosa]
-  const titleSexoSifilis = "Casos notificados según sexo. Morón, 2022."
+  const titleSexoSifilis = "Casos notificados de Sífilis según sexo. Morón, 2022."
 
   //Gráfico embarazadas sobre total de notificadas mujeres
 
@@ -30,7 +30,7 @@ const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, ros
   const labelsEmbarazoSifilis =['Gestantes', 'No gestantes',]
   const backgroundColorEmbarazoSifilis= [lilaTransparente, rosaTransparente]
   const borderColorEmbarazoSifilis = [lila, rosa]
-  const titleEmbarazoSifilis = "Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, 2022."
+  const titleEmbarazoSifilis = "Casos notificados de Síflis en gestantes, sobre personas con posibilidad de gestar. Morón, 2022."
 
   //Gráfico notificados Morón/Total
 
@@ -38,19 +38,19 @@ const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, ros
   const labelsEstablecimientoSifilis =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
   const backgroundColorEstablecimientoSifilis= [salmonTransparente, rosaTransparente]
   const borderColorEstablecimientoSifilis = [salmon, rosa]
-  const titleEstablecimientoSifilis = "Casos notificados según Establecimiento de carga. Morón, 2022."
+  const titleEstablecimientoSifilis = "Casos notificados de Sífilis según Establecimiento de carga. Morón, 2022."
   
 
   //Gráfico tabla probables y confirmados
 
-  const titleConfProbSifilis = "Casos confirmados y probables. Morón, 2022"
+  const titleConfProbSifilis = "Casos confirmados y probables de Sífilis. Morón, 2022"
   const labelsConfProbSifilis = ['Confirmados','Probables']
   const label1Sifilis = "Mujeres";
 const label2Sifilis = "Varones";
 const label3Sifilis = "SD";
-const femeninoConfProbSifilis = [numeroConfirmadosFemeninosSifilis, ];
-const masculinoConfProbSifilis = [numeroConfirmadosMasculinosSifilis, ];
-const sdConfProbSifilis = [numeroConfirmadosSDSifilis, ]
+const femeninoConfProbSifilis = [numeroConfirmadosFemeninosSifilis, numeroProbablesFemeninosSifilis];
+const masculinoConfProbSifilis = [numeroConfirmadosMasculinosSifilis, numeroProbablesMasculinosSifilis];
+const sdConfProbSifilis = [numeroConfirmadosSDSifilis, numeroProbablesSDSifilis]
 
 
 //--------ALERTS----------------

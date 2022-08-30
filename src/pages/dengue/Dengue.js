@@ -1,6 +1,8 @@
 import {useState, useContext} from 'react';
 import DoughnutChart from '../../components/DoughnutChart';
 import BarChart from '../../components/BarChart';
+import BarChartFiveData from '../../components/BarChartFiveData';
+import BarChartSexAge from '../../components/BarChartSexAge';
 import '../sifilis/sifilis.css';
 import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
@@ -10,9 +12,11 @@ function Dengue() {
 
 const [ultimoMesDengue, setUltimoMesDengue] = useState(false)
 
-const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroSospechososTotalDengue, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron } = useContext(DataContext);
+const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroSospechososTotalDengue, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, dengueSexoEdad } = useContext(DataContext);
 
-const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
+const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa, amarillo, amarilloTransparente, verde, verdeTransparente] = Colors
+
+const [dengueFmenor1m, dengueF2m12m, dengueF13m24m, dengueF2a4a, dengueF5a9a, dengueF10a14a, dengueF15a19a, dengueF20a24a, dengueF25a34a, dengueF35a44a, dengueF45a65a, dengueFmay65, dengueMmenor1m, dengueM2m12m, dengueM13m24m, dengueM2a4a, dengueM5a9a, dengueM10a14a, dengueM15a19a, dengueM20a24a, dengueM25a34a, dengueM35a44a, dengueM45a65a, dengueMmay65] = dengueSexoEdad
 
   const totalPorSexoTbc = [numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd]
  
@@ -22,7 +26,7 @@ const totalPorSexoDengue = [numeroTotalNotificadosDengueMasculino, numeroTotalNo
 const labelsSexoDengue =['Maculino', 'Femenino', 'SD']
 const backgroundColorDengue = [salmonTransparente, lilaTransparente, rosaTransparente]
 const borderColorDengue = [salmon, lila, rosa]
-const titleSexoDengue = "Casos notificados según sexo. Morón, 2022."
+const titleSexoDengue = "Casos notificados de Dengue según sexo. Morón, 2022."
 
 
 //Gráfico notificados Morón/Total
@@ -31,7 +35,30 @@ const notificadosDengueEstablecimientoCarga = [numeroTotalGeneralDengueMoron, nu
 const labelsEstablecimientoDengue =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
 const backgroundColorEstablecimientoDengue= [lilaTransparente, rosaTransparente]
 const borderColorEstablecimientoDengue = [lila, rosa]
-const titleEstablecimientoDengue = "Casos notificados según Establecimiento de carga. Morón, 2022."
+const titleEstablecimientoDengue = "Casos notificados de Dengue según Establecimiento de carga. Morón, 2022."
+
+
+//Gráfico clasificación
+const titleClasificacionDengue = "Clasificación de los casos de Dengue. Morón, 2022."
+const labelsClasificacionDengue = ["Clasificación"]
+const label1ClasificacionDengue = "Confirmados"
+const label2ClasificacionDengue = "Probables"
+const label3ClasificacionDengue = "Sospechosos no conclusivos"
+const label4ClasificacionDengue = "Sospechosos"
+const label5ClasificacionDengue = "Descartados"
+const dataConfirmadosClasificacionDengue = [numeroConfirmadosTotalDengue]
+const dataProbablesClasificacionDengue = [numeroProbablesTotalDengue]
+const dataSospechososNoConcClasificacionDengue = [numeroConfirmadosTotalDengue]
+const dataSospechososClasificacionDengue = [numeroConfirmadosTotalDengue]
+const dataDescartadosClasificacionDengue = [numeroDescartadosTotalDengue]
+
+//Gráfico Edad x sexo
+const titleEdadSexoDengue = "Casos notificados de Dengue, según sexo y edad. Morón, 2022"
+  const labelsEdadSexoDengue = ['< 1 mes', '2 a 12 m', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años' ]
+  const label1Dengue = "Mujeres";
+const label2Dengue = "Varones";
+const femeninoDengue = [dengueFmenor1m, dengueF2m12m, dengueF13m24m, dengueF2a4a, dengueF5a9a, dengueF10a14a, dengueF15a19a, dengueF20a24a, dengueF25a34a, dengueF35a44a, dengueF45a65a, dengueFmay65];
+const masculinoDengue = [ dengueMmenor1m, dengueM2m12m, dengueM13m24m, dengueM2a4a, dengueM5a9a, dengueM10a14a, dengueM15a19a, dengueM20a24a, dengueM25a34a, dengueM35a44a, dengueM45a65a, dengueMmay65];
 
 
 //Alerts
@@ -93,8 +120,8 @@ function detallarEmbarazadasDengue (){
       <div className='doughnutChart-sifilis'><DoughnutChart title={titleSexoDengue} datos={totalPorSexoDengue} labels={labelsSexoDengue} backgroundColor={backgroundColorDengue} borderColor={borderColorDengue}/></div>
         <div className='doughnutChart-sifilis'><DoughnutChart  title={titleEstablecimientoDengue} datos={notificadosDengueEstablecimientoCarga} labels={labelsEstablecimientoDengue} backgroundColor={backgroundColorEstablecimientoDengue} borderColor={borderColorEstablecimientoDengue}/></div>
 
-        <div className='barChart-sifilis'><BarChart /></div>
-        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChartFiveData title={titleClasificacionDengue} barLabels={labelsClasificacionDengue} label1={label1ClasificacionDengue} label2={label2ClasificacionDengue} label3={label3ClasificacionDengue}  label4={label4ClasificacionDengue} label5={label5ClasificacionDengue} data1={dataConfirmadosClasificacionDengue} data2={dataProbablesClasificacionDengue} data3={dataSospechososNoConcClasificacionDengue} data4={dataSospechososClasificacionDengue} data5={dataDescartadosClasificacionDengue} borderColor1={lila} borderColor2={salmon} borderColor3={rosa} borderColor4={amarillo} borderColor5={verde} bgColor1={lilaTransparente} bgColor2={salmonTransparente} bgColor3={rosaTransparente} bgColor4={amarilloTransparente} bgColor5={verdeTransparente} /></div>
+        <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoDengue}barLabels={labelsEdadSexoDengue} label1={label1Dengue} label2={label2Dengue} data1={femeninoDengue} data2={masculinoDengue}  borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
         <div className='barChart-sifilis'><BarChart /></div>
         <div className='barChart-sifilis'><BarChart /></div>
 </div>

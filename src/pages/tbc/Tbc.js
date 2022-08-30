@@ -10,7 +10,7 @@ function Tbc() {
 
   const [ultimoMesTbc, setUltimoMesTbc] = useState(false)
 
-  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEnEstudioTotalTuberculosis, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron  } = useContext(DataContext);
+  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEnEstudioTotalTuberculosis, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis  } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
@@ -33,7 +33,23 @@ const titleSexoTbc = "Casos notificados según sexo. Morón, 2022."
  const labelsEstablecimientoTbc =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
  const backgroundColorEstablecimientoTbc= [lilaTransparente, rosaTransparente]
  const borderColorEstablecimientoTbc = [lila, rosa]
- const titleEstablecimientoTbc = "Casos notificados según Establecimiento de carga. Morón, 2022."
+ const titleEstablecimientoTbc = "Casos notificados de Tuberculosis según Establecimiento de carga. Morón, 2022."
+
+//Tabla resultados
+
+const titleResultadoTuberculosis = "Casos notificados de Tuberculosis según resultado de laboratorio. Morón, 2022."
+const labelsRestultadoTuberculosis = ["Resultados de laboratorio"]
+const label1RestultadoTuberculosis = "Positivos"
+const label2RestultadoTuberculosis = "Negativos"
+const label3RestultadoTuberculosis = "En estudio"
+const dataPositivosTuberculosis = [numeroTotalPositivosTuberculosis]
+const dataNegativosTuberculosis = [numeroTotalNegativosTuberculosis]
+const dataSinResultadosTuberculosis = [numeroTotalSinResultadoTuberculosis]
+
+
+
+
+
 
 //Alerts
 
@@ -91,7 +107,7 @@ function detallarEmbarazadasTuberculosis (){
       <div className='doughnutChart-sifilis'><DoughnutChart title={titleSexoTbc} datos={totalPorSexoTbc} labels={labelsSexoTbc} backgroundColor={backgroundColorTbc} borderColor={borderColorTbc}/></div>
         <div className='doughnutChart-sifilis'><DoughnutChart  title={titleEstablecimientoTbc} datos={notificadosTbcEstablecimientoCarga} labels={labelsEstablecimientoTbc} backgroundColor={backgroundColorEstablecimientoTbc} borderColor={borderColorEstablecimientoTbc}/></div>
 
-        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChart title={titleResultadoTuberculosis} barLabels={labelsRestultadoTuberculosis} label1={label1RestultadoTuberculosis} label2={label2RestultadoTuberculosis} label3={label3RestultadoTuberculosis}  data1={dataPositivosTuberculosis} data2={dataNegativosTuberculosis} data3={dataSinResultadosTuberculosis} borderColor1={lila} borderColor2={salmon} borderColor3={rosa} bgColor1={lilaTransparente} bgColor2={salmonTransparente} bgColor3={rosaTransparente}/></div>
         <div className='barChart-sifilis'><BarChart /></div>
         <div className='barChart-sifilis'><BarChart /></div>
 </div>
