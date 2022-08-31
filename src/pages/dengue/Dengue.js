@@ -54,7 +54,7 @@ const dataDescartadosClasificacionDengue = [numeroDescartadosTotalDengue]
 
 //Gráfico Edad x sexo
 const titleEdadSexoDengue = "Casos notificados de Dengue, según sexo y edad. Morón, 2022"
-  const labelsEdadSexoDengue = ['< 1 mes', '2 a 12 m', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años' ]
+  const labelsEdadSexoDengue = ['< 1 mes', '2 a 12 m', '1 a 2 años','2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años' ]
   const label1Dengue = "Mujeres";
 const label2Dengue = "Varones";
 const femeninoDengue = [dengueFmenor1m, dengueF2m12m, dengueF13m24m, dengueF2a4a, dengueF5a9a, dengueF10a14a, dengueF15a19a, dengueF20a24a, dengueF25a34a, dengueF35a44a, dengueF45a65a, dengueFmay65];

@@ -4,17 +4,19 @@ import BarChart from '../../components/BarChart';
 import './sifilis.css';
 import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
-import Colors from '../../components/Colors'
+import Colors from '../../components/Colors';
+import BarChartSexAge from '../../components/BarChartSexAge';
 
 
 function Sifilis() {
 
 const [ultimoMesSifilis, setUltimoMesSifilis] = useState(false)
 
-const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroProbablesTotalGeneralSifilis,  numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis } = useContext(DataContext);
+const { anio, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroProbablesTotalGeneralSifilis,  numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, sifilisSexoEdad } = useContext(DataContext);
 
 const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
+const [sifilisFmenor1m, sifilisF2m12m, sifilisF13m24m, sifilisF2a4a, sifilisF5a9a, sifilisF10a14a, sifilisF15a19a, sifilisF20a24a, sifilisF25a34a, sifilisF35a44a, sifilisF45a65a, sifilisFmay65, sifilisMmenor1m, sifilisM2m12m, sifilisM13m24m, sifilisM2a4a, sifilisM5a9a, sifilisM10a14a, sifilisM15a19a, sifilisM20a24a, sifilisM25a34a, sifilisM35a44a, sifilisM45a65a, sifilisMmay65] = sifilisSexoEdad
 
   //Gráfico notificados según sexo
 
@@ -52,6 +54,12 @@ const femeninoConfProbSifilis = [numeroConfirmadosFemeninosSifilis, numeroProbab
 const masculinoConfProbSifilis = [numeroConfirmadosMasculinosSifilis, numeroProbablesMasculinosSifilis];
 const sdConfProbSifilis = [numeroConfirmadosSDSifilis, numeroProbablesSDSifilis]
 
+
+//Gráfico Edad x sexo
+const titleEdadSexoSifilis = "Casos notificados de Sífilis, según sexo y edad. Morón, 2022"
+  const labelsEdadSexoSifilis = ['< 1 mes', '2 a 12 m','1 a 2 años', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años' ]
+const femeninoSifilis = [sifilisFmenor1m, sifilisF2m12m, sifilisF13m24m, sifilisF2a4a, sifilisF5a9a, sifilisF10a14a, sifilisF15a19a, sifilisF20a24a, sifilisF25a34a, sifilisF35a44a, sifilisF45a65a, sifilisFmay65,];
+const masculinoSifilis = [sifilisMmenor1m, sifilisM2m12m, sifilisM13m24m, sifilisM2a4a, sifilisM5a9a, sifilisM10a14a, sifilisM15a19a, sifilisM20a24a, sifilisM25a34a, sifilisM35a44a, sifilisM45a65a, sifilisMmay65 ];
 
 //--------ALERTS----------------
 
@@ -133,7 +141,8 @@ function detallarDescartadosSifilis () {
         <div className='doughnutChart-sifilis'><DoughnutChart title={titleEmbarazoSifilis} datos={embarazadasEnMujeresSifilis} labels={labelsEmbarazoSifilis} backgroundColor={backgroundColorEmbarazoSifilis} borderColor={borderColorEmbarazoSifilis} /></div>
         <div className='doughnutChart-sifilis'><DoughnutChart  title={titleEstablecimientoSifilis} datos={notificadosSifilisEstablecimientoCarga} labels={labelsEstablecimientoSifilis} backgroundColor={backgroundColorEstablecimientoSifilis} borderColor={borderColorEstablecimientoSifilis}/></div>
         <div className='barChart-sifilis'><BarChart title={titleConfProbSifilis}barLabels={labelsConfProbSifilis} label1={label1Sifilis} label2={label2Sifilis} label3={label3Sifilis} data1={femeninoConfProbSifilis} data2={masculinoConfProbSifilis} data3={sdConfProbSifilis} borderColor1={lila} borderColor2={salmon} borderColor3={rosa} bgColor1={lilaTransparente} bgColor2={salmonTransparente} bgColor3={rosaTransparente}/></div>
-        <div className='barChart-sifilis'><BarChart /></div>
+        
+        <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoSifilis}barLabels={labelsEdadSexoSifilis} label1={label1Sifilis} label2={label2Sifilis} data1={femeninoSifilis} data2={masculinoSifilis}  borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
         <div className='barChart-sifilis'><BarChart /></div>
 </div>
       </div>

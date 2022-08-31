@@ -40,15 +40,7 @@ const DataProvider = ({ children }) => {
   function calcularClasificacionManualPorEvento(evento, clasificacion) {
     return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón")
   }
-/*
-  function calcularClasificacionManualPorEventoYSexo(evento1, evento2, evento3, clasificacion1, clasificacion2, clasificacion3, clasificacion4, clasificacion5, sexo) {
-    return (baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion1 && el.EVENTO == evento1 && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEXO == sexo)).length || 0
-      + (baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion2 && el.EVENTO == evento1 && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEXO == sexo)).length || 0
-      + (baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion3 && el.EVENTO == evento1 && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEXO == sexo)).length || 0
-      + (baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion4 && el.EVENTO == evento2 && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEXO == sexo)).length || 0
-      + (baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion5 && el.EVENTO == evento3 && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEXO == sexo)).length || 0
-  }
-*/
+
 
 function calcularSexoClasificacion (sexo, clasificacion){
   return (baseCompleta.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón"  && el.CLASIFICACION_MANUAL == clasificacion)).length || 0
@@ -127,7 +119,7 @@ function calcularSexoClasificacion (sexo, clasificacion){
   }
 
   function calcularEdadSexo (arr, sexo, edad) {
-    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_CARGA !== "Morón" && el.GRUPO_ETARIO == edad).length || 0
+    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.GRUPO_ETARIO == edad).length || 0
   
   }
 
@@ -229,6 +221,35 @@ function calcularSexoClasificacion (sexo, clasificacion){
  const numeroProbablesSDSifilis = numeroProbablesNASifilis + numeroProbablesASifilis
 
 
+ //---Edad x sexo
+ const sifilisFmenor1m = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "Neonato (hasta 28 dneas)");
+ const sifilisF2m12m = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "Posneonato (29 hasta 365 dneas)");
+ const sifilisF13m24m = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 13 a 24 meses");
+ const sifilisF2a4a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 2 a 4 anaos");
+ const sifilisF5a9a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 5 a 9 anaos");
+ const sifilisF10a14a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 10 a 14 anaos");
+ const sifilisF15a19a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 15 a 19 anaos");
+ const sifilisF20a24a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 20 a 24 anaos");
+ const sifilisF25a34a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 25 a 34 anaos");
+ const sifilisF35a44a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 35 a 44 anaos");
+ const sifilisF45a65a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "De 45 a 65 anaos");
+ const sifilisFmay65 = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "F", "Mayores de 65 anaos");
+
+ const sifilisMmenor1m = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "Neonato (hasta 28 dneas)");
+ const sifilisM2m12m = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "Posneonato (29 hasta 365 dneas)");
+ const sifilisM13m24m = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 13 a 24 meses");
+ const sifilisM2a4a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 2 a 4 anaos");
+ const sifilisM5a9a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 5 a 9 anaos");
+ const sifilisM10a14a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 10 a 14 anaos");
+ const sifilisM15a19a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 15 a 19 anaos");
+ const sifilisM20a24a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 20 a 24 anaos");
+ const sifilisM25a34a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 25 a 34 anaos");
+ const sifilisM35a44a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 35 a 44 anaos");
+ const sifilisM45a65a = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "De 45 a 65 anaos");
+ const sifilisMmay65 = calcularEdadSexo(arrayTotalGeneralNotificadosSifilis, "M", "Mayores de 65 anaos");
+
+ const sifilisSexoEdad = [sifilisFmenor1m, sifilisF2m12m, sifilisF13m24m, sifilisF2a4a, sifilisF5a9a, sifilisF10a14a, sifilisF15a19a, sifilisF20a24a, sifilisF25a34a, sifilisF35a44a, sifilisF45a65a, sifilisFmay65, sifilisMmenor1m, sifilisM2m12m, sifilisM13m24m, sifilisM2a4a, sifilisM5a9a, sifilisM10a14a, sifilisM15a19a, sifilisM20a24a, sifilisM25a34a, sifilisM35a44a, sifilisM45a65a, sifilisMmay65]
+
 
   //------------HIV----------------------------------------------------------------------------
   //-----------arrays totales
@@ -289,6 +310,38 @@ function calcularSexoClasificacion (sexo, clasificacion){
 
   const porcentajeNotificadosHivMoron = Math.round(numeroTotalGeneralHivMoron / (numeroTotalGeneralHivMoron + numeroTotalGeneralHivNoMoron) * 100) || 0
 
+ //---Edad x sexo
+ const hivFmenor1m = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "Neonato (hasta 28 dneas)");
+ const hivF2m12m = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "Posneonato (29 hasta 365 dneas)");
+ const hivF13m24m = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 13 a 24 meses");
+ const hivF2a4a = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 2 a 4 anaos");
+ const hivF5a9a = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 5 a 9 anaos");
+ const hivF10a14a = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 10 a 14 anaos");
+ const hivF15a19a = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 15 a 19 anaos");
+ const hivF20a24a = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 20 a 24 anaos");
+ const hivF25a34a = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 25 a 34 anaos");
+ const hivF35a44a = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 35 a 44 anaos");
+ const hivF45a65a = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "De 45 a 65 anaos");
+ const hivFmay65 = calcularEdadSexo(arrayTotalNotificadosHiv, "F", "Mayores de 65 anaos");
+
+ const hivMmenor1m = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "Neonato (hasta 28 dneas)");
+ const hivM2m12m = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "Posneonato (29 hasta 365 dneas)");
+ const hivM13m24m = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 13 a 24 meses");
+ const hivM2a4a = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 2 a 4 anaos");
+ const hivM5a9a = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 5 a 9 anaos");
+ const hivM10a14a = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 10 a 14 anaos");
+ const hivM15a19a = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 15 a 19 anaos");
+ const hivM20a24a = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 20 a 24 anaos");
+ const hivM25a34a = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 25 a 34 anaos");
+ const hivM35a44a = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 35 a 44 anaos");
+ const hivM45a65a = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "De 45 a 65 anaos");
+ const hivMmay65 = calcularEdadSexo(arrayTotalNotificadosHiv, "M", "Mayores de 65 anaos");
+
+ const hivSexoEdad = [hivFmenor1m, hivF2m12m, hivF13m24m, hivF2a4a, hivF5a9a, hivF10a14a, hivF15a19a, hivF20a24a, hivF25a34a, hivF35a44a, hivF45a65a, hivFmay65, hivMmenor1m, hivM2m12m, hivM13m24m, hivM2a4a, hivM5a9a, hivM10a14a, hivM15a19a, hivM20a24a, hivM25a34a, hivM35a44a, hivM45a65a, hivMmay65]
+
+
+
+
 
   //-------Tuberculosis----------------------------------------------------------------------
   //-----------array total
@@ -334,6 +387,38 @@ function calcularSexoClasificacion (sexo, clasificacion){
    const numeroTotalNegativosTuberculosis = calcularResultadoTuberculosis("Negativo") 
 
    const numeroTotalSinResultadoTuberculosis = calcularResultadoTuberculosis("NA") 
+
+
+   //---Edad x sexo
+  const tuberculosisFmenor1m = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "Neonato (hasta 28 dneas)");
+  const tuberculosisF2m12m = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "Posneonato (29 hasta 365 dneas)");
+  const tuberculosisF13m24m = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 13 a 24 meses");
+  const tuberculosisF2a4a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 2 a 4 anaos");
+  const tuberculosisF5a9a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 5 a 9 anaos");
+  const tuberculosisF10a14a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 10 a 14 anaos");
+  const tuberculosisF15a19a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 15 a 19 anaos");
+  const tuberculosisF20a24a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 20 a 24 anaos");
+  const tuberculosisF25a34a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 25 a 34 anaos");
+  const tuberculosisF35a44a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 35 a 44 anaos");
+  const tuberculosisF45a65a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "De 45 a 65 anaos");
+  const tuberculosisFmay65 = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "F", "Mayores de 65 anaos");
+ 
+  const tuberculosisMmenor1m = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "Neonato (hasta 28 dneas)");
+  const tuberculosisM2m12m = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "Posneonato (29 hasta 365 dneas)");
+  const tuberculosisM13m24m = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 13 a 24 meses");
+  const tuberculosisM2a4a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 2 a 4 anaos");
+  const tuberculosisM5a9a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 5 a 9 anaos");
+  const tuberculosisM10a14a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 10 a 14 anaos");
+  const tuberculosisM15a19a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 15 a 19 anaos");
+  const tuberculosisM20a24a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 20 a 24 anaos");
+  const tuberculosisM25a34a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 25 a 34 anaos");
+  const tuberculosisM35a44a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 35 a 44 anaos");
+  const tuberculosisM45a65a = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "De 45 a 65 anaos");
+  const tuberculosisMmay65 = calcularEdadSexo(arrayTotalNotificadosTuberculosis, "M", "Mayores de 65 anaos");
+
+  const tuberculosisSexoEdad = [tuberculosisFmenor1m, tuberculosisF2m12m, tuberculosisF13m24m, tuberculosisF2a4a, tuberculosisF5a9a, tuberculosisF10a14a, tuberculosisF15a19a, tuberculosisF20a24a, tuberculosisF25a34a, tuberculosisF35a44a, tuberculosisF45a65a, tuberculosisFmay65, tuberculosisMmenor1m, tuberculosisM2m12m, tuberculosisM13m24m, tuberculosisM2a4a, tuberculosisM5a9a, tuberculosisM10a14a, tuberculosisM15a19a, tuberculosisM20a24a, tuberculosisM25a34a, tuberculosisM35a44a, tuberculosisM45a65a, tuberculosisMmay65]
+
+
 
   //-------------Dengue---------------------------------------------------------------------
   //-------------array total
@@ -402,7 +487,8 @@ function calcularSexoClasificacion (sexo, clasificacion){
   const dengueSexoEdad = [dengueFmenor1m, dengueF2m12m, dengueF13m24m, dengueF2a4a, dengueF5a9a, dengueF10a14a, dengueF15a19a, dengueF20a24a, dengueF25a34a, dengueF35a44a, dengueF45a65a, dengueFmay65, dengueMmenor1m, dengueM2m12m, dengueM13m24m, dengueM2a4a, dengueM5a9a, dengueM10a14a, dengueM15a19a, dengueM20a24a, dengueM25a34a, dengueM35a44a, dengueM45a65a, dengueMmay65]
 
 
-  console.log(dengueFmay65);
+
+  console.log(tuberculosisF45a65a);
 
 
 
@@ -412,7 +498,7 @@ function calcularSexoClasificacion (sexo, clasificacion){
 
 
 
-  const data = { anio, baseCompleta, setBaseCompleta, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad}
+  const data = { anio, baseCompleta, setBaseCompleta, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad}
 
 
 
