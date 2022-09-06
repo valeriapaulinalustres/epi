@@ -6,12 +6,13 @@ import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
 import Colors from '../../components/Colors';
 import BarChartSexAge from '../../components/BarChartSexAge';
+import BarChartSe from '../../components/BarChartSe';
 
 function Tbc() {
 
   const [ultimoMesTbc, setUltimoMesTbc] = useState(false)
 
-  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEnEstudioTotalTuberculosis, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, tuberculosisSexoEdad  } = useContext(DataContext);
+  const { anio, numeroTotalNotificadosTuberculosis,  numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroConfirmadosTotalTuberculosis, numeroDescartadosTotalTuberculosis, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEnEstudioTotalTuberculosis, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, tuberculosisSexoEdad, tuberculosisXse  } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
@@ -53,6 +54,12 @@ const titleEdadSexoTuberculosis = "Casos notificados de Tuberculosis, según sex
 const label2Tuberculosis = "Varones";
 const femeninoTuberculosis = [tuberculosisFmenor1m, tuberculosisF2m12m, tuberculosisF13m24m, tuberculosisF2a4a, tuberculosisF5a9a, tuberculosisF10a14a, tuberculosisF15a19a, tuberculosisF20a24a, tuberculosisF25a34a, tuberculosisF35a44a, tuberculosisF45a65a, tuberculosisFmay65];
 const masculinoTuberculosis = [tuberculosisMmenor1m, tuberculosisM2m12m, tuberculosisM13m24m, tuberculosisM2a4a, tuberculosisM5a9a, tuberculosisM10a14a, tuberculosisM15a19a, tuberculosisM20a24a, tuberculosisM25a34a, tuberculosisM35a44a, tuberculosisM45a65a, tuberculosisMmay65 ];
+
+//Gráfico Edad x sexo
+const titleSeTuberculosis = "Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, 2022"
+  const labelsSeTuberculosis = ['1', '2', '3','4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27','28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40','41', '42', '43', '44', '45','46','47','48', '49', '50','51', '52']
+  const labelSeTuberculosis = "SE";
+const seTuberculosis = tuberculosisXse;
 
 
 
@@ -117,7 +124,7 @@ function detallarEmbarazadasTuberculosis (){
         
         <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoTuberculosis}barLabels={labelsEdadSexoTuberculosis} label1={label1Tuberculosis} label2={label2Tuberculosis} data1={femeninoTuberculosis} data2={masculinoTuberculosis}  borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
        
-        <div className='barChart-sifilis'><BarChart /></div>
+        <div className='barChart-sifilis'><BarChartSe title={titleSeTuberculosis}barLabels={labelsSeTuberculosis} label1={labelSeTuberculosis}  data1={seTuberculosis}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
 </div>
     </div>
 }

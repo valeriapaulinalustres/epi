@@ -93,6 +93,9 @@ function detallarDescartadosSifilis () {
 }
 
 
+
+
+
   return (
     <div className='page-container'>
       <h2>Sífilis</h2>
