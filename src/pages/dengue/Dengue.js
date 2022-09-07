@@ -6,13 +6,33 @@ import BarChartSexAge from '../../components/BarChartSexAge';
 import '../sifilis/sifilis.css';
 import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
-import Colors from '../../components/Colors'
+import Colors from '../../components/Colors';
+import BarChartSe from '../../components/BarChartSe';
 
 function Dengue() {
 
 const [ultimoMesDengue, setUltimoMesDengue] = useState(false)
 
-const { anio, numeroTotalNotificadosDengue,  numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalDengue, numeroProbablesTotalDengue, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroSospechososTotalDengue, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, dengueSexoEdad } = useContext(DataContext);
+//destructuring from context
+const { 
+  anio, 
+  numeroTotalNotificadosDengue,  
+  numeroTotalNotificadosDengueFemenino, 
+  numeroTotalNotificadosDengueMasculino, 
+  numeroTotalNotificadosDengueSd, 
+  numeroConfirmadosTotalDengue, 
+  numeroProbablesTotalDengue, 
+  numeroDescartadosTotalDengue, 
+  numeroEmbarazadasNotificadoTotalDengue, 
+  numeroEmbarazadasConfirmadasDengue, 
+  numeroEmbarazadasDescartadasDengue, 
+  numeroSospechososTotalDengue, 
+  numeroTotalGeneralDengueMoron, 
+  numeroTotalGeneralDengueNoMoron, 
+  porcentajeNotificadosDengueMoron, 
+  dengueSexoEdad, 
+  dengueXse 
+} = useContext(DataContext);
 
 const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa, amarillo, amarilloTransparente, verde, verdeTransparente] = Colors
 
@@ -61,6 +81,14 @@ const femeninoDengue = [dengueFmenor1m, dengueF2m12m, dengueF13m24m, dengueF2a4a
 const masculinoDengue = [ dengueMmenor1m, dengueM2m12m, dengueM13m24m, dengueM2a4a, dengueM5a9a, dengueM10a14a, dengueM15a19a, dengueM20a24a, dengueM25a34a, dengueM35a44a, dengueM45a65a, dengueMmay65];
 
 
+//Gráfico notificados x SE
+const titleSeDengue = "Casos notificados de Dengue, según Semana Epidemiológica. Morón, 2022"
+  const labelsSeDengue = ['1', '2', '3','4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27','28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40','41', '42', '43', '44', '45','46','47','48', '49', '50','51', '52']
+  const labelSeDengue = "SE";
+const seDengue = dengueXse;
+
+
+
 //Alerts
 
 function detallarEmbarazadasDengue (){
@@ -95,8 +123,7 @@ function detallarEmbarazadasDengue (){
    </div>
 
    <div className='graphs-container'>
-   <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
-        <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
+   
 
         <div className='barChart-sifilis'><BarChart /></div>
         <div className='barChart-sifilis'><BarChart /></div>
@@ -122,8 +149,8 @@ function detallarEmbarazadasDengue (){
 
         <div className='barChart-sifilis'><BarChartFiveData title={titleClasificacionDengue} barLabels={labelsClasificacionDengue} label1={label1ClasificacionDengue} label2={label2ClasificacionDengue} label3={label3ClasificacionDengue}  label4={label4ClasificacionDengue} label5={label5ClasificacionDengue} data1={dataConfirmadosClasificacionDengue} data2={dataProbablesClasificacionDengue} data3={dataSospechososNoConcClasificacionDengue} data4={dataSospechososClasificacionDengue} data5={dataDescartadosClasificacionDengue} borderColor1={lila} borderColor2={salmon} borderColor3={rosa} borderColor4={amarillo} borderColor5={verde} bgColor1={lilaTransparente} bgColor2={salmonTransparente} bgColor3={rosaTransparente} bgColor4={amarilloTransparente} bgColor5={verdeTransparente} /></div>
         <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoDengue}barLabels={labelsEdadSexoDengue} label1={label1Dengue} label2={label2Dengue} data1={femeninoDengue} data2={masculinoDengue}  borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
-        <div className='barChart-sifilis'><BarChart /></div>
-        <div className='barChart-sifilis'><BarChart /></div>
+      
+        <div className='barChart-sifilis'><BarChartSe title={titleSeDengue}barLabels={labelsSeDengue} label1={labelSeDengue}  data1={seDengue}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
 </div>
     </div>
 }

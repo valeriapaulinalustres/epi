@@ -3,11 +3,12 @@ import { reduceHooks } from "react-table";
 import * as XLSX from "xlsx";
 import './upload.css';
 import DataContext from '../../context/DataContext';
+import Toast from 'sweetalert2';
 
 
 function Upload() {
 
-  const { setBaseCompleta, baseCompleta } = useContext(DataContext);
+  const { setBaseCompleta, baseCompleta, setCalendar } = useContext(DataContext);
 
 
 
@@ -43,6 +44,28 @@ function Upload() {
     });
   };
 
+//Takes calendar info to context
+function handleCalendar (e){
+  e.preventDefault()
+ 
+  if (e.target[0].value != "" && e.target[1].value != "") {
+    setCalendar({
+      dateFrom: e.target[0].value,
+      dateTo: e.target[1].value,
+    })
+  } else {
+    ingresarFecha()
+  }
+ 
+}
+
+function ingresarFecha (){
+  
+  Toast.fire({
+    title: `Debe completar ambas fechas por favor`  
+  })
+}
+
 
   return (
     <div className="upload-container">
@@ -56,7 +79,6 @@ function Upload() {
           onChange={(e) => {
             const file = e.target.files[0];
             readExcel(file);
-
           }}
         />
       </div>
@@ -64,6 +86,15 @@ function Upload() {
         ? <p>Archivo cargado</p>
         : <p>No hay archivos cargados</p>
       }
+      <div>
+        <p>Seleccionar fechas</p>
+        <form onSubmit={handleCalendar}>
+        <input type='date' label="desde" min="2022-01-01" />
+        <input type='date' label="hasta" min="2022-01-01" />
+        <input type='submit' value="enviar"/>
+        </form>
+       
+      </div>
 
     </div>
   )

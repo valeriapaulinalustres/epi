@@ -8,6 +8,9 @@ const DataProvider = ({ children }) => {
 
 
   const [baseCompleta, setBaseCompleta] = useState([]);
+const [calendar, setCalendar] = useState({})
+
+console.log(calendar);
 
   //PROBANDO
   const anio = 2022
@@ -49,10 +52,10 @@ let b = new Date(fechaApasarAformatoNumero).getTime();
   return Math.round(((b - (a))/(1000*60*60*24))+1) 
 }
 
-const fechaInicioFormatoNumero = pasarFechaAFormatoNumero('2022-07-04')//acá entre paréntesis irá el input del calendario "desde"
-const fechaFinFormatoNumero = pasarFechaAFormatoNumero('2022-07-05')//acá entre paréntesis irá el input del calendario "hasta"
+const fechaInicioFormatoNumero = pasarFechaAFormatoNumero(calendar.dateFrom)//acá entre paréntesis irá el input del calendario "desde"
+const fechaFinFormatoNumero = pasarFechaAFormatoNumero(calendar.dateTo)//acá entre paréntesis irá el input del calendario "hasta"
 
-
+console.log(fechaFinFormatoNumero);
 
 function calcularTotalNotificadosX() {
   return baseCompleta.filter(el => el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicioFormatoNumero && el.FECHA_APERTURA <= fechaFinFormatoNumero)
@@ -72,7 +75,7 @@ console.log(a);
   }
 
   function calcularPorSexo(arr, sexo) {
-    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón").length
+    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
 
   }
 
@@ -99,14 +102,14 @@ function calcularSexoClasificacion (sexo, clasificacion){
 
   function calcularConfirmadosDengue() {
 
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
       + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
 
 
   }
 
   function calcularDescartadosTuberculosis() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
       + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
   }
 
@@ -122,23 +125,23 @@ function calcularSexoClasificacion (sexo, clasificacion){
   }
 
   function calcularEventoEnEmbarazo(evento) {
-    return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length
+    return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
   }
 
   function calcularConfirmadosEmbarazoTuberculosis() {
 
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI").length
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI").length
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI").length || 0
+      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI").length || 0
       + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI").length || 0
   }
 
   function calcularDescartadosEmbarazoTuberculosis() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis").length
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis").length || 0
       + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis").length || 0
   }
 
   function calcularConfirmadosEmbarazoDengue() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
       + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
   }
 
@@ -299,6 +302,63 @@ function calcularSexoClasificacion (sexo, clasificacion){
 
  const sifilisSexoEdad = [sifilisFmenor1m, sifilisF2m12m, sifilisF13m24m, sifilisF2a4a, sifilisF5a9a, sifilisF10a14a, sifilisF15a19a, sifilisF20a24a, sifilisF25a34a, sifilisF35a44a, sifilisF45a65a, sifilisFmay65, sifilisMmenor1m, sifilisM2m12m, sifilisM13m24m, sifilisM2a4a, sifilisM5a9a, sifilisM10a14a, sifilisM15a19a, sifilisM20a24a, sifilisM25a34a, sifilisM35a44a, sifilisM45a65a, sifilisMmay65]
 
+//notificados por semana epidemiológica
+
+const sifilisXse = [
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,1), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,2), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,3), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,4), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,5), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,6), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,7), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,8), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,9), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,10), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,11), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,12), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,13), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,14), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,15),
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,16),
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,17), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,18), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,19), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,20), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,21), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,22), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,23), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,24), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,25),
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,26), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,27), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,28), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,29), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,30),
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,31),
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,32),
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,33), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,34), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,35), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,36), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,37), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,38), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,39), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,40), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,41), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,42), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,43), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,44), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,45), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,46), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,47),
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,48), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,49), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,50), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,51), 
+  calcularNotificadosXSE(arrayTotalNotificadosSifilis,52),
+]
+
 
   //------------HIV----------------------------------------------------------------------------
   //-----------arrays totales
@@ -388,6 +448,60 @@ function calcularSexoClasificacion (sexo, clasificacion){
 
  const hivSexoEdad = [hivFmenor1m, hivF2m12m, hivF13m24m, hivF2a4a, hivF5a9a, hivF10a14a, hivF15a19a, hivF20a24a, hivF25a34a, hivF35a44a, hivF45a65a, hivFmay65, hivMmenor1m, hivM2m12m, hivM13m24m, hivM2a4a, hivM5a9a, hivM10a14a, hivM15a19a, hivM20a24a, hivM25a34a, hivM35a44a, hivM45a65a, hivMmay65]
 
+ const hivXse = [
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,1), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,2), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,3), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,4), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,5), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,6), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,7), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,8), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,9), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,10), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,11), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,12), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,13), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,14), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,15),
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,16),
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,17), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,18), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,19), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,20), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,21), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,22), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,23), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,24), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,25),
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,26), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,27), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,28), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,29), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,30),
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,31),
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,32),
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,33), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,34), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,35), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,36), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,37), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,38), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,39), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,40), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,41), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,42), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,43), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,44), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,45), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,46), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,47),
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,48), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,49), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,50), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,51), 
+  calcularNotificadosXSE(arrayTotalNotificadosHiv,52),
+]
 
 
 
@@ -592,6 +706,62 @@ const tuberculosisXse = [
 
   const dengueSexoEdad = [dengueFmenor1m, dengueF2m12m, dengueF13m24m, dengueF2a4a, dengueF5a9a, dengueF10a14a, dengueF15a19a, dengueF20a24a, dengueF25a34a, dengueF35a44a, dengueF45a65a, dengueFmay65, dengueMmenor1m, dengueM2m12m, dengueM13m24m, dengueM2a4a, dengueM5a9a, dengueM10a14a, dengueM15a19a, dengueM20a24a, dengueM25a34a, dengueM35a44a, dengueM45a65a, dengueMmay65]
 
+  //notificados por semana epidemiológica
+
+const dengueXse = [
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,1), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,2), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,3), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,4), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,5), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,6), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,7), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,8), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,9), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,10), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,11), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,12), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,13), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,14), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,15),
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,16),
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,17), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,18), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,19), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,20), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,21), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,22), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,23), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,24), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,25),
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,26), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,27), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,28), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,29), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,30),
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,31),
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,32),
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,33), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,34), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,35), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,36), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,37), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,38), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,39), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,40), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,41), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,42), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,43), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,44), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,45), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,46), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,47),
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,48), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,49), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,50), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,51), 
+  calcularNotificadosXSE(arrayTotalNotificadosDengue,52),
+]
 
 
 
@@ -603,7 +773,7 @@ console.log(tuberculosisXse);
 
 
 
-  const data = { anio, baseCompleta, setBaseCompleta, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad, tuberculosisXse}
+  const data = { anio, baseCompleta, setBaseCompleta, calendar, setCalendar, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad, tuberculosisXse, dengueXse, hivXse, sifilisXse}
 
 
 

@@ -6,12 +6,39 @@ import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
 import Colors from '../../components/Colors';
 import BarChartSexAge from '../../components/BarChartSexAge';
+import BarChartSe from '../../components/BarChartSe';
 
 function Hiv() {
 
   const [ultimoMesHiv, setUltimoMesHiv] = useState(false)
 
-  const { anio,  numeroTotalGeneralNotificadosHiv, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, hivSexoEdad  } = useContext(DataContext);
+  //destructuring from context
+  const { 
+    anio,  
+    numeroTotalGeneralNotificadosHiv, 
+    numeroTotalGeneralNotificadosHivFemenino, 
+    numeroTotalGeneralNotificadosHivMasculino, 
+    numeroTotalGeneralNotificadosHivSd, 
+    numeroTotalNotificadosHivPerinatal, 
+    numeroTotalNotificadosHivEmbarazo, 
+    numeroConfirmadosTotalGeneralHiv, 
+    numeroConfirmadosTotalHiv, 
+    numeroConfirmadosTotalHivEmbarazo, 
+    numeroConfirmadosTotalHivPerinatal, 
+    numeroProbablesTotalGeneralHiv, 
+    numeroProbablesTotalHivEmbarazo, 
+    numeroProbablesTotalHivPerinatal, 
+    numeroProbablesTotalHiv, 
+    numeroDescartadosTotalGeneralHiv, 
+    numeroDescartadosTotalHiv, 
+    numeroDescartadosTotalHivPerinatal, 
+    numeroDescartadosTotalHivEmbarazadas, 
+    porcentajeNotificadosHivMoron, 
+    numeroTotalGeneralHivNoMoron, 
+    numeroTotalGeneralHivMoron, 
+    hivSexoEdad, 
+    hivXse  
+  } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
@@ -47,6 +74,14 @@ const titleEdadSexoHiv = "Casos notificados de HIV, según sexo y edad. Morón, 
 const label2Hiv = "Varones";
 const femeninoHiv = [hivFmenor1m, hivF2m12m, hivF13m24m, hivF2a4a, hivF5a9a, hivF10a14a, hivF15a19a, hivF20a24a, hivF25a34a, hivF35a44a, hivF45a65a, hivFmay65,];
 const masculinoHiv = [hivMmenor1m, hivM2m12m, hivM13m24m, hivM2a4a, hivM5a9a, hivM10a14a, hivM15a19a, hivM20a24a, hivM25a34a, hivM35a44a, hivM45a65a, hivMmay65 ];
+
+
+//Gráfico notificados x SE
+const titleSeHiv = "Casos notificados de Hiv, según Semana Epidemiológica. Morón, 2022"
+  const labelsSeHiv = ['1', '2', '3','4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27','28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40','41', '42', '43', '44', '45','46','47','48', '49', '50','51', '52']
+  const labelSeHiv = "SE";
+const seHiv = hivXse;
+
 
 //----------ALERTS-----------------------
 
@@ -101,8 +136,7 @@ const masculinoHiv = [hivMmenor1m, hivM2m12m, hivM13m24m, hivM2a4a, hivM5a9a, hi
           <div className='recuadro lila'>Notificados por Morón: <p className='totalNumber'>{}</p></div>
         </div>
         <div className='graphs-container'>
-        <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoHiv} /></div>
-        <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoHiv} /></div>
+     
 
         <div className='barChart-sifilis'><BarChart /></div>
         <div className='barChart-sifilis'><BarChart /></div>
@@ -127,8 +161,8 @@ const masculinoHiv = [hivMmenor1m, hivM2m12m, hivM13m24m, hivM2a4a, hivM5a9a, hi
         <div className='doughnutChart-sifilis'><DoughnutChart  title={titleEstablecimientoHiv} datos={notificadosHivEstablecimientoCarga} labels={labelsEstablecimientoHiv} backgroundColor={backgroundColorEstablecimientoHiv} borderColor={borderColorEstablecimientoHiv}/></div>
 
         <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoHiv}barLabels={labelsEdadSexoHiv} label1={label1Hiv} label2={label2Hiv} data1={femeninoHiv} data2={masculinoHiv}  borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
-        <div className='barChart-sifilis'><BarChart /></div>
-        <div className='barChart-sifilis'><BarChart /></div>
+    
+        <div className='barChart-sifilis'><BarChartSe title={titleSeHiv}barLabels={labelsSeHiv} label1={labelSeHiv}  data1={seHiv}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
 </div>
       </div>
 }
