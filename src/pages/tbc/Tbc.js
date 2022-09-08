@@ -145,7 +145,7 @@ function Tbc() {
 
             <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoTuberculosis} barLabels={labelsEdadSexoTuberculosis} label1={label1Tuberculosis} label2={label2Tuberculosis} data1={femeninoTuberculosis} data2={masculinoTuberculosis} borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
 
-            <div className='barChart-sifilis'><BarChartSe title={titleSeTuberculosis} barLabels={labelsSeTuberculosis} label1={labelSeTuberculosis} data1={seTuberculosis} borderColor1={salmon} bgColor1={salmonTransparente} /></div>
+            <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeTuberculosis} barLabels={labelsSeTuberculosis} label1={labelSeTuberculosis} data1={seTuberculosis} borderColor1={salmon} bgColor1={salmonTransparente} /></div>
           </div>
         </div>
       }

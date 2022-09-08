@@ -162,7 +162,7 @@ const seHiv = hivXse;
 
         <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoHiv}barLabels={labelsEdadSexoHiv} label1={label1Hiv} label2={label2Hiv} data1={femeninoHiv} data2={masculinoHiv}  borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
     
-        <div className='barChart-sifilis'><BarChartSe title={titleSeHiv}barLabels={labelsSeHiv} label1={labelSeHiv}  data1={seHiv}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
+        <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeHiv}barLabels={labelsSeHiv} label1={labelSeHiv}  data1={seHiv}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
 </div>
       </div>
 }

@@ -23,6 +23,7 @@ ChartJS.register(
 
 
 function BarChartSe({
+  eje,
   title,
   barLabels,
   label1,
@@ -32,13 +33,14 @@ function BarChartSe({
 }) {
 
   const options = {
-    indexAxis: 'x',
+    indexAxis: eje,
     elements: {
       bar: {
         borderWidth: 2,
       },
     },
     responsive: true,
+   // maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom',

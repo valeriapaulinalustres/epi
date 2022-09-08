@@ -150,7 +150,7 @@ function detallarEmbarazadasDengue (){
         <div className='barChart-sifilis'><BarChartFiveData title={titleClasificacionDengue} barLabels={labelsClasificacionDengue} label1={label1ClasificacionDengue} label2={label2ClasificacionDengue} label3={label3ClasificacionDengue}  label4={label4ClasificacionDengue} label5={label5ClasificacionDengue} data1={dataConfirmadosClasificacionDengue} data2={dataProbablesClasificacionDengue} data3={dataSospechososNoConcClasificacionDengue} data4={dataSospechososClasificacionDengue} data5={dataDescartadosClasificacionDengue} borderColor1={lila} borderColor2={salmon} borderColor3={rosa} borderColor4={amarillo} borderColor5={verde} bgColor1={lilaTransparente} bgColor2={salmonTransparente} bgColor3={rosaTransparente} bgColor4={amarilloTransparente} bgColor5={verdeTransparente} /></div>
         <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoDengue}barLabels={labelsEdadSexoDengue} label1={label1Dengue} label2={label2Dengue} data1={femeninoDengue} data2={masculinoDengue}  borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
       
-        <div className='barChart-sifilis'><BarChartSe title={titleSeDengue}barLabels={labelsSeDengue} label1={labelSeDengue}  data1={seDengue}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
+        <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeDengue}barLabels={labelsSeDengue} label1={labelSeDengue}  data1={seDengue}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
 </div>
     </div>
 }

@@ -1,14 +1,21 @@
-import React from 'react';
+import {useRef, useCallback} from 'react';
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 
-function DoughnutChart({title, datos, labels, backgroundColor, borderColor}) {
+function DoughnutChart({title, datos, labels, backgroundColor, borderColor,}) {
 
-//console.log(datos)
+  const ref = useRef(null)
 
+  const downloadImage = useCallback(()=>{
+    const link = document.createElement("a");
+    link.download = "chart.png";
+    link.href = ref.current.toBase64Image();
+    link.click();
+  },[])
 
     const data = {
         labels: labels,
@@ -26,7 +33,8 @@ function DoughnutChart({title, datos, labels, backgroundColor, borderColor}) {
     return (
         <div>
             <h3>{title}</h3>
-            <Doughnut data={data} />
+            <button type="button" onClick={downloadImage}>Download</button>
+            <Doughnut ref={ref} data={data} />
 
         </div>
     )

@@ -55,7 +55,7 @@ let b = new Date(fechaApasarAformatoNumero).getTime();
 const fechaInicioFormatoNumero = pasarFechaAFormatoNumero(calendar.dateFrom)//acá entre paréntesis irá el input del calendario "desde"
 const fechaFinFormatoNumero = pasarFechaAFormatoNumero(calendar.dateTo)//acá entre paréntesis irá el input del calendario "hasta"
 
-console.log(fechaFinFormatoNumero);
+
 
 function calcularTotalNotificadosX() {
   return baseCompleta.filter(el => el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicioFormatoNumero && el.FECHA_APERTURA <= fechaFinFormatoNumero)
@@ -72,6 +72,10 @@ console.log(a);
 
   function calcularTotalNotificados(enfermedad) {
     return baseCompleta.filter(el => el.EVENTO == enfermedad && el.DEPARTAMENTO_RESIDENCIA == "Morón")
+  }
+
+  function calcularNumeroTotalNotificados(enfermedad) {
+    return baseCompleta.filter(el => el.EVENTO == enfermedad && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
   }
 
   function calcularPorSexo(arr, sexo) {
@@ -763,17 +767,67 @@ const dengueXse = [
   calcularNotificadosXSE(arrayTotalNotificadosDengue,52),
 ]
 
+//------------------Todas las ENOs---------------------------------------
+
+const x = ["Accidente potencialmente rábico (APR)", "Alacranismo", "Brucelosis", "Caso sospechoso de intoxicación por consumo de cocaína contaminada", "Celiaquía", "Chagas agudo congénito", "Chagas crónico", "Chagas en embarazadas", "Coqueluche", "Dengue", "Diarrea aguda", "Encefalitis de San Luis", "Enfermedad Febril Exantemática-EFE (Sarampión/Rubéola)", "Enfermedad Pie-Mano-Boca", "Estudio de SARS-COV-2 en situaciones especiales", "Fiebre del Nilo Occidental", "Gonorrea", "Hantavirosis", "Hepatitis B", "Hepatitis C", "Hepatitis E", "Hidatidosis", "HTLV", "Infección respiratoria aguda viral sin especificar", "Intoxicación con otros tóxicos", "Intoxicación/Exposición a Mercurio", "Intoxicación/Exposición por Monóxido de Carbono", "IRAG", "Leptospirosis", "Meningoencefalitis", "Otras infecciones invasivas (bacterianas y otras)", "Poliomielitis-Parálisis flácida aguda en menores de 15 años", "SARS-COV-2 en puntos de entrada y casos relacionados con importación", "Sífilis", "Sífilis congénita", "Sífilis en Embarazadas", "Sindrome inflamatorio multisistémico (SIM)", "Streptococcus agalactiae grupo B en embarazadas", "SUH - Sindrome Urémico Hemolítico", "Toxoplasmosis congénita", "Toxoplasmosis en embarazadas", "Tuberculosis", "Vigilancia genómica de SARS-CoV-2", "VIH", "VIH - Expuesto perinatal", "VIH en embarazo", "Viruela símica", ]
+
+const notificadosEno = [
+  calcularNumeroTotalNotificados("Accidente potencialmente rábico (APR)"),
+  calcularNumeroTotalNotificados("Alacranismo"),
+  calcularNumeroTotalNotificados("Brucelosis"),
+  calcularNumeroTotalNotificados("Caso sospechoso de intoxicación por consumo de cocaína contaminada"),
+  calcularNumeroTotalNotificados("Celiaquía"),
+  calcularNumeroTotalNotificados("Chagas agudo congénito"),
+  calcularNumeroTotalNotificados("Chagas crónico"),
+  calcularNumeroTotalNotificados("Chagas en embarazadas"),
+  calcularNumeroTotalNotificados("Coqueluche"),
+  calcularNumeroTotalNotificados("Dengue"),
+  calcularNumeroTotalNotificados("Diarrea aguda"),
+  calcularNumeroTotalNotificados("Encefalitis de San Luis"),
+  calcularNumeroTotalNotificados("Enfermedad Febril Exantemática-EFE (Sarampión/Rubéola)"),
+  calcularNumeroTotalNotificados("Enfermedad Pie-Mano-Boca"),
+  //calcularNumeroTotalNotificados("Estudio de SARS-COV-2 en situaciones especiales"),
+  calcularNumeroTotalNotificados("Fiebre del Nilo Occidental"),
+  calcularNumeroTotalNotificados("Gonorrea"),
+  calcularNumeroTotalNotificados("Hantavirosis"),
+  calcularNumeroTotalNotificados("Hepatitis B"),
+  calcularNumeroTotalNotificados("Hepatitis C"),
+  calcularNumeroTotalNotificados("Hepatitis E"),
+  calcularNumeroTotalNotificados("Hidatidosis"),
+  calcularNumeroTotalNotificados("HTLV"),
+  calcularNumeroTotalNotificados("Infección respiratoria aguda viral sin especificar"),
+  calcularNumeroTotalNotificados("Intoxicación con otros tóxicos"),
+  calcularNumeroTotalNotificados("Intoxicación/Exposición a Mercurio"),
+  calcularNumeroTotalNotificados("Intoxicación/Exposición por Monóxido de Carbono"),
+  calcularNumeroTotalNotificados("IRAG"),
+  calcularNumeroTotalNotificados("Leptospirosis"),
+  calcularNumeroTotalNotificados("Meningoencefalitis"),
+  calcularNumeroTotalNotificados("Otras infecciones invasivas (bacterianas y otras)"),
+  calcularNumeroTotalNotificados("Poliomielitis-Parálisis flácida aguda en menores de 15 años"),
+ // calcularNumeroTotalNotificados("SARS-COV-2 en puntos de entrada y casos relacionados con importación"),
+  calcularNumeroTotalNotificados("Sífilis"),
+  calcularNumeroTotalNotificados("Sífilis congénita"),
+  calcularNumeroTotalNotificados("Sífilis en Embarazadas"),
+  calcularNumeroTotalNotificados("Sindrome inflamatorio multisistémico (SIM)"),
+  calcularNumeroTotalNotificados("Streptococcus agalactiae grupo B en embarazadas"),
+  calcularNumeroTotalNotificados("SUH - Sindrome Urémico Hemolítico"),
+  calcularNumeroTotalNotificados("Toxoplasmosis congénita"),
+  calcularNumeroTotalNotificados("Tuberculosis"),
+  calcularNumeroTotalNotificados("Vigilancia genómica de SARS-CoV-2"),
+  calcularNumeroTotalNotificados("VIH"),
+  calcularNumeroTotalNotificados("VIH - Expuesto perinatal"),
+  calcularNumeroTotalNotificados("VIH en embarazo"),
+  calcularNumeroTotalNotificados("Viruela símica"),
+]
+
+console.log(notificadosEno);
 
 
 
-console.log(tuberculosisXse);
 
 
 
-
-
-
-  const data = { anio, baseCompleta, setBaseCompleta, calendar, setCalendar, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad, tuberculosisXse, dengueXse, hivXse, sifilisXse}
+  const data = { anio, baseCompleta, setBaseCompleta, calendar, setCalendar, notificadosEno,numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad, tuberculosisXse, dengueXse, hivXse, sifilisXse}
 
 
 

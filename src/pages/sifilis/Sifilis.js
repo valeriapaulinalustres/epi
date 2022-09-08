@@ -215,7 +215,7 @@ function detallarDescartadosSifilis () {
         <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoSifilis}barLabels={labelsEdadSexoSifilis} label1={label1Sifilis} label2={label2Sifilis} data1={femeninoSifilis} data2={masculinoSifilis}  borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
     
 
-        <div className='barChart-sifilis'><BarChartSe title={titleSeSifilis}barLabels={labelsSeSifilis} label1={labelSeSifilis}  data1={seSifilis}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
+        <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeSifilis}barLabels={labelsSeSifilis} label1={labelSeSifilis}  data1={seSifilis}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
 </div>
       </div>
 }
