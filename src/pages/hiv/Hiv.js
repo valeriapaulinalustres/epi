@@ -15,6 +15,7 @@ function Hiv() {
   //destructuring from context
   const { 
     anio,  
+    se,
     numeroTotalGeneralNotificadosHiv, 
     numeroTotalGeneralNotificadosHivFemenino, 
     numeroTotalGeneralNotificadosHivMasculino, 
@@ -50,7 +51,7 @@ const totalPorSexoHiv = [numeroTotalGeneralNotificadosHivMasculino, numeroTotalG
 const labelsSexoHiv =['Maculino', 'Femenino', 'SD']
 const backgroundColorHiv = [salmonTransparente, lilaTransparente, rosaTransparente]
 const borderColorHiv = [salmon, lila, rosa]
-const titleSexoHiv = "Casos notificados según sexo. Morón, 2022."
+const titleSexoHiv = `Casos notificados según sexo. Morón, SE 1 a ${se}, 2022.`
 
  //Gráfico embarazadas sobre total de notificadas mujeres
 
@@ -58,17 +59,17 @@ const titleSexoHiv = "Casos notificados según sexo. Morón, 2022."
  const labelsEmbarazoHiv =['Gestantes', 'No gestantes',]
  const backgroundColorEmbarazoHiv= [rosaTransparente, salmonTransparente]
  const borderColorEmbarazoHiv = [rosa, salmon]
- const titleEmbarazoHiv = "Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, 2022."
+ const titleEmbarazoHiv = `Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, SE 1 a ${se}, 2022.`
 //Gráfico notificados Morón/Total
 
 const notificadosHivEstablecimientoCarga = [numeroTotalGeneralHivMoron, numeroTotalGeneralHivNoMoron]
 const labelsEstablecimientoHiv =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
 const backgroundColorEstablecimientoHiv= [lilaTransparente, rosaTransparente]
 const borderColorEstablecimientoHiv = [lila, rosa]
-const titleEstablecimientoHiv = "Casos notificados según Establecimiento de carga. Morón, 2022."
+const titleEstablecimientoHiv = `Casos notificados según Establecimiento de carga. Morón, SE 1 a ${se}, 2022.`
 
 //Gráfico Edad x sexo
-const titleEdadSexoHiv = "Casos notificados de HIV, según sexo y edad. Morón, 2022"
+const titleEdadSexoHiv = `Casos notificados de HIV, según sexo y edad. Morón, SE 1 a ${se}, 2022.`
   const labelsEdadSexoHiv = ['< 1 mes', '2 a 12 m','1 a 2 años', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años' ]
   const label1Hiv = "Mujeres";
 const label2Hiv = "Varones";
@@ -77,7 +78,7 @@ const masculinoHiv = [hivMmenor1m, hivM2m12m, hivM13m24m, hivM2a4a, hivM5a9a, hi
 
 
 //Gráfico notificados x SE
-const titleSeHiv = "Casos notificados de Hiv, según Semana Epidemiológica. Morón, 2022"
+const titleSeHiv = `Casos notificados de Hiv, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
   const labelsSeHiv = ['1', '2', '3','4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27','28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40','41', '42', '43', '44', '45','46','47','48', '49', '50','51', '52']
   const labelSeHiv = "SE";
 const seHiv = hivXse;

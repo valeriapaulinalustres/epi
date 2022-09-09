@@ -16,6 +16,7 @@ const [ultimoMesDengue, setUltimoMesDengue] = useState(false)
 //destructuring from context
 const { 
   anio, 
+  se,
   numeroTotalNotificadosDengue,  
   numeroTotalNotificadosDengueFemenino, 
   numeroTotalNotificadosDengueMasculino, 
@@ -46,7 +47,7 @@ const totalPorSexoDengue = [numeroTotalNotificadosDengueMasculino, numeroTotalNo
 const labelsSexoDengue =['Maculino', 'Femenino', 'SD']
 const backgroundColorDengue = [salmonTransparente, lilaTransparente, rosaTransparente]
 const borderColorDengue = [salmon, lila, rosa]
-const titleSexoDengue = "Casos notificados de Dengue según sexo. Morón, 2022."
+const titleSexoDengue = `Casos notificados de Dengue según sexo. Morón, SE 1 a ${se}, 2022.`
 
 
 //Gráfico notificados Morón/Total
@@ -55,11 +56,11 @@ const notificadosDengueEstablecimientoCarga = [numeroTotalGeneralDengueMoron, nu
 const labelsEstablecimientoDengue =['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
 const backgroundColorEstablecimientoDengue= [lilaTransparente, rosaTransparente]
 const borderColorEstablecimientoDengue = [lila, rosa]
-const titleEstablecimientoDengue = "Casos notificados de Dengue según Establecimiento de carga. Morón, 2022."
+const titleEstablecimientoDengue = `Casos notificados de Dengue según Establecimiento de carga. Morón, SE 1 a ${se}, 2022.`
 
 
 //Gráfico clasificación
-const titleClasificacionDengue = "Clasificación de los casos de Dengue. Morón, 2022."
+const titleClasificacionDengue = `Clasificación de los casos de Dengue. Morón, SE 1 a ${se}, 2022.`
 const labelsClasificacionDengue = ["Clasificación"]
 const label1ClasificacionDengue = "Confirmados"
 const label2ClasificacionDengue = "Probables"
@@ -73,7 +74,7 @@ const dataSospechososClasificacionDengue = [numeroConfirmadosTotalDengue]
 const dataDescartadosClasificacionDengue = [numeroDescartadosTotalDengue]
 
 //Gráfico Edad x sexo
-const titleEdadSexoDengue = "Casos notificados de Dengue, según sexo y edad. Morón, 2022"
+const titleEdadSexoDengue = `Casos notificados de Dengue, según sexo y edad. Morón, SE 1 a ${se}, 2022.`
   const labelsEdadSexoDengue = ['< 1 mes', '2 a 12 m', '1 a 2 años','2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años' ]
   const label1Dengue = "Mujeres";
 const label2Dengue = "Varones";
@@ -82,7 +83,7 @@ const masculinoDengue = [ dengueMmenor1m, dengueM2m12m, dengueM13m24m, dengueM2a
 
 
 //Gráfico notificados x SE
-const titleSeDengue = "Casos notificados de Dengue, según Semana Epidemiológica. Morón, 2022"
+const titleSeDengue = `Casos notificados de Dengue, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
   const labelsSeDengue = ['1', '2', '3','4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27','28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40','41', '42', '43', '44', '45','46','47','48', '49', '50','51', '52']
   const labelSeDengue = "SE";
 const seDengue = dengueXse;

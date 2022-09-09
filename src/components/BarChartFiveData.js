@@ -1,4 +1,5 @@
-import React from 'react';
+import {useRef, useCallback} from 'react';
+import {FiDownload} from 'react-icons/fi'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -108,10 +109,26 @@ function BarChartFiveData({
   };
 
 
+//download chart button
+const refChartFiveData = useRef(null)
+
+const downloadImageBarChartFive = useCallback(()=>{
+  const link = document.createElement("a");
+  link.download = `${title}.png`;
+  link.href = refChartFiveData.current.toBase64Image();
+  link.click();
+},[])
 
 
 
-  return <Bar options={options} data={data} />;
+
+  return <div className='chart-container'>
+  <Bar options={options} data={data} ref={refChartFiveData}/>
+  <button type="button" onClick={downloadImageBarChartFive} className="download-btn">
+      <FiDownload />
+    </button>
+  </div>
+ 
 }
 
 export default BarChartFiveData

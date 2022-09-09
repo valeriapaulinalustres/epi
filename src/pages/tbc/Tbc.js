@@ -15,6 +15,7 @@ function Tbc() {
   //destructuring from context
   const {
     anio,
+    se,
     numeroTotalNotificadosTuberculosis,
     numeroTotalNotificadosTuberculosisFemenino,
     numeroTotalNotificadosTuberculosisMasculino,
@@ -47,7 +48,7 @@ function Tbc() {
   const labelsSexoTbc = ['Maculino', 'Femenino', 'SD']
   const backgroundColorTbc = [salmonTransparente, lilaTransparente, rosaTransparente]
   const borderColorTbc = [salmon, lila, rosa]
-  const titleSexoTbc = "Casos notificados según sexo. Morón, 2022."
+  const titleSexoTbc = `Casos notificados según sexo. Morón, SE 1 a ${se}, 2022.`
 
   //Gráfico notificados Morón/Total
 
@@ -55,11 +56,11 @@ function Tbc() {
   const labelsEstablecimientoTbc = ['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
   const backgroundColorEstablecimientoTbc = [lilaTransparente, rosaTransparente]
   const borderColorEstablecimientoTbc = [lila, rosa]
-  const titleEstablecimientoTbc = "Casos notificados de Tuberculosis según Establecimiento de carga. Morón, 2022."
+  const titleEstablecimientoTbc = `Casos notificados de Tuberculosis según Establecimiento de carga. Morón, SE 1 a ${se}, 2022.`
 
   //Tabla resultados
 
-  const titleResultadoTuberculosis = "Casos notificados de Tuberculosis según resultado de laboratorio. Morón, 2022."
+  const titleResultadoTuberculosis = `Casos notificados de Tuberculosis según resultado de laboratorio. Morón, SE 1 a ${se}, 2022.`
   const labelsRestultadoTuberculosis = ["Resultados de laboratorio"]
   const label1RestultadoTuberculosis = "Positivos"
   const label2RestultadoTuberculosis = "Negativos"
@@ -69,7 +70,7 @@ function Tbc() {
   const dataSinResultadosTuberculosis = [numeroTotalSinResultadoTuberculosis]
 
   //Gráfico Edad x sexo
-  const titleEdadSexoTuberculosis = "Casos notificados de Tuberculosis, según sexo y edad. Morón, 2022"
+  const titleEdadSexoTuberculosis = `Casos notificados de Tuberculosis, según sexo y edad. Morón, SE 1 a ${se}, 2022.`
   const labelsEdadSexoTuberculosis = ['< 1 mes', '2 a 12 m', '1 a 2 años', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años']
   const label1Tuberculosis = "Mujeres";
   const label2Tuberculosis = "Varones";
@@ -77,7 +78,7 @@ function Tbc() {
   const masculinoTuberculosis = [tuberculosisMmenor1m, tuberculosisM2m12m, tuberculosisM13m24m, tuberculosisM2a4a, tuberculosisM5a9a, tuberculosisM10a14a, tuberculosisM15a19a, tuberculosisM20a24a, tuberculosisM25a34a, tuberculosisM35a44a, tuberculosisM45a65a, tuberculosisMmay65];
 
   //Gráfico notificados x SE
-  const titleSeTuberculosis = "Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, 2022"
+  const titleSeTuberculosis = `Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
   const labelsSeTuberculosis = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52']
   const labelSeTuberculosis = "SE";
   const seTuberculosis = tuberculosisXse;

@@ -1,4 +1,5 @@
-import React from 'react';
+import {useRef, useCallback} from 'react';
+import {FiDownload} from 'react-icons/fi';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,8 +10,10 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { Chart } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-
+// Chartjs register
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -19,6 +22,9 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+// Chartjs plugin Datalabels register
+Chart.register(ChartDataLabels);
 
 
 
@@ -52,6 +58,7 @@ function BarChartSexAge({
         text: title,
       },
     },
+    
   };
 
 
@@ -78,10 +85,25 @@ function BarChartSexAge({
   };
 
 
+//download chart button
+const refBarChartSexAge = useRef(null)
+
+const downloadImageBarChartSexAge = useCallback(()=>{
+  const link = document.createElement("a");
+  link.download = `${title}.png`;
+  link.href = refBarChartSexAge.current.toBase64Image();
+  link.click();
+},[])
 
 
 
-  return <Bar options={options} data={data} />;
+  return <div className='chart-container'>
+ <Bar options={options} data={data} ref={refBarChartSexAge}/>
+ <button type="button" onClick={downloadImageBarChartSexAge} className="download-btn">
+      <FiDownload />
+    </button>
+  </div>
+ 
 }
 
 export default BarChartSexAge
