@@ -37,7 +37,7 @@ function BarChartSe({
     indexAxis: eje,
     elements: {
       bar: {
-        borderWidth: 2,
+        borderWidth: 1,
       },
     },
     responsive: true,

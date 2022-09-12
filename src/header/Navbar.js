@@ -102,7 +102,7 @@ function Navbar(props) {
           <NavLink to="/sifilis" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>Sífilis</NavLink>
           <NavLink to="/tbc" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>TBC</NavLink>
           <NavLink to="/hiv" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>HIV</NavLink>
-          <NavLink to="/upload" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>Upload</NavLink>
+          
         </nav>
     </div>
   )

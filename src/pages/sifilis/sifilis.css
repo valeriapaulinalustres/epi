@@ -19,4 +19,6 @@
 .barChartENO-sifilis{
     width: 100%;
     margin: 20px;
+    border: 1px solid var(--salmon);
+    padding: 20px;
 }

@@ -17,6 +17,7 @@ const [ultimoMesSifilis, setUltimoMesSifilis] = useState(false)
 const { 
   anio, 
   se,
+  semanas,
   numeroTotalGeneralNotificadosSifilis, 
   numeroTotalGeneralNotificadosSifilisFemenino, 
   numeroTotalGeneralNotificadosSifilisMasculino, 
@@ -44,7 +45,8 @@ const {
   numeroProbablesFemeninosSifilis, 
   numeroProbablesMasculinosSifilis, 
   numeroProbablesSDSifilis, 
-  sifilisSexoEdad,sifilisXse 
+  sifilisSexoEdad,
+  sifilisXse 
 } = useContext(DataContext);
 
 const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
@@ -122,7 +124,7 @@ const masculinoSifilis = [sifilisMmenor1m, sifilisM2m12m, sifilisM13m24m, sifili
 
 //Gráfico notificados x SE
 const titleSeSifilis = `Casos notificados de Sífilis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
-  const labelsSeSifilis = ['1', '2', '3','4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27','28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40','41', '42', '43', '44', '45','46','47','48', '49', '50','51', '52']
+  const labelsSeSifilis = semanas;
   const labelSeSifilis = "SE";
 const seSifilis = sifilisXse;
 
