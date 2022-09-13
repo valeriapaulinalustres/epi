@@ -7,6 +7,7 @@ import Toast from 'sweetalert2';
 import Colors from '../../components/Colors';
 import BarChartSexAge from '../../components/BarChartSexAge';
 import BarChartSe from '../../components/BarChartSe';
+import { FaCalendar } from 'react-icons/fa';
 
 function Tbc() {
 
@@ -16,6 +17,7 @@ function Tbc() {
   const {
     anio,
     se,
+    calendar,
     semanas,
     numeroTotalNotificadosTuberculosis,
     numeroTotalNotificadosTuberculosisFemenino,
@@ -34,7 +36,8 @@ function Tbc() {
     numeroTotalNegativosTuberculosis,
     numeroTotalSinResultadoTuberculosis,
     tuberculosisSexoEdad,
-    tuberculosisXse
+    tuberculosisXse,
+    numeroTotalNotificadosTuberculosisEntreFechas,
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
@@ -103,16 +106,28 @@ function Tbc() {
     <div className='page-container'>
       <h2>Tuberculosis</h2>
       <div className='btnElegir-page'>
-        <button className={ultimoMesTbc ? "button" : "buttonActive"} onClick={() => setUltimoMesTbc(false)}>Acumulado 2022</button>
-        <button className={ultimoMesTbc ? "buttonActive" : "button"} onClick={() => setUltimoMesTbc(true)}>Ver último mes</button>
+        <button 
+        className={ultimoMesTbc ? "button" : "buttonActive"} 
+        onClick={() => setUltimoMesTbc(false)}
+        >
+          Acumulado 2022
+          </button>
+        <button 
+        className={ultimoMesTbc ? "buttonActive" : "button"} 
+        onClick={() => setUltimoMesTbc(true)}
+        >
+          Ver entre fechas
+          </button>
       </div>
+     
 
       {ultimoMesTbc
 
         ?
         <div className='totalesGraphs-container'>
+          <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
           <div className='totales-page-container'>
-            <div className='recuadro naranja'>Total último mes: <p className='totalNumber'>{ }</p></div>
+            <div className='recuadro naranja'>Total entre fechas: <p className='totalNumber'>{ numeroTotalNotificadosTuberculosisEntreFechas}</p></div>
             <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{ }</p></div>
             <div className='recuadro rosa'>Descartados: <p className='totalNumber'>{ }</p></div>
             <div className='recuadro lila'>Sospechosos: <p className='totalNumber'>{ }</p></div>
@@ -130,6 +145,7 @@ function Tbc() {
 
         :
         <div className='totalesGraphs-container'>
+           
           <div className='totales-page-container'>
             <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalNotificadosTuberculosis}</p></div>
             <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalTuberculosis}</p></div>

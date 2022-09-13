@@ -34,7 +34,33 @@ function BarChartSe({
 }) {
 
   const options = {
+    //responsive: true,
+    //maintainAspectRatio: false,
     indexAxis: eje,
+    scales: {
+      y: {
+       
+        ticks: {
+          crossAlign: 'far',
+          autoSkip: false,
+          
+        },
+        grid: {
+          display: true,
+        }
+      },
+      x: {
+       
+        ticks: {
+          align: 'left',
+        //  autoSkip: false,
+        },
+        grid: {
+          display: true,
+        }
+      },
+     
+    },
     elements: {
       bar: {
         borderWidth: 1,
@@ -64,7 +90,6 @@ function BarChartSe({
       
     },
   };
-
 
   const labels = barLabels;
 

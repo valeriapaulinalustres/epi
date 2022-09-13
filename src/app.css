@@ -40,6 +40,12 @@ h3{
     border: 2px solid var(--naranja);
 }
 
+.button:hover{
+    background-color: var(--salmon);
+    color: white;
+    border: 2px solid var(--salmon);
+}
+
 .buttonActive{
     border-radius: 5px;
     padding: 10px ;
@@ -51,6 +57,13 @@ h3{
     box-shadow: 2px 2px 2px  gray;
     border: none;
     cursor: pointer;
+    border: 2px solid var(--rojo);
+}
+
+.buttonActive:hover{
+    background-color: white;
+    color: var(--rojo);
+    border: 2px solid var(--rojo);
 }
 
 .download-btn{

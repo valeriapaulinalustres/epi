@@ -16,8 +16,8 @@ function Header() {
         
         <div className='menubar-container'>
         
-        <button className='menubar-buttons'><NavLink to="/upload"  ><FiUpload className='menubar-icons'/></NavLink></button>
-            <button className='menubar-buttons'><FaUserMd className='menubar-icons'/></button>
+        <NavLink to="/upload"  ><div className='menubar-buttons'><FiUpload className='menubar-icons'/></div></NavLink>
+            <div className='menubar-buttons'><FaUserMd className='menubar-icons'/></div>
             
             <HeaderMenu menu={menu} setMenu={setMenu}/>
             <Navbar menu={menu} setMenu={setMenu}/>

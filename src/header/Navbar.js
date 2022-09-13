@@ -51,7 +51,7 @@ function Navbar(props) {
       },
       {
         duration: 0.5,
-        y: 50,
+        y: 0,
         ease: 'power3.inOut',
         stagger: 0.3,
         opacity: 1

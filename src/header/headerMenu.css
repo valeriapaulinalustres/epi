@@ -2,14 +2,31 @@
     width: 30px;
     height: 30px;
     color: white;
+    margin: 6px;
 }
+
+.menu-icon:hover{
+color: var(--rojo);
+}
+
 
 .menu-button{
     background-color: var(--rojo);
-    border-radius: 5px;
+   
+    border-radius: 50%;
     position: fixed;
     z-index: 20;
     right: 0;
     margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
    
+}
+
+.menu-button:hover{
+    background-color: white;
 }

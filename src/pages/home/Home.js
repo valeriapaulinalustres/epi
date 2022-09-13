@@ -40,36 +40,48 @@ function Home() {
   const enos = notificadosEno;
 
   //Gráfico Sífilis
-const titleSeSifilis = `Casos notificados de Sífilis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
-const labelsSeSifilis = semanas;
-const labelSeSifilis = "SE";
-const seSifilis = sifilisXse;
+  const titleSeSifilis = `Casos notificados de Sífilis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const labelsSeSifilis = semanas;
+  const labelSeSifilis = "SE";
+  const seSifilis = sifilisXse;
 
-//Gráfico TBC
-const titleSeTuberculosis = `Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
-const labelsSeTuberculosis = semanas;
-const labelSeTuberculosis = "SE";
-const seTuberculosis = tuberculosisXse;
+  //Gráfico TBC
+  const titleSeTuberculosis = `Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const labelsSeTuberculosis = semanas;
+  const labelSeTuberculosis = "SE";
+  const seTuberculosis = tuberculosisXse;
 
-//Gráfico Dengue
-const titleSeDengue = `Casos notificados de Dengue, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  //Gráfico Dengue
+  const titleSeDengue = `Casos notificados de Dengue, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
   const labelsSeDengue = semanas;
   const labelSeDengue = "SE";
-const seDengue = dengueXse;
+  const seDengue = dengueXse;
 
-//Gráfico HIV
-const titleSeHiv = `Casos notificados de HIV, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  //Gráfico HIV
+  const titleSeHiv = `Casos notificados de HIV, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
   const labelsSeHiv = semanas;
   const labelSeHiv = "SE";
-const seHiv = hivXse;
+  const seHiv = hivXse;
 
   return (
     <div className='home-container'>
+
       <h2>Vigilancia de Enfermedades de Notificación Obligatoria</h2>
       <h3>{anio}</h3>
+      
       <div className='btnElegir-page'>
-        <button className={ultimoMesHome ? "button" : "buttonActive"} onClick={() => setUltimoMesHome(false)}>Acumulado 2022</button>
-        <button className={ultimoMesHome ? "buttonActive" : "button"} onClick={() => setUltimoMesHome(true)}>Ver último mes</button>
+        <button
+          className={ultimoMesHome ? "button" : "buttonActive"}
+          onClick={() => setUltimoMesHome(false)}
+        >
+          Acumulado 2022
+        </button>
+        <button
+          className={ultimoMesHome ? "buttonActive" : "button"}
+          onClick={() => setUltimoMesHome(true)}
+        >
+          Ver entre fechas
+        </button>
       </div>
 
 
@@ -109,16 +121,16 @@ const seHiv = hivXse;
           </div>
           <div className='graphs-container'>
             <div className='barChartENO-sifilis'><BarChartSe eje={'y'} title={titleEnos} barLabels={labelsEnos} label1={labelEnos} data1={enos} borderColor1={salmon} bgColor1={salmonTransparente} /></div>
-            
+
             <div className='barChart-sifilis'>
-          <BarChartSe eje={'x'} title={titleSeSifilis}barLabels={labelsSeSifilis} label1={labelSeSifilis}  data1={seSifilis}   borderColor1={salmon} bgColor1={salmonTransparente} />
-          </div>
+              <BarChartSe eje={'x'} title={titleSeSifilis} barLabels={labelsSeSifilis} label1={labelSeSifilis} data1={seSifilis} borderColor1={salmon} bgColor1={salmonTransparente} />
+            </div>
 
-          <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeTuberculosis} barLabels={labelsSeTuberculosis} label1={labelSeTuberculosis} data1={seTuberculosis} borderColor1={rosa} bgColor1={rosaTransparente} /></div>
+            <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeTuberculosis} barLabels={labelsSeTuberculosis} label1={labelSeTuberculosis} data1={seTuberculosis} borderColor1={rosa} bgColor1={rosaTransparente} /></div>
 
- <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeDengue}barLabels={labelsSeDengue} label1={labelSeDengue}  data1={seDengue}   borderColor1={lila} bgColor1={lilaTransparente} /></div>
+            <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeDengue} barLabels={labelsSeDengue} label1={labelSeDengue} data1={seDengue} borderColor1={lila} bgColor1={lilaTransparente} /></div>
 
- <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeHiv}barLabels={labelsSeHiv} label1={labelSeHiv}  data1={seHiv}   borderColor1={salmon} bgColor1={salmonTransparente} /></div>
+            <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeHiv} barLabels={labelsSeHiv} label1={labelSeHiv} data1={seHiv} borderColor1={salmon} bgColor1={salmonTransparente} /></div>
 
           </div>
         </div>

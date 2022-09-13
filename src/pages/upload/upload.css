@@ -19,7 +19,9 @@
     right: 0;
     top: 0;
     bottom: 0;
+
   }
+
   
   .file-select input[type="file"] {
     opacity: 0;
@@ -40,4 +42,30 @@
  
     margin-bottom: 200px;
   }
-  
+
+  .calendar-container{
+    margin: 10px;
+    border: 2px solid var(--naranja);
+    padding: 10px;
+    border-radius: 5px;
+
+  }
+
+  .calendar-input{
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid var(--salmon);
+    box-shadow: 2px 2px 2px  gray;
+    font-size: 18px;
+    color: var(--naranja);
+  }
+
+  .calendar-input:hover{
+    background-color: var(--salmon);
+    color: white;
+  }
+
+  .calendar-title{
+    margin-left: 10px;
+  }

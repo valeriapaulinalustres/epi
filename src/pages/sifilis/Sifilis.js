@@ -170,7 +170,7 @@ function detallarDescartadosSifilis () {
       className={ultimoMesSifilis ? "buttonActive" : "button"} 
       onClick={()=>setUltimoMesSifilis(true)}
       >
-        Ver último mes
+        Ver entre fechas
         </button>
       
       </div>

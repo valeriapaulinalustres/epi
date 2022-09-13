@@ -120,8 +120,18 @@ const seHiv = hivXse;
     <div className='page-container'>
       <h2>HIV</h2>
       <div className='btnElegir-page'>
-      <button className={ultimoMesHiv ? "button" : "buttonActive"} onClick={()=>setUltimoMesHiv(false)}>Acumulado 2022</button>
-      <button className={ultimoMesHiv ? "buttonActive" : "button"} onClick={()=>setUltimoMesHiv(true)}>Ver último mes</button>
+      <button 
+      className={ultimoMesHiv ? "button" : "buttonActive"} 
+      onClick={()=>setUltimoMesHiv(false)}
+      >
+        Acumulado 2022
+        </button>
+      <button 
+      className={ultimoMesHiv ? "buttonActive" : "button"} 
+      onClick={()=>setUltimoMesHiv(true)}
+      >
+        Ver entre fechas
+        </button>
       </div>
   
      {ultimoMesHiv 
