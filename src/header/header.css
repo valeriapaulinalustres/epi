@@ -19,6 +19,7 @@
     margin: 5px;
     background-color: white;
     z-index: 10;
+    border: none;
 
 }
 
@@ -44,6 +45,60 @@
     align-self: center;
 }
 
+.modal{
+    background: rgba(33, 41, 52, .85);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    position: fixed;
+    z-index: 999;
+   
+
+}
+
+.window{
+    background: white;
+    border-radius: 10px;
+    border: 5px solid var(--rojo);
+    box-shadow: 0 1px 3px rgba(33, 41, 52, .75);
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 1020px;
+    min-width: 1000px;
+    overflow: scroll;
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    font-size: 1.3rem;
+    height: 500px;
+
+}
+.epiCalendar-container{
+    width: 1000px;
+    height: 2000px;
+}
+
+.window-header-fixed{
+    position: fixed;
+    
+}
+
+.window-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+   
+}
+
+.modal-text{
+    text-align: justify;
+    margin: 60px 0 20px 0;
+}
 
 @media only screen and (max-width:980px) {
 .logo{

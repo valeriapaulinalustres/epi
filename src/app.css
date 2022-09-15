@@ -82,6 +82,12 @@ h3{
     align-items: center;
 }
 
+.download-btn-icon{
+    color: var(--naranja);
+    width: 20px;
+    height: 20px;
+}
+
 
 .page-container{
     display: flex;

@@ -1,71 +1,57 @@
-import React, { useState, useContext } from "react";
-import { reduceHooks } from "react-table";
+import React, { useContext } from "react";
 import * as XLSX from "xlsx";
 import './upload.css';
 import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 function Upload() {
 
   const { setBaseCompleta, baseCompleta, setCalendar } = useContext(DataContext);
 
-
-
-
+  const navigate = useNavigate();
 
   const readExcel = (file) => {
     const promise = new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsArrayBuffer(file);
-
       fileReader.onload = (e) => {
         const bufferArray = e.target.result;
-
         const wb = XLSX.read(bufferArray, { type: "buffer" });
-
         const wsname = wb.SheetNames[0];
-
         const ws = wb.Sheets[wsname];
-
         const data = XLSX.utils.sheet_to_json(ws);
-
         resolve(data);
       };
-
       fileReader.onerror = (error) => {
         reject(error);
       };
     });
-
     promise.then((d) => {
       setBaseCompleta(d)
-      //console.log(d)
     });
   };
 
-//Takes calendar info to context
-function handleCalendar (e){
-  e.preventDefault()
- 
-  if (e.target[0].value != "" && e.target[1].value != "") {
-    setCalendar({
-      dateFrom: e.target[0].value,
-      dateTo: e.target[1].value,
-    })
-  } else {
-    ingresarFecha()
+  //Takes calendar info to context
+  function handleCalendar(e) {
+    e.preventDefault()
+    if (e.target[0].value != "" && e.target[1].value != "") {
+      setCalendar({
+        dateFrom: e.target[0].value,
+        dateTo: e.target[1].value,
+      })
+    } else {
+      ingresarFecha()
+    }
   }
- 
-}
 
-//alert
-function ingresarFecha (){
-  
-  Toast.fire({
-    title: `Debe completar ambas fechas por favor`  
-  })
-}
+  //alert
+  function ingresarFecha() {
+    Toast.fire({
+      title: `Debe completar ambas fechas por favor`
+    })
+  }
 
 
   return (
@@ -90,13 +76,12 @@ function ingresarFecha (){
       <div className="calendar-container">
         <p className="calendar-title">Seleccionar fechas</p>
         <form onSubmit={handleCalendar}>
-        <input type='date' label="desde" min="2022-01-01" className="calendar-input"/>
-        <input type='date' label="hasta" min="2022-01-01" className="calendar-input"/>
-        <input type='submit' value="enviar" className="buttonActive"/>
+          <input type='date' label="desde" min="2022-01-01" className="calendar-input" />
+          <input type='date' label="hasta" min="2022-01-01" className="calendar-input" />
+          <input type='submit' value="enviar" className="buttonActive" />
         </form>
-       
+        <button onClick={() => navigate(-1)} className="button right">Volver</button>
       </div>
-
     </div>
   )
 }

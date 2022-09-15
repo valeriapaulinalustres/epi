@@ -11,6 +11,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { Chart } from 'chart.js';
+//SE IMPORTA EL PLUGIN PARA VER VALORES EN LOS GRÁFICOS, SUFICIENTE CON PONER ESTE IMPORT SÓLO UNA VEZ
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 // Chartjs register
@@ -23,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-// Chartjs plugin Datalabels register
+// Chartjs plugin Datalabels register ES SUFICIENTE CON PONERLO SOLAMENTE UNA VEZ
 Chart.register(ChartDataLabels);
 
 
@@ -57,6 +58,16 @@ function BarChartSexAge({
         display: true,
         text: title,
       },
+       // Change options for ALL labels of THIS CHART
+      datalabels: {
+        color: function (context) {
+          var index = context.dataIndex;
+          var value = context.dataset.data[index];
+          return value < 1 ? 'white' :  // draw negative values in red
+            index % 2 ? 'grey' :      // else, alternate values in blue and green
+              'grey';
+        }
+      }
     },
     
   };

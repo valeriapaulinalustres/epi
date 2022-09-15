@@ -38,7 +38,32 @@ function Dengue() {
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa, amarillo, amarilloTransparente, verde, verdeTransparente] = Colors
 
-  const [dengueFmenor1m, dengueF2m12m, dengueF13m24m, dengueF2a4a, dengueF5a9a, dengueF10a14a, dengueF15a19a, dengueF20a24a, dengueF25a34a, dengueF35a44a, dengueF45a65a, dengueFmay65, dengueMmenor1m, dengueM2m12m, dengueM13m24m, dengueM2a4a, dengueM5a9a, dengueM10a14a, dengueM15a19a, dengueM20a24a, dengueM25a34a, dengueM35a44a, dengueM45a65a, dengueMmay65] = dengueSexoEdad
+  const [
+    dengueFmenor1m,
+    dengueF2m12m,
+    dengueF13m24m,
+    dengueF2a4a,
+    dengueF5a9a,
+    dengueF10a14a,
+    dengueF15a19a,
+    dengueF20a24a,
+    dengueF25a34a,
+    dengueF35a44a,
+    dengueF45a65a,
+    dengueFmay65,
+    dengueMmenor1m,
+    dengueM2m12m,
+    dengueM13m24m,
+    dengueM2a4a,
+    dengueM5a9a,
+    dengueM10a14a,
+    dengueM15a19a,
+    dengueM20a24a,
+    dengueM25a34a,
+    dengueM35a44a,
+    dengueM45a65a,
+    dengueMmay65
+  ] = dengueSexoEdad
 
   const totalPorSexoTbc = [numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd]
 
@@ -50,7 +75,6 @@ function Dengue() {
   const borderColorDengue = [salmon, lila, rosa]
   const titleSexoDengue = `Casos notificados de Dengue según sexo. Morón, SE 1 a ${se}, 2022.`
 
-
   //Gráfico notificados Morón/Total
 
   const notificadosDengueEstablecimientoCarga = [numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron]
@@ -61,6 +85,7 @@ function Dengue() {
 
 
   //Gráfico clasificación
+
   const titleClasificacionDengue = `Clasificación de los casos de Dengue. Morón, SE 1 a ${se}, 2022.`
   const labelsClasificacionDengue = ["Clasificación"]
   const label1ClasificacionDengue = "Confirmados"
@@ -75,6 +100,7 @@ function Dengue() {
   const dataDescartadosClasificacionDengue = [numeroDescartadosTotalDengue]
 
   //Gráfico Edad x sexo
+
   const titleEdadSexoDengue = `Casos notificados de Dengue, según sexo y edad. Morón, SE 1 a ${se}, 2022.`
   const labelsEdadSexoDengue = ['< 1 mes', '2 a 12 m', '1 a 2 años', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años']
   const label1Dengue = "Mujeres";
@@ -84,12 +110,11 @@ function Dengue() {
 
 
   //Gráfico notificados x SE
+
   const titleSeDengue = `Casos notificados de Dengue, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
   const labelsSeDengue = semanas;
   const labelSeDengue = "SE";
   const seDengue = dengueXse;
-
-
 
   //Alerts
 
@@ -125,18 +150,51 @@ function Dengue() {
         ?
         <div className='totalesGraphs-container'>
           <div className='totales-page-container'>
-            <div className='recuadro naranja'>Total último mes: <p className='totalNumber'>{ }</p></div>
-            <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{ }</p></div>
-            <div className='recuadro rosa'>Probables: <p className='totalNumber'>{ }</p></div>
-            <div className='recuadro lila'>Descartados: <p className='totalNumber'>{ }</p></div>
-            <div className='recuadro salmon'>Gestantes: <p className='totalNumber'>{ }</p></div>
-            <div className='recuadro rosa'>Sospechosos: <p className='totalNumber'>{ }</p></div>
-            <div className='recuadro lila'>Notificados por Morón: <p className='totalNumber'>{ }%</p></div>
+            <div className='recuadro naranja'>
+              Total último mes:
+              <p className='totalNumber'>
+                { }
+              </p>
+            </div>
+            <div className='recuadro salmon'>
+              Confirmados:
+              <p className='totalNumber'>
+                { }
+              </p>
+            </div>
+            <div className='recuadro rosa'>
+              Probables:
+              <p className='totalNumber'>
+                { }
+              </p>
+            </div>
+            <div className='recuadro lila'>
+              Descartados:
+              <p className='totalNumber'>
+                { }
+              </p>
+            </div>
+            <div className='recuadro salmon'>
+              Gestantes:
+              <p className='totalNumber'>
+                { }
+              </p>
+            </div>
+            <div className='recuadro rosa'>
+              Sospechosos:
+              <p className='totalNumber'>
+                { }
+              </p>
+            </div>
+            <div className='recuadro lila'>
+              Notificados por Morón:
+              <p className='totalNumber'>
+                { }%
+              </p>
+            </div>
           </div>
 
           <div className='graphs-container'>
-
-
             <div className='barChart-sifilis'><BarChart /></div>
             <div className='barChart-sifilis'><BarChart /></div>
             <div className='barChart-sifilis'><BarChart /></div>
@@ -147,39 +205,128 @@ function Dengue() {
         :
         <div className='totalesGraphs-container'>
           <div className='totales-page-container'>
-            <div className='recuadro naranja'>Total 2022: <p className='totalNumber'>{numeroTotalNotificadosDengue}</p></div>
-            <div className='recuadro salmon'>Confirmados: <p className='totalNumber'>{numeroConfirmadosTotalDengue}</p></div>
-            <div className='recuadro rosa'>Probables: <p className='totalNumber'>{numeroProbablesTotalDengue}</p></div>
-            <div className='recuadro lila'>Descartados: <p className='totalNumber'>{numeroDescartadosTotalDengue}</p></div>
-            <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>Gestantes: <p className='totalNumber'>{numeroEmbarazadasNotificadoTotalDengue}</p></div>
-            <div className='recuadro rosa'>Sospechosos: <p className='totalNumber'>{numeroSospechososTotalDengue}</p></div>
-            <div className='recuadro lila'>Notificados por Morón: <p className='totalNumber'>{porcentajeNotificadosDengueMoron}%</p></div>
+            <div className='recuadro naranja'>
+              Total 2022:
+              <p className='totalNumber'>
+                {numeroTotalNotificadosDengue}
+              </p>
+            </div>
+            <div className='recuadro salmon'>
+              Confirmados:
+              <p className='totalNumber'>
+                {numeroConfirmadosTotalDengue}
+              </p>
+            </div>
+            <div className='recuadro rosa'>
+              Probables:
+              <p className='totalNumber'>
+                {numeroProbablesTotalDengue}
+              </p>
+            </div>
+            <div className='recuadro lila'>
+              Descartados:
+              <p className='totalNumber'>
+                {numeroDescartadosTotalDengue}
+              </p>
+            </div>
+            <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>
+              Gestantes:
+              <p className='totalNumber'>
+                {numeroEmbarazadasNotificadoTotalDengue}
+              </p>
+            </div>
+            <div className='recuadro rosa'>
+              Sospechosos:
+              <p className='totalNumber'>
+                {numeroSospechososTotalDengue}
+              </p>
+            </div>
+            <div className='recuadro lila'>
+              Notificados por Morón:
+              <p className='totalNumber'>
+                {porcentajeNotificadosDengueMoron}%
+              </p>
+            </div>
           </div>
           <div className='graphs-container'>
-            <div className='doughnutChart-sifilis'><DoughnutChart title={titleSexoDengue} datos={totalPorSexoDengue} labels={labelsSexoDengue} backgroundColor={backgroundColorDengue} borderColor={borderColorDengue} /></div>
-            <div className='doughnutChart-sifilis'><DoughnutChart title={titleEstablecimientoDengue} datos={notificadosDengueEstablecimientoCarga} labels={labelsEstablecimientoDengue} backgroundColor={backgroundColorEstablecimientoDengue} borderColor={borderColorEstablecimientoDengue} /></div>
+            <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleSexoDengue}
+                datos={totalPorSexoDengue}
+                labels={labelsSexoDengue}
+                backgroundColor={backgroundColorDengue}
+                borderColor={borderColorDengue}
+              />
+            </div>
 
-            <div className='barChart-sifilis'><BarChartFiveData title={titleClasificacionDengue} barLabels={labelsClasificacionDengue} label1={label1ClasificacionDengue} label2={label2ClasificacionDengue} label3={label3ClasificacionDengue} label4={label4ClasificacionDengue} label5={label5ClasificacionDengue} data1={dataConfirmadosClasificacionDengue} data2={dataProbablesClasificacionDengue} data3={dataSospechososNoConcClasificacionDengue} data4={dataSospechososClasificacionDengue} data5={dataDescartadosClasificacionDengue} borderColor1={lila} borderColor2={salmon} borderColor3={rosa} borderColor4={amarillo} borderColor5={verde} bgColor1={lilaTransparente} bgColor2={salmonTransparente} bgColor3={rosaTransparente} bgColor4={amarilloTransparente} bgColor5={verdeTransparente} /></div>
-            <div className='barChart-sifilis'><BarChartSexAge title={titleEdadSexoDengue} barLabels={labelsEdadSexoDengue} label1={label1Dengue} label2={label2Dengue} data1={femeninoDengue} data2={masculinoDengue} borderColor1={lila} borderColor2={salmon} bgColor1={lilaTransparente} bgColor2={salmonTransparente} /></div>
+            <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleEstablecimientoDengue}
+                datos={notificadosDengueEstablecimientoCarga}
+                labels={labelsEstablecimientoDengue}
+                backgroundColor={backgroundColorEstablecimientoDengue}
+                borderColor={borderColorEstablecimientoDengue}
+              />
+            </div>
 
-            <div className='barChart-sifilis'><BarChartSe eje={'x'} title={titleSeDengue} barLabels={labelsSeDengue} label1={labelSeDengue} data1={seDengue} borderColor1={salmon} bgColor1={salmonTransparente} /></div>
+            <div className='barChart-sifilis'>
+              <BarChartFiveData
+                title={titleClasificacionDengue}
+                barLabels={labelsClasificacionDengue}
+                label1={label1ClasificacionDengue}
+                label2={label2ClasificacionDengue}
+                label3={label3ClasificacionDengue}
+                label4={label4ClasificacionDengue}
+                label5={label5ClasificacionDengue}
+                data1={dataConfirmadosClasificacionDengue}
+                data2={dataProbablesClasificacionDengue}
+                data3={dataSospechososNoConcClasificacionDengue}
+                data4={dataSospechososClasificacionDengue}
+                data5={dataDescartadosClasificacionDengue}
+                borderColor1={lila}
+                borderColor2={salmon}
+                borderColor3={rosa}
+                borderColor4={amarillo}
+                borderColor5={verde}
+                bgColor1={lilaTransparente}
+                bgColor2={salmonTransparente}
+                bgColor3={rosaTransparente}
+                bgColor4={amarilloTransparente}
+                bgColor5={verdeTransparente}
+              />
+            </div>
+
+            <div className='barChart-sifilis'>
+              <BarChartSexAge
+                title={titleEdadSexoDengue}
+                barLabels={labelsEdadSexoDengue}
+                label1={label1Dengue}
+                label2={label2Dengue}
+                data1={femeninoDengue}
+                data2={masculinoDengue}
+                borderColor1={lila}
+                borderColor2={salmon}
+                bgColor1={lilaTransparente}
+                bgColor2={salmonTransparente}
+              />
+            </div>
+
+            <div className='barChart-sifilis'>
+              <BarChartSe
+                eje={'x'}
+                title={titleSeDengue}
+                barLabels={labelsSeDengue}
+                label1={labelSeDengue}
+                data1={seDengue}
+                borderColor1={salmon}
+                bgColor1={salmonTransparente}
+              />
+            </div>
           </div>
         </div>
       }
-
-
     </div>
   )
 }
 
 export default Dengue
-
-/*
- <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
-        <div className='doughnutChart-sifilis'><DoughnutChart datos={totalPorSexoTbc} /></div>
-
-        <div className='barChart-sifilis'><BarChart /></div>
-        <div className='barChart-sifilis'><BarChart /></div>
-        <div className='barChart-sifilis'><BarChart /></div>
-        <div className='barChart-sifilis'><BarChart /></div>
-        */

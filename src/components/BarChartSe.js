@@ -1,5 +1,5 @@
-import {useRef, useCallback} from 'react';
-import {FiDownload} from 'react-icons/fi';
+import { useRef, useCallback } from 'react';
+import { FiDownload } from 'react-icons/fi';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -39,27 +39,27 @@ function BarChartSe({
     indexAxis: eje,
     scales: {
       y: {
-       
+
         ticks: {
           crossAlign: 'far',
           autoSkip: false,
-          
+
         },
         grid: {
           display: true,
         }
       },
       x: {
-       
+
         ticks: {
           align: 'left',
-        //  autoSkip: false,
+          //  autoSkip: false,
         },
         grid: {
           display: true,
         }
       },
-     
+
     },
     elements: {
       bar: {
@@ -67,7 +67,7 @@ function BarChartSe({
       },
     },
     responsive: true,
-   // maintainAspectRatio: false,
+    // maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom',
@@ -76,18 +76,18 @@ function BarChartSe({
         display: true,
         text: title,
       },
-  
-        // Change options for ALL labels of THIS CHART
-        datalabels: {
-          color: function(context) {
-            var index = context.dataIndex;
-            var value = context.dataset.data[index];
-            return value < 1 ? 'white' :  // draw negative values in red
-              index % 2 ? 'blue' :      // else, alternate values in blue and green
-              'green';
-          }
+
+      // Change options for ALL labels of THIS CHART
+      datalabels: {
+        color: function (context) {
+          var index = context.dataIndex;
+          var value = context.dataset.data[index];
+          return value < 1 ? 'white' :  // draw negative values in red
+            index % 2 ? 'grey' :      // else, alternate values in blue and green
+              'grey';
         }
-      
+      }
+
     },
   };
 
@@ -106,26 +106,26 @@ function BarChartSe({
   };
 
 
-//download chart button
-const refBarChartSe = useRef(null)
+  //download chart button
+  const refBarChartSe = useRef(null)
 
-const downloadImageBarChartSe = useCallback(()=>{
-  const link = document.createElement("a");
-  link.download = `${title}.png`;
-  link.href = refBarChartSe.current.toBase64Image();
-  link.click();
-},[])
+  const downloadImageBarChartSe = useCallback(() => {
+    const link = document.createElement("a");
+    link.download = `${title}.png`;
+    link.href = refBarChartSe.current.toBase64Image();
+    link.click();
+  }, [])
 
 
 
 
   return <div className='chart-container'>
-  <Bar options={options} data={data} ref={refBarChartSe}/>
-  <button type="button" onClick={downloadImageBarChartSe} className="download-btn">
+    <Bar options={options} data={data} ref={refBarChartSe} />
+    <button type="button" onClick={downloadImageBarChartSe} className="download-btn">
       <FiDownload />
     </button>
   </div>
-  
+
 }
 
 export default BarChartSe

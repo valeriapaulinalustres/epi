@@ -64,6 +64,16 @@ function BarChartFiveData({
         display: true,
         text: title,
       },
+      // Change options for ALL labels of THIS CHART
+      datalabels: {
+        color: function (context) {
+          var index = context.dataIndex;
+          var value = context.dataset.data[index];
+          return value < 1 ? 'white' :  // draw negative values in red
+            index % 2 ? 'grey' :      // else, alternate values in blue and green
+              'grey';
+        }
+      }
     },
   };
 
