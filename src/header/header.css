@@ -103,5 +103,20 @@
 @media only screen and (max-width:980px) {
 .logo{
     width: 150px;
+    margin: 20px 10px 20px 5px;
+}
+
+.window{
+   
+
+    max-width: 320px;
+    min-width: 300px;
+    
+    height: 500px;
+
+}
+.epiCalendar-container{
+    width: 320px;
+    height: 440px;
 }
 }

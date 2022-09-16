@@ -74,13 +74,17 @@ function Upload() {
         : <p>No hay archivos cargados</p>
       }
       <div className="calendar-container">
-        <p className="calendar-title">Seleccionar fechas</p>
-        <form onSubmit={handleCalendar}>
+      <p className="calendar-title">Seleccionar fechas</p>
+        <div className="calendar-inputs-btn-container">
+        <form onSubmit={handleCalendar} className="calendar-form-container">
           <input type='date' label="desde" min="2022-01-01" className="calendar-input" />
           <input type='date' label="hasta" min="2022-01-01" className="calendar-input" />
-          <input type='submit' value="enviar" className="buttonActive" />
+          <input type='submit' value="Enviar" className="buttonActive" />
         </form>
         <button onClick={() => navigate(-1)} className="button right">Volver</button>
+        </div>
+        
+       
       </div>
     </div>
   )

@@ -153,7 +153,11 @@ function Tbc() {
           {
             calendar.dateFrom
               ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
-              : <Link to="/upload"><button className='button'>Ingresar fechas</button></Link>
+              : <div>
+                <p>No hay fechas ingresadas</p>
+<Link to="/upload"><button className='button'>Ingresar fechas</button></Link>
+              </div>
+              
           }
 
           <div className='totales-page-container'>

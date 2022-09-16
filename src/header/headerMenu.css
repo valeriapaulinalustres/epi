@@ -30,3 +30,15 @@ color: var(--rojo);
 .menu-button:hover{
     background-color: white;
 }
+
+
+@media only screen and (max-width:980px) {
+    .menu-button{
+
+        right: 0px;
+        margin-right: 0;
+       
+       
+    }
+    
+    }
