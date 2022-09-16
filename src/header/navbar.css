@@ -29,12 +29,11 @@ background-color: var(--rojo);
 }
 
 .x{
-    background-color: var(--salmon);
-    
- 
+  
+  
     position: absolute;
     z-index: 10;
-   
+   margin: 2px;
   
 }
 
@@ -43,7 +42,12 @@ background-color: var(--rojo);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--salmon);
+    background-color: var(--rojo);
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+   color: white;
+   
 }
 
 
