@@ -19,10 +19,10 @@ const hoy = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear
 const fechaActual = date.getFullYear() + "-" + (date.getMonth() +1) + "-" +  date.getDate();
 const fechaActualFormatoNumero = pasarFechaAFormatoNumero(fechaActual)
   const anioActual = date.getFullYear();
-  const anio = 2022;
+
   const eneroFormatoNumero = pasarFechaAFormatoNumero(1-1-2022)
   
-  console.log(fechaActualFormatoNumero)
+ // console.log(fechaActualFormatoNumero)
 
 
   const semanas = ['1', '2', '3','4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27','28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40','41', '42', '43', '44', '45','46','47','48', '49', '50','51', '52'];
@@ -86,8 +86,8 @@ console.log(a);
     return baseCompleta.filter(el => el.EVENTO == enfermedad && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
   }
 
-  function calcularPorSexo(arr, sexo) {
-    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
+  function calcularPorSexo(arr, sexo, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
 
   }
 
@@ -95,8 +95,8 @@ console.log(a);
     return baseCompleta.filter(el => el.EVENTO == enfermedad && el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón")
   }
 
-  function calcularClasificacionManualPorEvento(evento, clasificacion) {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón")
+  function calcularClasificacionManualPorEvento(evento, clasificacion,fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
   }
 
 
@@ -104,71 +104,84 @@ function calcularSexoClasificacion (sexo, clasificacion){
   return (baseCompleta.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón"  && el.CLASIFICACION_MANUAL == clasificacion)).length || 0
 }
 
-  function calcularConfirmadosTuberculosis() {
+  function calcularConfirmadosTuberculosis(clasificacion, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
 
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
-
-  }
-
-  function calcularConfirmadosDengue() {
-
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
-
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+      
 
   }
 
-  function calcularDescartadosTuberculosis() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
+  function calcularConfirmadosDengue(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+
+ 
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+
+    return a + b
   }
 
-  function calcularDescartadosDengue() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue").length || 0
+  function calcularDescartadosTuberculosis(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    let a =  baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Descartado TBC - Micobacteria no tuberculosis" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0 
+    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Bacteriología Negativa" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+     return a + b
   }
 
-  function calcularSospechososDengue() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso no conclusivo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue").length || 0
+  function calcularDescartadosDengue(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+      let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+
+      return a+b+c
   }
 
-  function calcularEventoEnEmbarazo(evento) {
-    return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
+  function calcularSospechososDengue(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso no conclusivo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+
+      return a + b
   }
 
-  function calcularConfirmadosEmbarazoTuberculosis() {
-
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI").length || 0
+  function calcularEventoEnEmbarazo(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
   }
 
-  function calcularDescartadosEmbarazoTuberculosis() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis").length || 0
+  function calcularConfirmadosEmbarazoTuberculosis(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+      let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+      let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+
+      return a +b + c
+  }
+
+  function calcularDescartadosEmbarazoTuberculosis(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+
+      return a + b
   }
 
   function calcularConfirmadosEmbarazoDengue() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
+      let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
+
+      return a+b
   }
 
   function calcularDescartadosEmbarazoDengue() {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
-      + baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
+    let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
+    let c =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI").length || 0
+
+    return a + b + c
   }
 
-  function calcularDptoCargaMoron(evento) {
-    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
+  function calcularDptoCargaMoron(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
   }
 
-  function calcularDptoCargaNoMoron(evento) {
-    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA !== "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
+  function calcularDptoCargaNoMoron(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA !== "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
   }
 
   
@@ -521,11 +534,12 @@ const sifilisXse = [
   //-------Tuberculosis----------------------------------------------------------------------
   //-----------array total
   const arrayTotalNotificadosTuberculosis = calcularTotalNotificados("Tuberculosis");
-
-  const arrayTotalNotificadosTuberculosisEntreFechas = calcularTotalNotificados("Tuberculosis", fechaInicioFormatoNumero);
+//entre fechas
+  const arrayTotalNotificadosTuberculosisEntreFechas = calcularTotalNotificados("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
 
   //------------valores totales
   const numeroTotalNotificadosTuberculosis = arrayTotalNotificadosTuberculosis.length;
+  //entre fechas
   const numeroTotalNotificadosTuberculosisEntreFechas = arrayTotalNotificadosTuberculosisEntreFechas.length;
 
   //------------por sexo
@@ -533,12 +547,17 @@ const sifilisXse = [
   const numeroTotalNotificadosTuberculosisMasculino = calcularPorSexo(arrayTotalNotificadosTuberculosis, "M")
   const numeroTotalNotificadosTuberculosisNA = calcularPorSexo(arrayTotalNotificadosTuberculosis, "NA")
   const numeroTotalNotificadosTuberculosisA = calcularPorSexo(arrayTotalNotificadosTuberculosis, "A")
-
   const numeroTotalNotificadosTuberculosisSd = parseInt(numeroTotalNotificadosTuberculosisNA) + parseInt(numeroTotalNotificadosTuberculosisA)
+//entre fechas
+  const numeroTotalNotificadosTuberculosisFemeninoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosis, "F", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisMasculinoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosis, "M", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisNAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosis, "NA" , fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosis, "A", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisSdEntreFechas = parseInt(numeroTotalNotificadosTuberculosisNAEntreFechas) + parseInt(numeroTotalNotificadosTuberculosisAEntreFechas)
 
   //---------------clasificaciones totales
   //confirmados
-  const numeroConfirmadosTotalTuberculosis = calcularConfirmadosTuberculosis()
+  const numeroConfirmadosTotalTuberculosis = calcularConfirmadosTuberculosis("Baciloscopía positiva") + calcularConfirmadosTuberculosis("Complejo Mycobacterium tuberculosis") + calcularConfirmadosTuberculosis("Mycobacterium tuberculosis") + calcularConfirmadosTuberculosis("Histopatologia sugestiva")
 
   //descartados
   const numeroDescartadosTotalTuberculosis = calcularDescartadosTuberculosis()
@@ -551,12 +570,35 @@ const sifilisXse = [
   //En estudio
   const numeroEnEstudioTotalTuberculosis = parseInt(calcularClasificacionManualPorEvento("Tuberculosis", "En estudio").length)
 
+  //entre fechas-----------
+  //confirmados
+  const numeroConfirmadosTotalTuberculosisEntreFechas = calcularConfirmadosTuberculosis("Baciloscopía positiva", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosis("Complejo Mycobacterium tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosis("Mycobacterium tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosis("Histopatologia sugestiva", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+  //descartados
+  const numeroDescartadosTotalTuberculosisEntreFechas = calcularDescartadosTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+  //embarazadas
+  const numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas = calcularEventoEnEmbarazo("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroEmbarazadasConfirmadasTuberculosisEntreFechas = calcularConfirmadosEmbarazoTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroEmbarazadasDescartadasTuberculosisEntreFechas = calcularDescartadosEmbarazoTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+  //En estudio
+  const numeroEnEstudioTotalTuberculosisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Tuberculosis", "En estudio", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+
   //-------------Departamento de carga
   const numeroTotalGeneralTuberculosisMoron = calcularDptoCargaMoron("Tuberculosis")
 
   const numeroTotalGeneralTuberculosisNoMoron = calcularDptoCargaNoMoron("Tuberculosis")
 
   const porcentajeNotificadosTuberculosisMoron = Math.round(numeroTotalGeneralTuberculosisMoron / (numeroTotalGeneralTuberculosisNoMoron + numeroTotalGeneralTuberculosisMoron) * 100) || 0
+
+  //entre fechas
+  const numeroTotalGeneralTuberculosisMoronEntreFechas = calcularDptoCargaMoron("Tuberculosis",fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+  const numeroTotalGeneralTuberculosisNoMoronEntreFechas = calcularDptoCargaNoMoron("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+  const porcentajeNotificadosTuberculosisMoronEntreFechas = Math.round(numeroTotalGeneralTuberculosisMoronEntreFechas / (numeroTotalGeneralTuberculosisNoMoronEntreFechas + numeroTotalGeneralTuberculosisMoronEntreFechas) * 100) || 0
+
 
   //Resultados
 
@@ -658,14 +700,24 @@ const tuberculosisXse = [
   //-------------Dengue---------------------------------------------------------------------
   //-------------array total
   const arrayTotalNotificadosDengue = calcularTotalNotificados("Dengue");
+//entre fechas
+const arrayTotalNotificadosDengueEntreFechas = calcularTotalNotificados("Dengue" , fechaInicioFormatoNumero, fechaFinFormatoNumero);
 
   //------------valores totales
   const numeroTotalNotificadosDengue = arrayTotalNotificadosDengue.length;
+//entre fechas
+const numeroTotalNotificadosDengueEntreFechas = arrayTotalNotificadosDengueEntreFechas.length;
 
   //--------------por sexo
   const numeroTotalNotificadosDengueFemenino = calcularPorSexo(arrayTotalNotificadosDengue, "F");
   const numeroTotalNotificadosDengueMasculino = calcularPorSexo(arrayTotalNotificadosDengue, "M");
   const numeroTotalNotificadosDengueSd = calcularPorSexo(arrayTotalNotificadosDengue, "NA")
+
+  //entre fechas
+  const numeroTotalNotificadosDengueFemeninoEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "F", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const numeroTotalNotificadosDengueMasculinoEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "M", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const numeroTotalNotificadosDengueSdEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "NA", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
 
   //---------------clasificaciones totales
   //confirmados
@@ -680,6 +732,20 @@ const tuberculosisXse = [
   //sospechosos
   const numeroSospechososTotalDengue = calcularSospechososDengue()
 
+//entre fechas
+//confirmados
+const numeroConfirmadosTotalDengueEntreFechas = calcularConfirmadosDengue(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+//probables
+const numeroProbablesTotalDengueEntreFechas = parseInt(calcularClasificacionManualPorEvento("Dengue", "Caso probable", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+
+//descartados
+const numeroDescartadosTotalDengueEntreFechas = calcularDescartadosDengue(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+//sospechosos
+const numeroSospechososTotalDengueEntreFechas = calcularSospechososDengue(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+
   //embarazadas
   const numeroEmbarazadasNotificadoTotalDengue = calcularEventoEnEmbarazo("Dengue")
   const numeroEmbarazadasConfirmadasDengue = calcularConfirmadosEmbarazoDengue()
@@ -691,6 +757,13 @@ const tuberculosisXse = [
   const numeroTotalGeneralDengueNoMoron = calcularDptoCargaNoMoron("Dengue")
 
   const porcentajeNotificadosDengueMoron = Math.round(numeroTotalGeneralDengueMoron / (numeroTotalGeneralDengueNoMoron + numeroTotalGeneralDengueMoron) * 100) || 0
+
+  //-------------Departamento de carga entre fechas
+  const numeroTotalGeneralDengueMoronEntreFechas = calcularDptoCargaMoron("Dengue", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+  const numeroTotalGeneralDengueNoMoronEntreFechas = calcularDptoCargaNoMoron("Dengue", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+
+  const porcentajeNotificadosDengueMoronEntreFechas = Math.round(numeroTotalGeneralDengueMoronEntreFechas / (numeroTotalGeneralDengueNoMoronEntreFechas + numeroTotalGeneralDengueMoronEntreFechas) * 100) || 0
 
   //---Edad x sexo
   const dengueFmenor1m = calcularEdadSexo(arrayTotalNotificadosDengue, "F", "Neonato (hasta 28 dneas)");
@@ -841,7 +914,8 @@ console.log(notificadosEno1);
 
 
 
-  const data = { anio, se, calendar, semanas, baseCompleta, setBaseCompleta, calendar, setCalendar, notificadosEno1, notificadosEno2, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad, tuberculosisXse, dengueXse, hivXse, sifilisXse, numeroTotalNotificadosTuberculosisEntreFechas}
+  const data = { anioActual, se, calendar, semanas, baseCompleta, setBaseCompleta, calendar, setCalendar, notificadosEno1, notificadosEno2, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalSiflisCongenita, numeroConfirmadosTotalSifilisEmbarazadas, numeroConfirmadosTotalSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalHiv, numeroConfirmadosTotalHivEmbarazo, numeroConfirmadosTotalHivPerinatal, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalSifilis, numeroProbablesTotalSifilisCongenita, numeroProbablesTotalSifilisEmbarazadas, numeroProbablesTotalGeneralHiv, numeroProbablesTotalHivEmbarazo, numeroProbablesTotalHivPerinatal, numeroProbablesTotalHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalSifilis, numeroDescartadosTotalSifilisCongenita, numeroDescartadosTotalSifilisEmbarazadas, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalHiv, numeroDescartadosTotalHivPerinatal, numeroDescartadosTotalHivEmbarazadas, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad, tuberculosisXse, dengueXse, hivXse, sifilisXse, numeroTotalNotificadosTuberculosisEntreFechas, numeroTotalNotificadosTuberculosisFemeninoEntreFechas, numeroTotalNotificadosTuberculosisMasculinoEntreFechas, numeroTotalNotificadosTuberculosisSdEntreFechas, numeroConfirmadosTotalTuberculosisEntreFechas, numeroDescartadosTotalTuberculosisEntreFechas, 
+    numeroEnEstudioTotalTuberculosisEntreFechas, numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas, numeroEmbarazadasConfirmadasTuberculosisEntreFechas, numeroEmbarazadasDescartadasTuberculosisEntreFechas, porcentajeNotificadosTuberculosisMoronEntreFechas, numeroTotalGeneralTuberculosisMoronEntreFechas, numeroTotalGeneralTuberculosisNoMoronEntreFechas, numeroTotalNotificadosDengueEntreFechas, numeroTotalNotificadosDengueFemeninoEntreFechas,numeroTotalNotificadosDengueMasculinoEntreFechas, numeroTotalNotificadosDengueSdEntreFechas, numeroConfirmadosTotalDengueEntreFechas, numeroProbablesTotalDengueEntreFechas, numeroDescartadosTotalDengueEntreFechas, numeroSospechososTotalDengueEntreFechas, porcentajeNotificadosDengueMoronEntreFechas, numeroTotalGeneralDengueNoMoronEntreFechas, numeroTotalGeneralDengueMoronEntreFechas}
 
 
 

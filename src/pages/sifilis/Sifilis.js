@@ -15,7 +15,7 @@ function Sifilis() {
 
   //destructuring from context
   const {
-    anio,
+    anioActual,
     se,
     semanas,
     numeroTotalGeneralNotificadosSifilis,
@@ -84,7 +84,7 @@ function Sifilis() {
   const labelsSexoSifilis = ['Maculino', 'Femenino', 'SD']
   const backgroundColorSifilis = [salmonTransparente, lilaTransparente, rosaTransparente]
   const borderColorSifilis = [salmon, lila, rosa]
-  const titleSexoSifilis = `Casos notificados de Sífilis según sexo. Morón, SE 1 a ${se}, 2022.`
+  const titleSexoSifilis = `Casos notificados de Sífilis según sexo. Morón, SE 1 a ${se}, ${anioActual}.`
 
   //Gráfico embarazadas sobre total de notificadas mujeres
 
@@ -92,7 +92,7 @@ function Sifilis() {
   const labelsEmbarazoSifilis = ['Gestantes', 'No gestantes',]
   const backgroundColorEmbarazoSifilis = [lilaTransparente, rosaTransparente]
   const borderColorEmbarazoSifilis = [lila, rosa]
-  const titleEmbarazoSifilis = `Casos notificados de Síflis en gestantes, sobre personas con posibilidad de gestar. Morón, SE 1 a ${se}, 2022.`
+  const titleEmbarazoSifilis = `Casos notificados de Síflis en gestantes, sobre personas con posibilidad de gestar. Morón, SE 1 a ${se}, ${anioActual}.`
 
   //Gráfico notificados Morón/Total
 
@@ -100,12 +100,12 @@ function Sifilis() {
   const labelsEstablecimientoSifilis = ['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
   const backgroundColorEstablecimientoSifilis = [salmonTransparente, rosaTransparente]
   const borderColorEstablecimientoSifilis = [salmon, rosa]
-  const titleEstablecimientoSifilis = `Casos notificados de Sífilis según Establecimiento de carga. Morón, SE 1 a ${se}, 2022.`
+  const titleEstablecimientoSifilis = `Casos notificados de Sífilis según Establecimiento de carga. Morón, SE 1 a ${se}, ${anioActual}.`
 
 
   //Gráfico tabla probables y confirmados
 
-  const titleConfProbSifilis = `Casos confirmados y probables de Sífilis. Morón, SE 1 a ${se}, 2022.`
+  const titleConfProbSifilis = `Casos confirmados y probables de Sífilis. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsConfProbSifilis = ['Confirmados', 'Probables']
   const label1Sifilis = "Mujeres";
   const label2Sifilis = "Varones";
@@ -115,13 +115,13 @@ function Sifilis() {
   const sdConfProbSifilis = [numeroConfirmadosSDSifilis, numeroProbablesSDSifilis]
 
   //Gráfico Edad x sexo
-  const titleEdadSexoSifilis = `Casos notificados de Sífilis, según sexo y edad. Morón, SE 1 a ${se}, 2022.`
+  const titleEdadSexoSifilis = `Casos notificados de Sífilis, según sexo y edad. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsEdadSexoSifilis = ['< 1 mes', '2 a 12 m', '1 a 2 años', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años']
   const femeninoSifilis = [sifilisFmenor1m, sifilisF2m12m, sifilisF13m24m, sifilisF2a4a, sifilisF5a9a, sifilisF10a14a, sifilisF15a19a, sifilisF20a24a, sifilisF25a34a, sifilisF35a44a, sifilisF45a65a, sifilisFmay65,];
   const masculinoSifilis = [sifilisMmenor1m, sifilisM2m12m, sifilisM13m24m, sifilisM2a4a, sifilisM5a9a, sifilisM10a14a, sifilisM15a19a, sifilisM20a24a, sifilisM25a34a, sifilisM35a44a, sifilisM45a65a, sifilisMmay65];
 
   //Gráfico notificados x SE
-  const titleSeSifilis = `Casos notificados de Sífilis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const titleSeSifilis = `Casos notificados de Sífilis, según Semana Epidemiológica. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsSeSifilis = semanas;
   const labelSeSifilis = "SE";
   const seSifilis = sifilisXse;
@@ -161,7 +161,7 @@ function Sifilis() {
           className={ultimoMesSifilis ? "button" : "buttonActive"}
           onClick={() => setUltimoMesSifilis(false)}
         >
-          Acumulado 2022
+          Acumulado {anioActual}
         </button>
         <button
           className={ultimoMesSifilis ? "buttonActive" : "button"}
@@ -253,7 +253,7 @@ function Sifilis() {
         <div className='totalesGraphs-container'>
           <div className='totales-page-container'>
             <div className='recuadro naranja'>
-              Total 2022:
+              Total {anioActual}:
               <p className='totalNumber'>
                 {numeroTotalGeneralNotificadosSifilis}
               </p>

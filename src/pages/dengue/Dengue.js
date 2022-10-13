@@ -8,6 +8,7 @@ import DataContext from '../../context/DataContext';
 import Toast from 'sweetalert2';
 import Colors from '../../components/Colors';
 import BarChartSe from '../../components/BarChartSe';
+import { Link } from 'react-router-dom';
 
 function Dengue() {
 
@@ -15,9 +16,10 @@ function Dengue() {
 
   //destructuring from context
   const {
-    anio,
+    anioActual,
     se,
     semanas,
+    calendar,
     numeroTotalNotificadosDengue,
     numeroTotalNotificadosDengueFemenino,
     numeroTotalNotificadosDengueMasculino,
@@ -33,7 +35,18 @@ function Dengue() {
     numeroTotalGeneralDengueNoMoron,
     porcentajeNotificadosDengueMoron,
     dengueSexoEdad,
-    dengueXse
+    dengueXse,
+    numeroTotalNotificadosDengueEntreFechas,
+    numeroTotalNotificadosDengueFemeninoEntreFechas,
+    numeroTotalNotificadosDengueMasculinoEntreFechas,
+    numeroTotalNotificadosDengueSdEntreFechas,
+    numeroConfirmadosTotalDengueEntreFechas,
+    numeroProbablesTotalDengueEntreFechas,
+    numeroDescartadosTotalDengueEntreFechas,
+    numeroSospechososTotalDengueEntreFechas,
+    porcentajeNotificadosDengueMoronEntreFechas,
+    numeroTotalGeneralDengueMoronEntreFechas,
+    numeroTotalGeneralDengueNoMoronEntreFechas,
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa, amarillo, amarilloTransparente, verde, verdeTransparente] = Colors
@@ -73,7 +86,7 @@ function Dengue() {
   const labelsSexoDengue = ['Maculino', 'Femenino', 'SD']
   const backgroundColorDengue = [salmonTransparente, lilaTransparente, rosaTransparente]
   const borderColorDengue = [salmon, lila, rosa]
-  const titleSexoDengue = `Casos notificados de Dengue según sexo. Morón, SE 1 a ${se}, 2022.`
+  const titleSexoDengue = `Casos notificados de Dengue según sexo. Morón, SE 1 a ${se}, ${anioActual}.`
 
   //Gráfico notificados Morón/Total
 
@@ -81,12 +94,12 @@ function Dengue() {
   const labelsEstablecimientoDengue = ['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
   const backgroundColorEstablecimientoDengue = [lilaTransparente, rosaTransparente]
   const borderColorEstablecimientoDengue = [lila, rosa]
-  const titleEstablecimientoDengue = `Casos notificados de Dengue según Establecimiento de carga. Morón, SE 1 a ${se}, 2022.`
+  const titleEstablecimientoDengue = `Casos notificados de Dengue según Establecimiento de carga. Morón, SE 1 a ${se}, ${anioActual}.`
 
 
   //Gráfico clasificación
 
-  const titleClasificacionDengue = `Clasificación de los casos de Dengue. Morón, SE 1 a ${se}, 2022.`
+  const titleClasificacionDengue = `Clasificación de los casos de Dengue. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsClasificacionDengue = ["Clasificación"]
   const label1ClasificacionDengue = "Confirmados"
   const label2ClasificacionDengue = "Probables"
@@ -96,12 +109,12 @@ function Dengue() {
   const dataConfirmadosClasificacionDengue = [numeroConfirmadosTotalDengue]
   const dataProbablesClasificacionDengue = [numeroProbablesTotalDengue]
   const dataSospechososNoConcClasificacionDengue = [numeroConfirmadosTotalDengue]
-  const dataSospechososClasificacionDengue = [numeroConfirmadosTotalDengue]
+  const dataSospechososClasificacionDengue = [numeroSospechososTotalDengue]
   const dataDescartadosClasificacionDengue = [numeroDescartadosTotalDengue]
 
   //Gráfico Edad x sexo
 
-  const titleEdadSexoDengue = `Casos notificados de Dengue, según sexo y edad. Morón, SE 1 a ${se}, 2022.`
+  const titleEdadSexoDengue = `Casos notificados de Dengue, según sexo y edad. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsEdadSexoDengue = ['< 1 mes', '2 a 12 m', '1 a 2 años', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años']
   const label1Dengue = "Mujeres";
   const label2Dengue = "Varones";
@@ -111,10 +124,31 @@ function Dengue() {
 
   //Gráfico notificados x SE
 
-  const titleSeDengue = `Casos notificados de Dengue, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const titleSeDengue = `Casos notificados de Dengue, según Semana Epidemiológica. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsSeDengue = semanas;
   const labelSeDengue = "SE";
   const seDengue = dengueXse;
+
+  //--------Entre fechas-------
+
+  //Gráfico notificados según sexo entre fechas
+
+  const totalPorSexoDengueEntreFechas = [numeroTotalNotificadosDengueMasculinoEntreFechas, numeroTotalNotificadosDengueFemeninoEntreFechas, numeroTotalNotificadosDengueSdEntreFechas]
+  const titleSexoDengueEntreFechas = `Casos notificados de Dengue según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
+//Gráfico clasificación entre fechas
+
+const titleClasificacionDengueEntreFechas = `Clasificación de los casos de Dengue. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+const dataConfirmadosClasificacionDengueEntreFechas = [numeroConfirmadosTotalDengueEntreFechas]
+const dataProbablesClasificacionDengueEntreFechas = [numeroProbablesTotalDengueEntreFechas]
+const dataSospechososNoConcClasificacionDengueEntreFechas = [numeroConfirmadosTotalDengueEntreFechas]
+const dataSospechososClasificacionDengueEntreFechas = [numeroSospechososTotalDengueEntreFechas]
+const dataDescartadosClasificacionDengueEntreFechas = [numeroDescartadosTotalDengueEntreFechas]
+
+//Gráfico notificados Morón/Total entre fechas
+
+const notificadosDengueEstablecimientoCargaEntreFechas = [numeroTotalGeneralDengueMoronEntreFechas, numeroTotalGeneralDengueNoMoronEntreFechas]
+const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}..`
 
   //Alerts
 
@@ -135,7 +169,7 @@ function Dengue() {
           className={ultimoMesDengue ? "button" : "buttonActive"}
           onClick={() => setUltimoMesDengue(false)}
         >
-          Acumulado 2022
+          Acumulado {anioActual}
         </button>
         <button
           className={ultimoMesDengue ? "buttonActive" : "button"}
@@ -149,29 +183,45 @@ function Dengue() {
 
         ?
         <div className='totalesGraphs-container'>
+          {
+            calendar.dateFrom
+              ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
+              : <div>
+                <p>No hay fechas ingresadas</p>
+<Link to="/upload"><button className='button'>Ingresar fechas</button></Link>
+              </div>
+              
+          }
+
           <div className='totales-page-container'>
             <div className='recuadro naranja'>
-              Total último mes:
+              Total notificados:
               <p className='totalNumber'>
-                { }
+                {numeroTotalNotificadosDengueEntreFechas}
               </p>
             </div>
             <div className='recuadro salmon'>
               Confirmados:
               <p className='totalNumber'>
-                { }
+                {numeroConfirmadosTotalDengueEntreFechas}
               </p>
             </div>
             <div className='recuadro rosa'>
               Probables:
               <p className='totalNumber'>
-                { }
+                {numeroProbablesTotalDengueEntreFechas }
               </p>
             </div>
             <div className='recuadro lila'>
               Descartados:
               <p className='totalNumber'>
-                { }
+                { numeroDescartadosTotalDengueEntreFechas}
+              </p>
+            </div>
+            <div className='recuadro rosa'>
+              Sospechosos:
+              <p className='totalNumber'>
+                { numeroSospechososTotalDengueEntreFechas}
               </p>
             </div>
             <div className='recuadro salmon'>
@@ -180,25 +230,63 @@ function Dengue() {
                 { }
               </p>
             </div>
-            <div className='recuadro rosa'>
-              Sospechosos:
-              <p className='totalNumber'>
-                { }
-              </p>
-            </div>
             <div className='recuadro lila'>
               Notificados por Morón:
               <p className='totalNumber'>
-                { }%
+                { porcentajeNotificadosDengueMoronEntreFechas}%
               </p>
             </div>
           </div>
 
           <div className='graphs-container'>
-            <div className='barChart-sifilis'><BarChart /></div>
-            <div className='barChart-sifilis'><BarChart /></div>
-            <div className='barChart-sifilis'><BarChart /></div>
-            <div className='barChart-sifilis'><BarChart /></div>
+     
+            <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleSexoDengueEntreFechas}
+                datos={totalPorSexoDengueEntreFechas}
+                labels={labelsSexoDengue}
+                backgroundColor={backgroundColorDengue}
+                borderColor={borderColorDengue}
+              />
+            </div>
+
+            <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleEstablecimientoDengueEntreFechas}
+                datos={notificadosDengueEstablecimientoCargaEntreFechas}
+                labels={labelsEstablecimientoDengue}
+                backgroundColor={backgroundColorEstablecimientoDengue}
+                borderColor={borderColorEstablecimientoDengue}
+              />
+            </div>
+
+            <div className='barChart-sifilis'>
+              <BarChartFiveData
+                title={titleClasificacionDengueEntreFechas}
+                barLabels={labelsClasificacionDengue}
+                label1={label1ClasificacionDengue}
+                label2={label2ClasificacionDengue}
+                label3={label3ClasificacionDengue}
+                label4={label4ClasificacionDengue}
+                label5={label5ClasificacionDengue}
+                data1={dataConfirmadosClasificacionDengueEntreFechas}
+                data2={dataProbablesClasificacionDengueEntreFechas}
+                data3={dataSospechososNoConcClasificacionDengueEntreFechas}
+                data4={dataSospechososClasificacionDengueEntreFechas}
+                data5={dataDescartadosClasificacionDengueEntreFechas}
+                borderColor1={lila}
+                borderColor2={salmon}
+                borderColor3={rosa}
+                borderColor4={amarillo}
+                borderColor5={verde}
+                bgColor1={lilaTransparente}
+                bgColor2={salmonTransparente}
+                bgColor3={rosaTransparente}
+                bgColor4={amarilloTransparente}
+                bgColor5={verdeTransparente}
+              />
+            </div>
+
           </div>
         </div>
 
@@ -206,7 +294,7 @@ function Dengue() {
         <div className='totalesGraphs-container'>
           <div className='totales-page-container'>
             <div className='recuadro naranja'>
-              Total 2022:
+              Total {anioActual}:
               <p className='totalNumber'>
                 {numeroTotalNotificadosDengue}
               </p>
@@ -248,6 +336,7 @@ function Dengue() {
               </p>
             </div>
           </div>
+          
           <div className='graphs-container'>
             <div className='doughnutChart-sifilis'>
               <DoughnutChart

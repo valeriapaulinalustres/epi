@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import * as XLSX from "xlsx";
-import './upload.css';
-import DataContext from '../../context/DataContext';
-import Toast from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-
+import "./upload.css";
+import DataContext from "../../context/DataContext";
+import Toast from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Upload() {
-
-  const { setBaseCompleta, baseCompleta, setCalendar } = useContext(DataContext);
+  const { setBaseCompleta, baseCompleta, setCalendar } =
+    useContext(DataContext);
 
   const navigate = useNavigate();
 
@@ -29,34 +30,49 @@ function Upload() {
       };
     });
     promise.then((d) => {
-      setBaseCompleta(d)
+      setBaseCompleta(d);
     });
   };
 
   //Takes calendar info to context
   function handleCalendar(e) {
-    e.preventDefault()
+    e.preventDefault();
     if (e.target[0].value != "" && e.target[1].value != "") {
       setCalendar({
         dateFrom: e.target[0].value,
         dateTo: e.target[1].value,
-      })
+      });
+      ready();
     } else {
-      ingresarFecha()
+      ingresarFecha();
     }
+  }
+
+  function ready() {
+    toast("Fechas ingresadas!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
   //alert
   function ingresarFecha() {
     Toast.fire({
-      title: `Debe completar ambas fechas por favor`
-    })
+      title: `Debe completar ambas fechas por favor`,
+    });
   }
-
 
   return (
     <div className="upload-container">
-      <h2>Carga de archivos excel descargados desde la base de datos de SISA</h2>
+      <h2>
+        Carga de archivos excel descargados desde la base de datos de SISA
+      </h2>
       <div className="file-select" id="src-file1">
         <input
           type="file"
@@ -69,25 +85,45 @@ function Upload() {
           }}
         />
       </div>
-      {baseCompleta.length != 0
-        ? <p>Archivo cargado</p>
-        : <p>No hay archivos cargados</p>
-      }
+      {baseCompleta.length != 0 ? (
+        <p>Archivo cargado</p>
+      ) : (
+        <p>No hay archivos cargados</p>
+      )}
       <div className="calendar-container">
-      <p className="calendar-title">Seleccionar fechas</p>
+        <p className="calendar-title">Seleccionar fechas</p>
         <div className="calendar-inputs-btn-container">
-        <form onSubmit={handleCalendar} className="calendar-form-container">
-          <input type='date' label="desde" min="2022-01-01" className="calendar-input" />
-          <input type='date' label="hasta" min="2022-01-01" className="calendar-input" />
-          <input type='submit' value="Enviar" className="buttonActive" />
-        </form>
-        <button onClick={() => navigate(-1)} className="button right">Volver</button>
+          <form onSubmit={handleCalendar} className="calendar-form-container">
+            <input
+              type="date"
+              label="desde"
+              min="2022-01-01"
+              className="calendar-input"
+            />
+            <input
+              type="date"
+              label="hasta"
+              min="2022-01-01"
+              className="calendar-input"
+            />
+            <input type="submit" value="Enviar" className="buttonActive" />
+          </form>
+          <button onClick={() => navigate(-1)} className="button right">
+            Volver
+          </button>
         </div>
-        
-       
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+        draggable
+        theme="light"
+      />
     </div>
-  )
+  );
 }
 
-export default Upload
+export default Upload;

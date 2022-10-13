@@ -13,7 +13,7 @@ function Home() {
   const {
     se,
     semanas,
-    anio,
+    anioActual,
     numeroTotalGeneralNotificadosSifilis,
     numeroTotalGeneralNotificadosHiv,
     numeroTotalNotificadosTuberculosis,
@@ -29,12 +29,11 @@ function Home() {
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
 
-  let anioEnCurso = 2022;
   let mesPrevio = "18 a 22";
   let ultimaSE = 30;
 
   //Gráfico notificados de todas las ENOs
-  const titleEnos = "Casos notificados de Enfermedades de Notificación Obligatoria . Morón, 2022"
+  const titleEnos = `Casos notificados de Enfermedades de Notificación Obligatoria . Morón, ${anioActual}`
   const labelsEnos1 = [
     "Accidente potencialmente rábico (APR)",
     "Alacranismo",
@@ -91,25 +90,25 @@ function Home() {
   const enos2 = notificadosEno2;
 
   //Gráfico Sífilis
-  const titleSeSifilis = `Casos notificados de Sífilis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const titleSeSifilis = `Casos notificados de Sífilis, según Semana Epidemiológica. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsSeSifilis = semanas;
   const labelSeSifilis = "SE";
   const seSifilis = sifilisXse;
 
   //Gráfico TBC
-  const titleSeTuberculosis = `Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const titleSeTuberculosis = `Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsSeTuberculosis = semanas;
   const labelSeTuberculosis = "SE";
   const seTuberculosis = tuberculosisXse;
 
   //Gráfico Dengue
-  const titleSeDengue = `Casos notificados de Dengue, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const titleSeDengue = `Casos notificados de Dengue, según Semana Epidemiológica. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsSeDengue = semanas;
   const labelSeDengue = "SE";
   const seDengue = dengueXse;
 
   //Gráfico HIV
-  const titleSeHiv = `Casos notificados de HIV, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const titleSeHiv = `Casos notificados de HIV, según Semana Epidemiológica. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsSeHiv = semanas;
   const labelSeHiv = "SE";
   const seHiv = hivXse;
@@ -118,7 +117,7 @@ function Home() {
     <div className='home-container'>
 
       <h2>Vigilancia de Enfermedades de Notificación Obligatoria</h2>
-      <h3>{anio}</h3>
+      <h3>{anioActual}</h3>
       <div className='home-text-container'>
         <p>
           La LEY N° 15.465 en su Artículo N°1 declara obligatoria, en todo el territorio de la Nación, la notificación de los casos de enfermedades infecciosas comprendidas en el Artículo 2 de la mencionada Ley. 
@@ -127,7 +126,7 @@ function Home() {
           </a>
         </p>
         <p>
-          En nuestro Municipio hemos priorizado la notificación y análisis de las siguientes enfermedades: Dengue, Sifilis, Tuberculosis, VIH.
+          En nuestro Municipio hemos priorizado la notificación y análisis de las siguientes enfermedades: Dengue, Sifilis, Tuberculosis, HIV.
         </p>
       </div>
 
@@ -136,7 +135,7 @@ function Home() {
           className={ultimoMesHome ? "button" : "buttonActive"}
           onClick={() => setUltimoMesHome(false)}
         >
-          Acumulado 2022
+          Acumulado {anioActual}
         </button>
         <button
           className={ultimoMesHome ? "buttonActive" : "button"}
@@ -170,14 +169,6 @@ function Home() {
             </div>
             <div className='recuadro lila'>
               HIV:
-              { }
-            </div>
-            <div className='recuadro rosa'>
-              ETI:
-              { }
-            </div>
-            <div className='recuadro salmon'>
-              x:
               { }
             </div>
           </div>
@@ -219,23 +210,11 @@ function Home() {
                 {numeroTotalGeneralNotificadosHiv}
               </p>
             </div>
-            <div className='recuadro rosa'>
-              ETI:
-              <p className='totalNumber'>
-                { }
-              </p>
-            </div>
-            <div className='recuadro salmon'>
-              x:
-              <p className='totalNumber'>
-                { }
-              </p>
-            </div>
           </div>
 
 
           <div className='graphs-container'>
-            <div className='barChartENO-sifilis'>
+            <div className='barChartENO-sifilis' id="eno1">
               <BarChartSe
                 eje={'y'}
                 title={titleEnos}
@@ -247,7 +226,7 @@ function Home() {
               />
             </div>
 
-            <div className='barChartENO-sifilis'>
+            <div className='barChartENO-sifilis' id="eno2">
               <BarChartSe
                 eje={'y'}
                 title={titleEnos}

@@ -16,7 +16,7 @@ function Tbc() {
   //destructuring from context
 
   const {
-    anio,
+    anioActual,
     se,
     calendar,
     semanas,
@@ -39,6 +39,18 @@ function Tbc() {
     tuberculosisSexoEdad,
     tuberculosisXse,
     numeroTotalNotificadosTuberculosisEntreFechas,
+    numeroTotalNotificadosTuberculosisFemeninoEntreFechas, 
+    numeroTotalNotificadosTuberculosisMasculinoEntreFechas,
+    numeroTotalNotificadosTuberculosisSdEntreFechas,
+    numeroConfirmadosTotalTuberculosisEntreFechas, 
+    numeroDescartadosTotalTuberculosisEntreFechas,
+    numeroEnEstudioTotalTuberculosisEntreFechas,
+    numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas, 
+    numeroEmbarazadasConfirmadasTuberculosisEntreFechas, 
+    numeroEmbarazadasDescartadasTuberculosisEntreFechas,
+    porcentajeNotificadosTuberculosisMoronEntreFechas,
+    numeroTotalGeneralTuberculosisMoronEntreFechas,
+    numeroTotalGeneralTuberculosisNoMoronEntreFechas
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
@@ -79,7 +91,7 @@ function Tbc() {
   const labelsSexoTbc = ['Maculino', 'Femenino', 'SD']
   const backgroundColorTbc = [salmonTransparente, lilaTransparente, rosaTransparente]
   const borderColorTbc = [salmon, lila, rosa]
-  const titleSexoTbc = `Casos notificados según sexo. Morón, SE 1 a ${se}, 2022.`
+  const titleSexoTbc = `Casos notificados según sexo. Morón, SE 1 a ${se}, ${anioActual}.`
 
   //Gráfico notificados Morón/Total
 
@@ -87,11 +99,11 @@ function Tbc() {
   const labelsEstablecimientoTbc = ['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
   const backgroundColorEstablecimientoTbc = [lilaTransparente, rosaTransparente]
   const borderColorEstablecimientoTbc = [lila, rosa]
-  const titleEstablecimientoTbc = `Casos notificados de Tuberculosis según Establecimiento de carga. Morón, SE 1 a ${se}, 2022.`
+  const titleEstablecimientoTbc = `Casos notificados de Tuberculosis según Establecimiento de carga. Morón, SE 1 a ${se}, ${anioActual}.`
 
   //Tabla resultados
 
-  const titleResultadoTuberculosis = `Casos notificados de Tuberculosis según resultado de laboratorio. Morón, SE 1 a ${se}, 2022.`
+  const titleResultadoTuberculosis = `Casos notificados de Tuberculosis según resultado de laboratorio. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsRestultadoTuberculosis = ["Resultados de laboratorio"]
   const label1RestultadoTuberculosis = "Positivos"
   const label2RestultadoTuberculosis = "Negativos"
@@ -102,7 +114,7 @@ function Tbc() {
 
   //Gráfico Edad x sexo
 
-  const titleEdadSexoTuberculosis = `Casos notificados de Tuberculosis, según sexo y edad. Morón, SE 1 a ${se}, 2022.`
+  const titleEdadSexoTuberculosis = `Casos notificados de Tuberculosis, según sexo y edad. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsEdadSexoTuberculosis = ['< 1 mes', '2 a 12 m', '1 a 2 años', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años']
   const label1Tuberculosis = "Mujeres";
   const label2Tuberculosis = "Varones";
@@ -111,17 +123,43 @@ function Tbc() {
 
   //Gráfico notificados x SE
 
-  const titleSeTuberculosis = `Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const titleSeTuberculosis = `Casos notificados de Tuberculosis, según Semana Epidemiológica. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsSeTuberculosis = semanas;
   const labelSeTuberculosis = "SE";
   const seTuberculosis = tuberculosisXse;
 
+  //--------------entre fechas-----------------
+  //Gráfico notificados según sexo
+
+  const totalPorSexoTbcEntreFechas = [numeroTotalNotificadosTuberculosisMasculinoEntreFechas, numeroTotalNotificadosTuberculosisFemeninoEntreFechas, numeroTotalNotificadosTuberculosisSdEntreFechas]
+  const titleSexoTbcEntreFechas = `Casos notificados según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
+//Gráfico notificados Morón/Total
+
+const notificadosTbcEstablecimientoCargaEntreFechas = [numeroTotalGeneralTuberculosisMoronEntreFechas, numeroTotalGeneralTuberculosisNoMoronEntreFechas]
+const titleEstablecimientoTbcEntreFechas = `Casos notificados de Tuberculosis según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
+ //Tabla resultados
+
+ const titleResultadoTuberculosisEntreFechas = `Casos notificados de Tuberculosis según resultado de laboratorio. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+ const dataPositivosTuberculosisEntreFechas = [numeroConfirmadosTotalTuberculosisEntreFechas]
+ const dataNegativosTuberculosisEntreFechas = [numeroDescartadosTotalTuberculosisEntreFechas]
+ const dataSinResultadosTuberculosisEntreFechas = [numeroEnEstudioTotalTuberculosisEntreFechas]
+
   //Alerts
 
-  function detallarEmbarazadasTuberculosis() {
+function handleEmbarazadasTbc (){
+  detallarEmbarazadasTuberculosis(numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis)
+}
+
+function handleEmbarazadasTbcEntreFechas (){
+  detallarEmbarazadasTuberculosis(numeroEmbarazadasConfirmadasTuberculosisEntreFechas, numeroEmbarazadasDescartadasTuberculosisEntreFechas)
+}
+
+  function detallarEmbarazadasTuberculosis(conf, desc) {
     Toast.fire({
-      title: `Gestantes confirmadas: ${numeroEmbarazadasConfirmadasTuberculosis}, \n 
-    Gestantes descartadas: ${numeroEmbarazadasDescartadasTuberculosis}. \n
+      title: `Gestantes confirmadas: ${conf}, \n 
+    Gestantes descartadas: ${desc}. \n
     `
     })
   }
@@ -135,7 +173,7 @@ function Tbc() {
           className={ultimoMesTbc ? "button" : "buttonActive"}
           onClick={() => setUltimoMesTbc(false)}
         >
-          Acumulado 2022
+          Acumulado {anioActual}
         </button>
         <button
           className={ultimoMesTbc ? "buttonActive" : "button"}
@@ -170,44 +208,76 @@ function Tbc() {
             <div className='recuadro salmon'>
               Confirmados:
               <p className='totalNumber'>
-                { }
+                { numeroConfirmadosTotalTuberculosisEntreFechas}
               </p>
             </div>
             <div className='recuadro rosa'>
               Descartados:
               <p className='totalNumber'>
-                { }
+                {numeroDescartadosTotalTuberculosisEntreFechas }
               </p>
             </div>
             <div className='recuadro lila'>
-              Sospechosos:
+              En estudio:
               <p className='totalNumber'>
-                { }
+                {numeroEnEstudioTotalTuberculosisEntreFechas }
               </p>
             </div>
-            <div className='recuadro salmon'>
+            <div className='recuadro salmon' onClick={handleEmbarazadasTbcEntreFechas}>
               Gestantes:
               <p className='totalNumber'>
-                { }
+                {numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas }
               </p>
             </div>
             <div className='recuadro rosa'>
               Notificados por Morón:
               <p className='totalNumber'>
-                { }%
+                {porcentajeNotificadosTuberculosisMoronEntreFechas }%
               </p>
             </div>
           </div>
           <div className='graphs-container'>
-            <div className='barChart-sifilis'>
-              <BarChart />
+
+          <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleSexoTbcEntreFechas}
+                datos={totalPorSexoTbcEntreFechas}
+                labels={labelsSexoTbc}
+                backgroundColor={backgroundColorTbc}
+                borderColor={borderColorTbc}
+              />
             </div>
-            <div className='barChart-sifilis'>
-              <BarChart />
+
+            <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleEstablecimientoTbcEntreFechas}
+                datos={notificadosTbcEstablecimientoCargaEntreFechas}
+                labels={labelsEstablecimientoTbc}
+                backgroundColor={backgroundColorEstablecimientoTbc}
+                borderColor={borderColorEstablecimientoTbc}
+              />
             </div>
+
             <div className='barChart-sifilis'>
-              <BarChart />
+              <BarChart
+                title={titleResultadoTuberculosisEntreFechas}
+                barLabels={labelsRestultadoTuberculosis}
+                label1={label1RestultadoTuberculosis}
+                label2={label2RestultadoTuberculosis}
+                label3={label3RestultadoTuberculosis}
+                data1={dataPositivosTuberculosisEntreFechas}
+                data2={dataNegativosTuberculosisEntreFechas}
+                data3={dataSinResultadosTuberculosisEntreFechas}
+                borderColor1={lila}
+                borderColor2={salmon}
+                borderColor3={rosa}
+                bgColor1={lilaTransparente}
+                bgColor2={salmonTransparente}
+                bgColor3={rosaTransparente}
+              />
             </div>
+
+           
           </div>
         </div>
 
@@ -217,7 +287,7 @@ function Tbc() {
 
           <div className='totales-page-container'>
             <div className='recuadro naranja'>
-              Total 2022:
+              Total {anioActual}:
               <p className='totalNumber'>
                 {numeroTotalNotificadosTuberculosis}
               </p>
@@ -240,7 +310,7 @@ function Tbc() {
                 {numeroEnEstudioTotalTuberculosis}
               </p>
             </div>
-            <div className='recuadro salmon' onClick={detallarEmbarazadasTuberculosis}>
+            <div className='recuadro salmon' onClick={handleEmbarazadasTbc}>
               Gestantes:
               <p className='totalNumber'>
                 {numeroEmbarazadasNotificadasTotalTuberculosis}

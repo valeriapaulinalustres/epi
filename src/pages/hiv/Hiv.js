@@ -14,7 +14,7 @@ function Hiv() {
 
   //destructuring from context
   const {
-    anio,
+    anioActual,
     se,
     semanas,
     numeroTotalGeneralNotificadosHiv,
@@ -77,7 +77,7 @@ function Hiv() {
   const labelsSexoHiv = ['Maculino', 'Femenino', 'SD']
   const backgroundColorHiv = [salmonTransparente, lilaTransparente, rosaTransparente]
   const borderColorHiv = [salmon, lila, rosa]
-  const titleSexoHiv = `Casos notificados según sexo. Morón, SE 1 a ${se}, 2022.`
+  const titleSexoHiv = `Casos notificados según sexo. Morón, SE 1 a ${se}, ${anioActual}.`
 
   //Gráfico embarazadas sobre total de notificadas mujeres
 
@@ -85,7 +85,7 @@ function Hiv() {
   const labelsEmbarazoHiv = ['Gestantes', 'No gestantes',]
   const backgroundColorEmbarazoHiv = [rosaTransparente, salmonTransparente]
   const borderColorEmbarazoHiv = [rosa, salmon]
-  const titleEmbarazoHiv = `Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, SE 1 a ${se}, 2022.`
+  const titleEmbarazoHiv = `Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, SE 1 a ${se}, ${anioActual}.`
 
   //Gráfico notificados Morón/Total
 
@@ -93,11 +93,11 @@ function Hiv() {
   const labelsEstablecimientoHiv = ['Establecimientos de Morón', 'Establecimientos no pertenecientes a Morón',]
   const backgroundColorEstablecimientoHiv = [lilaTransparente, rosaTransparente]
   const borderColorEstablecimientoHiv = [lila, rosa]
-  const titleEstablecimientoHiv = `Casos notificados según Establecimiento de carga. Morón, SE 1 a ${se}, 2022.`
+  const titleEstablecimientoHiv = `Casos notificados según Establecimiento de carga. Morón, SE 1 a ${se}, ${anioActual}.`
 
   //Gráfico Edad x sexo
 
-  const titleEdadSexoHiv = `Casos notificados de HIV, según sexo y edad. Morón, SE 1 a ${se}, 2022.`
+  const titleEdadSexoHiv = `Casos notificados de HIV, según sexo y edad. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsEdadSexoHiv = ['< 1 mes', '2 a 12 m', '1 a 2 años', '2 a 4 años', '5 a 9 años', '10 a 14 años', '15 a 19', '20 a 24 años', '25 a 34 años', '35 a 44 años', '44 a 65 años', '> 65 años']
   const label1Hiv = "Mujeres";
   const label2Hiv = "Varones";
@@ -106,7 +106,7 @@ function Hiv() {
 
   //Gráfico notificados x SE
 
-  const titleSeHiv = `Casos notificados de HIV, según Semana Epidemiológica. Morón, SE 1 a ${se}, 2022.`
+  const titleSeHiv = `Casos notificados de HIV, según Semana Epidemiológica. Morón, SE 1 a ${se}, ${anioActual}.`
   const labelsSeHiv = semanas;
   const labelSeHiv = "SE";
   const seHiv = hivXse;
@@ -147,7 +147,7 @@ function Hiv() {
           className={ultimoMesHiv ? "button" : "buttonActive"}
           onClick={() => setUltimoMesHiv(false)}
         >
-          Acumulado 2022
+          Acumulado {anioActual}
         </button>
         <button
           className={ultimoMesHiv ? "buttonActive" : "button"}
@@ -216,7 +216,7 @@ function Hiv() {
         <div className='totalesGraphs-container'>
           <div className='totales-page-container'>
             <div className='recuadro naranja'>
-              Total 2022:
+              Total {anioActual}:
               <p className='totalNumber'>
                 {numeroTotalGeneralNotificadosHiv}
               </p>

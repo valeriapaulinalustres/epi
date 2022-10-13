@@ -33,3 +33,9 @@
 .barChart-home{
     margin-bottom: 100px;
 }
+
+@media only screen and (max-width:980px) {
+#eno1, #eno2{
+    display: none;
+}
+}
