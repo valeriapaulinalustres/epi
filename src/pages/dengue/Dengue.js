@@ -47,6 +47,9 @@ function Dengue() {
     porcentajeNotificadosDengueMoronEntreFechas,
     numeroTotalGeneralDengueMoronEntreFechas,
     numeroTotalGeneralDengueNoMoronEntreFechas,
+    numeroEmbarazadasNotificadoTotalDengueEntreFechas,
+    numeroEmbarazadasConfirmadasDengueEntreFechas, 
+    numeroEmbarazadasDescartadasDengueEntreFechas
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa, amarillo, amarilloTransparente, verde, verdeTransparente] = Colors
@@ -227,7 +230,7 @@ const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue segú
             <div className='recuadro salmon'>
               Gestantes:
               <p className='totalNumber'>
-                { }
+                {numeroEmbarazadasNotificadoTotalDengueEntreFechas}
               </p>
             </div>
             <div className='recuadro lila'>

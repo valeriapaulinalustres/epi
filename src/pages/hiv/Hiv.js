@@ -7,6 +7,7 @@ import Toast from 'sweetalert2';
 import Colors from '../../components/Colors';
 import BarChartSexAge from '../../components/BarChartSexAge';
 import BarChartSe from '../../components/BarChartSe';
+import { Link } from 'react-router-dom';
 
 function Hiv() {
 
@@ -17,6 +18,7 @@ function Hiv() {
     anioActual,
     se,
     semanas,
+    calendar,
     numeroTotalGeneralNotificadosHiv,
     numeroTotalGeneralNotificadosHivFemenino,
     numeroTotalGeneralNotificadosHivMasculino,
@@ -39,7 +41,17 @@ function Hiv() {
     numeroTotalGeneralHivNoMoron,
     numeroTotalGeneralHivMoron,
     hivSexoEdad,
-    hivXse
+    hivXse,
+    numeroTotalGeneralNotificadosHivEntreFechas,
+    numeroTotalNotificadosHivEmbarazoEntreFechas,
+    numeroTotalGeneralNotificadosHivFemeninoEntreFechas,
+    numeroTotalGeneralNotificadosHivMasculinoEntreFechas,
+    numeroTotalGeneralNotificadosHivSdEntreFechas,
+    numeroConfirmadosTotalGeneralHivEntreFechas,
+    numeroProbablesTotalGeneralHivEntreFechas,
+    numeroDescartadosTotalGeneralHivEntreFechas,
+    numeroTotalNotificadosHivPerinatalEntreFechas
+
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
@@ -112,6 +124,17 @@ function Hiv() {
   const seHiv = hivXse;
 
 
+  //Gráficos entre fechas
+  //Gráfico notificados según sexo entre fechas
+
+  const totalPorSexoHivEntreFechas = [numeroTotalGeneralNotificadosHivMasculinoEntreFechas, numeroTotalGeneralNotificadosHivFemeninoEntreFechas, numeroTotalGeneralNotificadosHivSdEntreFechas]
+  const titleSexoHivEntreFechas = `Casos notificados según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
+  //Gráfico embarazadas sobre total de notificadas mujeres entre fechas
+
+  const embarazadasEnMujeresHivEntreFechas = [numeroTotalNotificadosHivEmbarazoEntreFechas, parseInt(numeroTotalGeneralNotificadosHivFemeninoEntreFechas - numeroTotalNotificadosHivEmbarazoEntreFechas)]
+  const titleEmbarazoHivEntreFechas = `Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
   //----------ALERTS-----------------------
 
   function detallarConfirmadosHiv() {
@@ -161,38 +184,50 @@ function Hiv() {
 
         ?
         <div className='totalesGraphs-container'>
+           {
+            calendar.dateFrom
+              ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
+              : <div>
+                <p>No hay fechas ingresadas</p>
+<Link to="/upload"><button className='button'>Ingresar fechas</button></Link>
+              </div>
+              
+          }
           <div className='totales-page-container'>
             <div className='recuadro naranja'>
-              último mes:
+              Notificados:
               <p className='totalNumber'>
-                { }
+                { numeroTotalGeneralNotificadosHivEntreFechas}
               </p>
             </div>
             <div className='recuadro salmon'>
               Confirmados:
               <p className='totalNumber'>
-                { }
+                { numeroConfirmadosTotalGeneralHivEntreFechas}
               </p>
             </div>
             <div className='recuadro rosa'>
               Probables:
               <p className='totalNumber'>
-                { }
+                { numeroProbablesTotalGeneralHivEntreFechas}
               </p>
             </div>
             <div className='recuadro lila'>
               Descartados:
-              <p className='totalNumber'>{ }</p></div>
+              <p className='totalNumber'>
+                { numeroDescartadosTotalGeneralHivEntreFechas}
+                </p>
+                </div>
             <div className='recuadro salmon'>
               Gestantes:
               <p className='totalNumber'>
-                { }
+                {numeroTotalNotificadosHivEmbarazoEntreFechas }
               </p>
             </div>
             <div className='recuadro rosa'>
               Congénitos:
               <p className='totalNumber'>
-                { }
+                { numeroTotalNotificadosHivPerinatalEntreFechas}
               </p>
             </div>
             <div className='recuadro lila'>
@@ -205,9 +240,25 @@ function Hiv() {
           <div className='graphs-container'>
 
 
-            <div className='barChart-sifilis'><BarChart /></div>
-            <div className='barChart-sifilis'><BarChart /></div>
-            <div className='barChart-sifilis'><BarChart /></div>
+          <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleSexoHivEntreFechas}
+                datos={totalPorSexoHivEntreFechas}
+                labels={labelsSexoHiv}
+                backgroundColor={backgroundColorHiv}
+                borderColor={borderColorHiv}
+              />
+            </div>
+
+            <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleEmbarazoHivEntreFechas}
+                datos={embarazadasEnMujeresHivEntreFechas}
+                labels={labelsEmbarazoHiv}
+                backgroundColor={backgroundColorEmbarazoHiv}
+                borderColor={borderColorEmbarazoHiv}
+              />
+            </div>
           </div>
         </div>
 
