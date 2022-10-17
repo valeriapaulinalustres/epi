@@ -50,7 +50,10 @@ function Hiv() {
     numeroConfirmadosTotalGeneralHivEntreFechas,
     numeroProbablesTotalGeneralHivEntreFechas,
     numeroDescartadosTotalGeneralHivEntreFechas,
-    numeroTotalNotificadosHivPerinatalEntreFechas
+    numeroTotalNotificadosHivPerinatalEntreFechas,
+    porcentajeNotificadosHivMoronEntreFechas,
+    numeroTotalGeneralHivMoronEntreFechas,
+    numeroTotalGeneralHivNoMoronEntreFechas
 
   } = useContext(DataContext);
 
@@ -134,6 +137,11 @@ function Hiv() {
 
   const embarazadasEnMujeresHivEntreFechas = [numeroTotalNotificadosHivEmbarazoEntreFechas, parseInt(numeroTotalGeneralNotificadosHivFemeninoEntreFechas - numeroTotalNotificadosHivEmbarazoEntreFechas)]
   const titleEmbarazoHivEntreFechas = `Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
+   //Gráfico notificados Morón/Total entre fechas 
+
+   const notificadosHivEstablecimientoCargaEntreFechas = [numeroTotalGeneralHivMoronEntreFechas, numeroTotalGeneralHivNoMoronEntreFechas]
+   const titleEstablecimientoHivEntreFechas = `Casos notificados según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
 
   //----------ALERTS-----------------------
 
@@ -233,7 +241,7 @@ function Hiv() {
             <div className='recuadro lila'>
               Notificados por Morón:
               <p className='totalNumber'>
-                { }
+                { porcentajeNotificadosHivMoronEntreFechas}%
               </p>
             </div>
           </div>
@@ -257,6 +265,16 @@ function Hiv() {
                 labels={labelsEmbarazoHiv}
                 backgroundColor={backgroundColorEmbarazoHiv}
                 borderColor={borderColorEmbarazoHiv}
+              />
+            </div>
+
+            <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleEstablecimientoHivEntreFechas}
+                datos={notificadosHivEstablecimientoCargaEntreFechas}
+                labels={labelsEstablecimientoHiv}
+                backgroundColor={backgroundColorEstablecimientoHiv}
+                borderColor={borderColorEstablecimientoHiv}
               />
             </div>
           </div>

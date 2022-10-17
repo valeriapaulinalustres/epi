@@ -7,6 +7,7 @@ import Toast from 'sweetalert2';
 import Colors from '../../components/Colors';
 import BarChartSexAge from '../../components/BarChartSexAge';
 import BarChartSe from '../../components/BarChartSe';
+import {Link} from 'react-router-dom'
 
 
 function Sifilis() {
@@ -18,6 +19,7 @@ function Sifilis() {
     anioActual,
     se,
     semanas,
+    calendar, 
     numeroTotalGeneralNotificadosSifilis,
     numeroTotalGeneralNotificadosSifilisFemenino,
     numeroTotalGeneralNotificadosSifilisMasculino,
@@ -46,7 +48,18 @@ function Sifilis() {
     numeroProbablesMasculinosSifilis,
     numeroProbablesSDSifilis,
     sifilisSexoEdad,
-    sifilisXse
+    sifilisXse,
+    numeroTotalGeneralNotificadosSifilisEntreFechas,
+    numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas,
+    numeroTotalGeneralNotificadosSifilisMasculinoEntreFechas,
+    numeroTotalGeneralNotificadosSifilisSdEntreFechas,
+    numeroDescartadosTotalGeneralSifilisEntreFechas, 
+    numeroProbablesTotalGeneralSifilisEntreFechas, 
+    numeroConfirmadosTotalGeneralSifilisEntreFechas,
+    numeroTotalGeneralSifilisMoronEntreFechas,
+    numeroTotalGeneralSifilisNoMoronEntreFechas,
+    porcentajeNotificadosSifilisMoronEntreFechas
+    
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
@@ -126,6 +139,17 @@ function Sifilis() {
   const labelSeSifilis = "SE";
   const seSifilis = sifilisXse;
 
+  //Gráficos entre fechas
+  //Gráfico notificados según sexo entre fechas
+
+  const totalPorSexoSifilisEntreFechas = [numeroTotalGeneralNotificadosSifilisMasculinoEntreFechas, numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas, numeroTotalGeneralNotificadosSifilisSdEntreFechas]
+  const titleSexoSifilisEntreFechas = `Casos notificados de Sífilis según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
+  //Gráfico notificados Morón/Total entre fechas
+
+  const notificadosSifilisEstablecimientoCargaEntreFechas = [numeroTotalGeneralSifilisMoronEntreFechas, numeroTotalGeneralSifilisNoMoronEntreFechas]
+  const titleEstablecimientoSifilisEntreFechas = `Casos notificados de Sífilis según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
   //--------ALERTS----------------
 
   function detallarConfirmadosSifilis() {
@@ -176,29 +200,38 @@ function Sifilis() {
 
         ?
         <div className='totalesGraphs-container'>
+           {
+            calendar.dateFrom
+              ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
+              : <div>
+                <p>No hay fechas ingresadas</p>
+<Link to="/upload"><button className='button'>Ingresar fechas</button></Link>
+              </div>
+              
+          }
           <div className='totales-page-container'>
             <div className='recuadro naranja'>
-              Total último mes:
+              Notificados:
               <p className='totalNumber'>
-                { }
+                { numeroTotalGeneralNotificadosSifilisEntreFechas}
               </p>
             </div>
             <div className='recuadro salmon' >
               Confirmados:
               <p className='totalNumber'>
-                { }
+                {numeroConfirmadosTotalGeneralSifilisEntreFechas }
               </p>
             </div>
             <div className='recuadro rosa'>
               Probables:
               <p className='totalNumber'>
-                { }
+                { numeroProbablesTotalGeneralSifilisEntreFechas}
               </p>
             </div>
             <div className='recuadro lila'>
               Descartados:
               <p className='totalNumber'>
-                { }
+                { numeroDescartadosTotalGeneralSifilisEntreFechas}
               </p>
             </div>
             <div className='recuadro salmon'>
@@ -216,34 +249,30 @@ function Sifilis() {
             <div className='recuadro lila'>
               Notificados por Morón:
               <p className='totalNumber'>
-                { }
+                {porcentajeNotificadosSifilisMoronEntreFechas }
               </p>
             </div>
           </div>
           <div className='graphs-container'>
-            <div className='doughnutChart-sifilis'>
+           
+          <div className='doughnutChart-sifilis'>
               <DoughnutChart
-                datos={totalPorSexoSifilis}
+                title={titleSexoSifilisEntreFechas}
+                datos={totalPorSexoSifilisEntreFechas}
+                labels={labelsSexoSifilis}
+                backgroundColor={backgroundColorSifilis}
+                borderColor={borderColorSifilis}
               />
             </div>
+
             <div className='doughnutChart-sifilis'>
               <DoughnutChart
-                datos={totalPorSexoSifilis}
+                title={titleEstablecimientoSifilisEntreFechas}
+                datos={notificadosSifilisEstablecimientoCargaEntreFechas}
+                labels={labelsEstablecimientoSifilis}
+                backgroundColor={backgroundColorEstablecimientoSifilis}
+                borderColor={borderColorEstablecimientoSifilis}
               />
-            </div>
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                datos={totalPorSexoSifilis}
-              />
-            </div>
-            <div className='barChart-sifilis'>
-              <BarChart />
-            </div>
-            <div className='barChart-sifilis'>
-              <BarChart />
-            </div>
-            <div className='barChart-sifilis'>
-              <BarChart />
             </div>
           </div>
         </div>
