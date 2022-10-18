@@ -58,7 +58,9 @@ function Sifilis() {
     numeroConfirmadosTotalGeneralSifilisEntreFechas,
     numeroTotalGeneralSifilisMoronEntreFechas,
     numeroTotalGeneralSifilisNoMoronEntreFechas,
-    porcentajeNotificadosSifilisMoronEntreFechas
+    porcentajeNotificadosSifilisMoronEntreFechas,
+    numeroTotalNotificadosSifilisEmbarazadasEntreFechas,
+    numeroTotalNotificadosSifilisCongenitaEntreFechas
     
   } = useContext(DataContext);
 
@@ -144,6 +146,12 @@ function Sifilis() {
 
   const totalPorSexoSifilisEntreFechas = [numeroTotalGeneralNotificadosSifilisMasculinoEntreFechas, numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas, numeroTotalGeneralNotificadosSifilisSdEntreFechas]
   const titleSexoSifilisEntreFechas = `Casos notificados de Sífilis según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
+ //Gráfico embarazadas sobre total de notificadas mujeres entre fechas
+
+ const embarazadasEnMujeresSifilisEntreFechas = [numeroTotalNotificadosSifilisEmbarazadasEntreFechas, parseInt(numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas - numeroTotalNotificadosSifilisEmbarazadasEntreFechas)]
+ const titleEmbarazoSifilisEntreFechas = `Casos notificados de Síflis en gestantes, sobre personas con posibilidad de gestar. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
 
   //Gráfico notificados Morón/Total entre fechas
 
@@ -237,13 +245,13 @@ function Sifilis() {
             <div className='recuadro salmon'>
               Gestantes:
               <p className='totalNumber'>
-                { }
+                {numeroTotalNotificadosSifilisEmbarazadasEntreFechas }
               </p>
             </div>
             <div className='recuadro rosa'>
               Congénitos:
               <p className='totalNumber'>
-                { }
+                {numeroTotalNotificadosSifilisCongenitaEntreFechas }
               </p>
             </div>
             <div className='recuadro lila'>
@@ -262,6 +270,16 @@ function Sifilis() {
                 labels={labelsSexoSifilis}
                 backgroundColor={backgroundColorSifilis}
                 borderColor={borderColorSifilis}
+              />
+            </div>
+
+            <div className='doughnutChart-sifilis'>
+              <DoughnutChart
+                title={titleEmbarazoSifilisEntreFechas}
+                datos={embarazadasEnMujeresSifilisEntreFechas}
+                labels={labelsEmbarazoSifilis}
+                backgroundColor={backgroundColorEmbarazoSifilis}
+                borderColor={borderColorEmbarazoSifilis}
               />
             </div>
 
