@@ -1,0 +1,42 @@
+.spinner-uno {
+    position: absolute;
+    color: var(--verdeClaro);
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+    transform: rotate(90deg);
+    z-index: 2;
+
+}
+
+.spinner-dos {
+    position: absolute;
+    color: var(--verdeOscuro);
+    width: 100px;
+    height: 100px;
+    z-index: -1;
+
+}
+
+.spinner-tres {
+    position: absolute;
+    color: var(--verdeAgua);
+    width: 60px;
+    height: 60px;
+    margin-top: 20px;
+    z-index: 4;
+
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+}
+
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}

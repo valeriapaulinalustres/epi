@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import * as XLSX from "xlsx";
 import "./upload.css";
 import DataContext from "../../context/DataContext";
@@ -6,8 +6,13 @@ import Toast from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from '../../components/Loading/Loading'
+
 
 function Upload() {
+
+  const [spinner, setSpinner] = useState(false)
+
   const { setBaseCompleta, baseCompleta, setCalendar } =
     useContext(DataContext);
 
@@ -31,6 +36,7 @@ function Upload() {
     });
     promise.then((d) => {
       setBaseCompleta(d);
+setSpinner(false)
     });
   };
 
@@ -67,7 +73,7 @@ function Upload() {
       title: `Debe completar ambas fechas por favor`,
     });
   }
-
+console.log(spinner)
   return (
     <div className="upload-container">
       <h2>
@@ -82,6 +88,8 @@ function Upload() {
           onChange={(e) => {
             const file = e.target.files[0];
             readExcel(file);
+            setSpinner(true)
+            console.log(spinner)
           }}
         />
       </div>
@@ -122,6 +130,7 @@ function Upload() {
         draggable
         theme="light"
       />
+       {spinner && <Loading />}
     </div>
   );
 }

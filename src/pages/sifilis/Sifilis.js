@@ -60,7 +60,13 @@ function Sifilis() {
     numeroTotalGeneralSifilisNoMoronEntreFechas,
     porcentajeNotificadosSifilisMoronEntreFechas,
     numeroTotalNotificadosSifilisEmbarazadasEntreFechas,
-    numeroTotalNotificadosSifilisCongenitaEntreFechas
+    numeroTotalNotificadosSifilisCongenitaEntreFechas,
+    numeroConfirmadosFemeninosSifilisEntreFechas, 
+    numeroConfirmadosMasculinosSifilisEntreFechas, 
+    numeroConfirmadosSDSifilisEntreFechas, 
+    numeroProbablesFemeninosSifilisEntreFechas, 
+    numeroProbablesMasculinosSifilisEntreFechas, 
+    numeroProbablesSDSifilisEntreFechas
     
   } = useContext(DataContext);
 
@@ -157,6 +163,13 @@ function Sifilis() {
 
   const notificadosSifilisEstablecimientoCargaEntreFechas = [numeroTotalGeneralSifilisMoronEntreFechas, numeroTotalGeneralSifilisNoMoronEntreFechas]
   const titleEstablecimientoSifilisEntreFechas = `Casos notificados de Sífilis según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+
+   //Gráfico tabla probables y confirmados entre fechas
+
+   const titleConfProbSifilisEntreFechas = `Casos confirmados y probables de Sífilis. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+   const femeninoConfProbSifilisEntreFechas = [numeroConfirmadosFemeninosSifilisEntreFechas, numeroProbablesFemeninosSifilisEntreFechas];
+   const masculinoConfProbSifilisEntreFechas = [numeroConfirmadosMasculinosSifilisEntreFechas, numeroProbablesMasculinosSifilisEntreFechas];
+   const sdConfProbSifilisEntreFechas = [numeroConfirmadosSDSifilisEntreFechas, numeroProbablesSDSifilisEntreFechas]
 
   //--------ALERTS----------------
 
@@ -292,6 +305,26 @@ function Sifilis() {
                 borderColor={borderColorEstablecimientoSifilis}
               />
             </div>
+
+            <div className='barChart-sifilis'>
+              <BarChart
+                title={titleConfProbSifilisEntreFechas}
+                barLabels={labelsConfProbSifilis}
+                label1={label1Sifilis}
+                label2={label2Sifilis}
+                label3={label3Sifilis}
+                data1={femeninoConfProbSifilisEntreFechas}
+                data2={masculinoConfProbSifilisEntreFechas}
+                data3={sdConfProbSifilisEntreFechas}
+                borderColor1={lila}
+                borderColor2={salmon}
+                borderColor3={rosa}
+                bgColor1={lilaTransparente}
+                bgColor2={salmonTransparente}
+                bgColor3={rosaTransparente}
+              />
+            </div>
+
           </div>
         </div>
 
