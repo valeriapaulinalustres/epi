@@ -6,8 +6,7 @@ import Toast from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loading from '../../components/Loading/Loading'
-
+import Loading from '../../components/Loading/Loading';
 
 function Upload() {
 
@@ -17,6 +16,7 @@ function Upload() {
     useContext(DataContext);
 
   const navigate = useNavigate();
+
 
   const readExcel = (file) => {
     const promise = new Promise((resolve, reject) => {
@@ -36,9 +36,13 @@ function Upload() {
     });
     promise.then((d) => {
       setBaseCompleta(d);
+      console.log(d);
 setSpinner(false)
     });
   };
+
+  
+ 
 
   //Takes calendar info to context
   function handleCalendar(e) {
@@ -80,7 +84,8 @@ console.log(spinner)
         Carga de archivos excel descargados desde la base de datos de SISA
       </h2>
       <div className="file-select" id="src-file1">
-        <input
+       
+      <input
           type="file"
           className="inputButton"
           name="src-file1"
@@ -92,6 +97,7 @@ console.log(spinner)
             console.log(spinner)
           }}
         />
+
       </div>
       {baseCompleta.length != 0 ? (
         <p>Archivo cargado</p>
@@ -136,3 +142,6 @@ console.log(spinner)
 }
 
 export default Upload;
+
+
+ 

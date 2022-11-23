@@ -1,11 +1,15 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import BarChart from '../../components/BarChart';
 import DataContext from '../../context/DataContext';
 import './home.css';
 import BarChartSe from '../../components/BarChartSe';
 import BarChartFourData from '../../components/BarChartFourData';
 import Colors from '../../components/Colors';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+
+import excelFile from './moron.csv';
+import * as xlsx from 'xlsx';
 
 
 function Home() {
@@ -13,6 +17,8 @@ function Home() {
   const [ultimoMesHome, setUltimoMesHome] = useState(false)
 
   const {
+    setBaseCompleta, 
+    baseCompleta,
     se,
     semanas,
     anioActual,
@@ -35,6 +41,46 @@ function Home() {
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa, amarilloTransparente, amarillo] = Colors
+
+
+
+  useEffect(() => {
+    let json;
+  
+    // get file from the imported url
+    var request = new XMLHttpRequest();
+    request.open('GET', excelFile, true);
+    request.responseType = "arraybuffer";
+    request.onload = function() {
+    
+    
+        
+        /* convert data to binary string */
+        var data = new Uint8Array(request.response);
+        var arr = new Array();
+        for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+        data = arr.join("");
+    
+        //using xlsx library convert file to json
+        const workbook = xlsx.read(data, { type: "binary" })
+        const sheetName = workbook.SheetNames[0]
+        const worksheet = workbook.Sheets[sheetName]
+         json = xlsx.utils.sheet_to_json(worksheet)
+        console.log(json)
+        setBaseCompleta(json)
+    };
+    request.send()  
+  }, [])
+  
+  
+
+
+
+
+
+
+
+
 
   let mesPrevio = "18 a 22";
   let ultimaSE = 30;
