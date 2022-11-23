@@ -6,6 +6,8 @@ import BarChartSe from '../../components/BarChartSe';
 import BarChartFourData from '../../components/BarChartFourData';
 import Colors from '../../components/Colors';
 import { Link } from 'react-router-dom';
+import Loading from '../../components/Loading/Loading';
+
 
 
 import excelFile from './moron.csv';
@@ -15,6 +17,7 @@ import * as xlsx from 'xlsx';
 function Home() {
 
   const [ultimoMesHome, setUltimoMesHome] = useState(false)
+  const [spinnerHome, setSpinnerHome] = useState(true)
 
   const {
     setBaseCompleta, 
@@ -43,7 +46,7 @@ function Home() {
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa, amarilloTransparente, amarillo] = Colors
 
 
-
+//load moron.csv file ***********************************
   useEffect(() => {
     let json;
   
@@ -68,19 +71,13 @@ function Home() {
          json = xlsx.utils.sheet_to_json(worksheet)
         console.log(json)
         setBaseCompleta(json)
+        setSpinnerHome(false)
     };
     request.send()  
   }, [])
   
   
-
-
-
-
-
-
-
-
+//**************************************************
 
   let mesPrevio = "18 a 22";
   let ultimaSE = 30;
@@ -200,8 +197,9 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
         <p>
           En nuestro Municipio hemos priorizado la notificación y análisis de las siguientes enfermedades: Dengue, Sifilis, Tuberculosis, HIV.
         </p>
+        
       </div>
-
+      {spinnerHome && <Loading />}
       <div className='btnElegir-page'>
         <button
           className={ultimoMesHome ? "button" : "buttonActive"}
