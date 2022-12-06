@@ -17,6 +17,7 @@ import Dengue from './pages/dengue/Dengue';
 import Hiv from './pages/hiv/Hiv';
 import Footer from './footer/Footer';
 import Upload from './pages/upload/Upload';
+import Covid from './pages/covid/Covid';
 import { DataProvider } from './context/DataContext';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/sifilis" element={<Sifilis />} />
           <Route path="/tbc" element={<Tbc />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/covid" element={<Covid />} />
         </Routes>
         <Footer />
       </BrowserRouter>

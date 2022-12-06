@@ -11,6 +11,7 @@ import Loading from '../../components/Loading/Loading';
 
 
 import excelFile from './moron.csv';
+import excelFileClinica from './clinica.csv';
 import * as xlsx from 'xlsx';
 
 
@@ -22,6 +23,7 @@ function Home() {
   const {
     setBaseCompleta, 
     baseCompleta,
+    setBaseCompletaClinica,
     se,
     semanas,
     anioActual,
@@ -51,7 +53,7 @@ function Home() {
     let json;
   
     // get file from the imported url
-    var request = new XMLHttpRequest();
+    let request = new XMLHttpRequest();
     request.open('GET', excelFile, true);
     request.responseType = "arraybuffer";
     request.onload = function() {
@@ -59,8 +61,8 @@ function Home() {
     
         
         /* convert data to binary string */
-        var data = new Uint8Array(request.response);
-        var arr = new Array();
+        let data = new Uint8Array(request.response);
+        let arr = new Array();
         for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
         data = arr.join("");
     
@@ -69,15 +71,49 @@ function Home() {
         const sheetName = workbook.SheetNames[0]
         const worksheet = workbook.Sheets[sheetName]
          json = xlsx.utils.sheet_to_json(worksheet)
-        console.log(json)
+        //console.log(json)
         setBaseCompleta(json)
         setSpinnerHome(false)
     };
     request.send()  
   }, [])
   
+
+
+//load clinica.csv file ***********************************
+useEffect(() => {
+  let jsonClinica;
+
+  // get file from the imported url
+  let requestClinica = new XMLHttpRequest();
+  requestClinica.open('GET', excelFileClinica , true);
+  requestClinica.responseType = "arraybuffer";
+  requestClinica.onload = function() {
   
-//**************************************************
+  
+      
+    
+      let dataClinica = new Uint8Array(requestClinica.response);
+      let arrClinica = new Array();
+      for (var i = 0; i != dataClinica.length; ++i) arrClinica[i] = String.fromCharCode(dataClinica[i]);
+      dataClinica = arrClinica.join("");
+  
+      //using xlsx library convert file to json
+      const workbookClinica = xlsx.read(dataClinica, { type: "binary" })
+      const sheetNameClinica = workbookClinica.SheetNames[0]
+      const worksheetClinica = workbookClinica.Sheets[sheetNameClinica]
+       jsonClinica = xlsx.utils.sheet_to_json(worksheetClinica)
+      console.log(jsonClinica)
+      setBaseCompletaClinica(jsonClinica)
+      setSpinnerHome(false)
+  };
+  requestClinica.send()  
+}, [])
+
+
+//*************************************
+
+
 
   let mesPrevio = "18 a 22";
   let ultimaSE = 30;

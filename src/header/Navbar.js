@@ -97,12 +97,71 @@ function Navbar(props) {
       ><button className='xButton'><AiOutlineClose /></button></div>
       
       <nav className="linksContainer" ref={el => (linksContainer = el)}>
-          <NavLink to="/" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>Home</NavLink>
-          <NavLink to="/dengue" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>Dengue</NavLink>
-          <NavLink to="/sifilis" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>Sífilis</NavLink>
-          <NavLink to="/tbc" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>TBC</NavLink>
-          <NavLink to="/hiv" className="nav-links" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} style={styleLinks} onClick={() => setMenu(false)}>HIV</NavLink>
+          <NavLink 
+          to="/" 
+          className="nav-links" 
+          onMouseEnter={mouseEnter} 
+          onMouseLeave={mouseLeave} 
+          style={styleLinks} 
+          onClick={() => setMenu(false)}
+          >
+            Home
+            </NavLink>
+
+          <NavLink 
+          to="/dengue" 
+          className="nav-links" 
+          onMouseEnter={mouseEnter} 
+          onMouseLeave={mouseLeave} 
+          style={styleLinks} 
+          onClick={() => setMenu(false)}
+          >
+            Dengue
+            </NavLink>
+
+          <NavLink 
+          to="/sifilis" 
+          className="nav-links" 
+          onMouseEnter={mouseEnter} 
+          onMouseLeave={mouseLeave} 
+          style={styleLinks} 
+          onClick={() => setMenu(false)}
+          >
+            Sífilis
+            </NavLink>
+
+          <NavLink 
+          to="/tbc" 
+          className="nav-links" 
+          onMouseEnter={mouseEnter} 
+          onMouseLeave={mouseLeave} 
+          style={styleLinks} 
+          onClick={() => setMenu(false)}
+          >
+            TBC
+            </NavLink>
+
+          <NavLink 
+          to="/hiv" 
+          className="nav-links" 
+          onMouseEnter={mouseEnter} 
+          onMouseLeave={mouseLeave} 
+          style={styleLinks} 
+          onClick={() => setMenu(false)}
+          >
+            HIV
+            </NavLink>
           
+            <NavLink 
+          to="/covid" 
+          className="nav-links" 
+          onMouseEnter={mouseEnter} 
+          onMouseLeave={mouseLeave} 
+          style={styleLinks} 
+          onClick={() => setMenu(false)}
+          >
+            COVID
+            </NavLink>
         </nav>
     </div>
   )
