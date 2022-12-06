@@ -19,6 +19,7 @@ function Home() {
 
   const [ultimoMesHome, setUltimoMesHome] = useState(false)
   const [spinnerHome, setSpinnerHome] = useState(true)
+  const [spinnerHomeClinica, setSpinnerHomeClinica] = useState(true)
 
   const {
     setBaseCompleta, 
@@ -105,7 +106,7 @@ useEffect(() => {
        jsonClinica = xlsx.utils.sheet_to_json(worksheetClinica)
       console.log(jsonClinica)
       setBaseCompletaClinica(jsonClinica)
-      setSpinnerHome(false)
+      setSpinnerHomeClinica(false)
   };
   requestClinica.send()  
 }, [])
@@ -236,6 +237,7 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
         
       </div>
       {spinnerHome && <Loading />}
+      {spinnerHomeClinica && <Loading />}
       <div className='btnElegir-page'>
         <button
           className={ultimoMesHome ? "button" : "buttonActive"}

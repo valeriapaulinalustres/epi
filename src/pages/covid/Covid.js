@@ -157,35 +157,30 @@ function Covid() {
               </p>
             </div>
             <div className='recuadro salmon'>
-              Confirmados:
+              Total confirmados COVID:
               <p className='totalNumber'>
                 {}
               </p>
             </div>
             <div className='recuadro rosa'>
-              Probables:
+              x
               <p className='totalNumber'>
                 {}
               </p>
             </div>
             <div className='recuadro lila'>
-              Descartados:
+              x
               <p className='totalNumber'>
                 {}
               </p>
             </div>
             <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>
-              Gestantes:
+              x
               <p className='totalNumber'>
                 {}
               </p>
             </div>
-            <div className='recuadro rosa'>
-              Sospechosos:
-              <p className='totalNumber'>
-                {}
-              </p>
-            </div>
+          
             <div className='recuadro lila'>
               Notificados por Morón:
               <p className='totalNumber'>
@@ -195,30 +190,7 @@ function Covid() {
           </div>
           
           <div className='graphs-container'>
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                
-              />
-            </div>
-
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-             
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartFiveData
-               
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSexAge
-              
-              />
-            </div>
-
+           
             <div className='barChart-sifilis'>
               <BarChartSe
                 eje={'x'}
