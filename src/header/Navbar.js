@@ -160,7 +160,7 @@ function Navbar(props) {
           style={styleLinks} 
           onClick={() => setMenu(false)}
           >
-            COVID
+            COVID y ETI
             </NavLink>
         </nav>
     </div>

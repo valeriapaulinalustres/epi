@@ -117,7 +117,7 @@ useEffect(() => {
 
 
   let mesPrevio = "18 a 22";
-  let ultimaSE = 30;
+  let ultimaSE = 48;
 
   //Gráfico notificados de todas las ENOs
   const titleEnos = `Casos notificados de Enfermedades de Notificación Obligatoria . Morón, ${anioActual}`
@@ -236,8 +236,11 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
         </p>
         
       </div>
-      {spinnerHome && <Loading />}
+     
       {spinnerHomeClinica && <Loading />}
+      {spinnerHome && <Loading />}
+      
+
       <div className='btnElegir-page'>
         <button
           className={ultimoMesHome ? "button" : "buttonActive"}
@@ -437,9 +440,13 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
             </div>
 
           </div>
+
         </div>
+
       }
+    
     </div>
+    
   )
 }
 

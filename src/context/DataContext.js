@@ -13,7 +13,7 @@ const [baseCompletaClinica, setBaseCompletaClinica] = useState([])
 
 
 
-const se = 30;
+const se = 48;
 
 const date = new Date()// calcula fecha y hora actual
 const hoy = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear();
@@ -1131,7 +1131,7 @@ const etiXse = [
   calcularNotificadosXSEClinica(arrayTotalNotificadosETI,50),
   calcularNotificadosXSEClinica(arrayTotalNotificadosETI,51), 
   calcularNotificadosXSEClinica(arrayTotalNotificadosETI,52),
- 
+  calcularNotificadosXSEClinica(arrayTotalNotificadosETI,53),
 ]
 
 console.log(etiXse);
