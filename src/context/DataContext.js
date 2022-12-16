@@ -67,11 +67,11 @@ const fechaFinFormatoNumero = pasarFechaAFormatoNumero(calendar.dateTo)//acá en
 
 
 function calcularTotalNotificadosX() {
-  return baseCompleta.filter(el => el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicioFormatoNumero && el.FECHA_APERTURA <= fechaFinFormatoNumero)
+  return baseCompleta.filter(el => el.EVENTO === "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.FECHA_APERTURA >= fechaInicioFormatoNumero && el.FECHA_APERTURA <= fechaFinFormatoNumero)
 }
 
 const a = calcularTotalNotificadosX()
-console.log(a);
+//console.log(a);
 
   //==================================================
   //----------FÓRMULAS----------------------------
@@ -80,7 +80,7 @@ console.log(a);
   //-------TOTALES
 
   function calcularTotalNotificados(enfermedad, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    return baseCompleta.filter(el => el.EVENTO == enfermedad && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
+    return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
   }
 
   function calcularNumeroTotalNotificados(enfermedad) {
@@ -692,6 +692,7 @@ const porcentajeNotificadosHivMoronEntreFechas = Math.round(numeroTotalGeneralHi
   //-------Tuberculosis----------------------------------------------------------------------
   //-----------array total
   const arrayTotalNotificadosTuberculosis = calcularTotalNotificados("Tuberculosis");
+
 //entre fechas
   const arrayTotalNotificadosTuberculosisEntreFechas = calcularTotalNotificados("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
 
@@ -1134,7 +1135,7 @@ const etiXse = [
   calcularNotificadosXSEClinica(arrayTotalNotificadosETI,53),
 ]
 
-console.log(etiXse);
+console.log(arrayTotalNotificadosTuberculosis);
 
 
 

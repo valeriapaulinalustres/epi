@@ -10,16 +10,12 @@ import Loading from '../../components/Loading/Loading';
 
 
 
-import excelFile from './moron.csv';
-import excelFileClinica from './clinica.csv';
-import * as xlsx from 'xlsx';
-
 
 function Home() {
 
   const [ultimoMesHome, setUltimoMesHome] = useState(false)
-  const [spinnerHome, setSpinnerHome] = useState(true)
-  const [spinnerHomeClinica, setSpinnerHomeClinica] = useState(true)
+
+
 
   const {
     setBaseCompleta, 
@@ -47,73 +43,6 @@ function Home() {
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa, amarilloTransparente, amarillo] = Colors
-
-
-//load moron.csv file ***********************************
-  useEffect(() => {
-    let json;
-  
-    // get file from the imported url
-    let request = new XMLHttpRequest();
-    request.open('GET', excelFile, true);
-    request.responseType = "arraybuffer";
-    request.onload = function() {
-    
-    
-        
-        /* convert data to binary string */
-        let data = new Uint8Array(request.response);
-        let arr = new Array();
-        for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-        data = arr.join("");
-    
-        //using xlsx library convert file to json
-        const workbook = xlsx.read(data, { type: "binary" })
-        const sheetName = workbook.SheetNames[0]
-        const worksheet = workbook.Sheets[sheetName]
-         json = xlsx.utils.sheet_to_json(worksheet)
-        //console.log(json)
-        setBaseCompleta(json)
-        setSpinnerHome(false)
-    };
-    request.send()  
-  }, [])
-  
-
-
-//load clinica.csv file ***********************************
-useEffect(() => {
-  let jsonClinica;
-
-  // get file from the imported url
-  let requestClinica = new XMLHttpRequest();
-  requestClinica.open('GET', excelFileClinica , true);
-  requestClinica.responseType = "arraybuffer";
-  requestClinica.onload = function() {
-  
-  
-      
-    
-      let dataClinica = new Uint8Array(requestClinica.response);
-      let arrClinica = new Array();
-      for (var i = 0; i != dataClinica.length; ++i) arrClinica[i] = String.fromCharCode(dataClinica[i]);
-      dataClinica = arrClinica.join("");
-  
-      //using xlsx library convert file to json
-      const workbookClinica = xlsx.read(dataClinica, { type: "binary" })
-      const sheetNameClinica = workbookClinica.SheetNames[0]
-      const worksheetClinica = workbookClinica.Sheets[sheetNameClinica]
-       jsonClinica = xlsx.utils.sheet_to_json(worksheetClinica)
-      console.log(jsonClinica)
-      setBaseCompletaClinica(jsonClinica)
-      setSpinnerHomeClinica(false)
-  };
-  requestClinica.send()  
-}, [])
-
-
-//*************************************
-
 
 
   let mesPrevio = "18 a 22";
@@ -237,8 +166,7 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
         
       </div>
      
-      {spinnerHomeClinica && <Loading />}
-      {spinnerHome && <Loading />}
+     
       
 
       <div className='btnElegir-page'>

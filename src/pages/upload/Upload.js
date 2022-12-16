@@ -8,11 +8,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from '../../components/Loading/Loading';
 
+
+import excelFile from './moron.csv';
+import excelFileClinica from './clinica.csv';
+import * as xlsx from 'xlsx';
+
 function Upload() {
 
   const [spinner, setSpinner] = useState(false)
+  const [spinnerHome, setSpinnerHome] = useState(false)
+  const [spinnerHomeClinica, setSpinnerHomeClinica] = useState(false)
 
-  const { setBaseCompleta, baseCompleta, setCalendar } =
+  const { setBaseCompleta, baseCompleta, setCalendar,   setBaseCompletaClinica, } =
     useContext(DataContext);
 
   const navigate = useNavigate();
@@ -78,11 +85,82 @@ setSpinner(false)
     });
   }
 console.log(spinner)
+
+function loadLocalFile() {
+  setSpinnerHome(true);
+  setSpinnerHomeClinica(true);
+
+//load moron.csv file ***********************************
+  let json;
+
+  // get file from the imported url
+  let request = new XMLHttpRequest();
+  request.open('GET', excelFile, true);
+  request.responseType = "arraybuffer";
+  request.onload = function() {
+  
+  
+      
+      /* convert data to binary string */
+      let data = new Uint8Array(request.response);
+      let arr = new Array();
+      for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+      data = arr.join("");
+  
+      //using xlsx library convert file to json
+      const workbook = xlsx.read(data, { type: "binary" })
+      const sheetName = workbook.SheetNames[0]
+      const worksheet = workbook.Sheets[sheetName]
+       json = xlsx.utils.sheet_to_json(worksheet)
+      //console.log(json)
+      setBaseCompleta(json)
+      setSpinnerHome(false)
+  };
+  request.send()  
+
+  
+//load clinica.csv file ***********************************
+
+  let jsonClinica;
+
+  // get file from the imported url
+  let requestClinica = new XMLHttpRequest();
+  requestClinica.open('GET', excelFileClinica , true);
+  requestClinica.responseType = "arraybuffer";
+  requestClinica.onload = function() {
+  
+  
+      
+    
+      let dataClinica = new Uint8Array(requestClinica.response);
+      let arrClinica = new Array();
+      for (var i = 0; i != dataClinica.length; ++i) arrClinica[i] = String.fromCharCode(dataClinica[i]);
+      dataClinica = arrClinica.join("");
+  
+      //using xlsx library convert file to json
+      const workbookClinica = xlsx.read(dataClinica, { type: "binary" })
+      const sheetNameClinica = workbookClinica.SheetNames[0]
+      const worksheetClinica = workbookClinica.Sheets[sheetNameClinica]
+       jsonClinica = xlsx.utils.sheet_to_json(worksheetClinica)
+      console.log(jsonClinica)
+      setBaseCompletaClinica(jsonClinica)
+      setSpinnerHomeClinica(false)
+  };
+  requestClinica.send()  
+
+
+
+//*************************************
+}
+
   return (
     <div className="upload-container">
       <h2>
         Carga de archivos excel descargados desde la base de datos de SISA
       </h2>
+      <button onClick={loadLocalFile} className= "buttonActive">Cargar archivo local</button>
+      {spinnerHomeClinica && <Loading />}
+      {spinnerHome && <Loading />}
       <div className="file-select" id="src-file1">
        
       <input

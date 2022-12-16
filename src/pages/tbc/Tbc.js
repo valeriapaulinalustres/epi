@@ -165,6 +165,8 @@ function handleEmbarazadasTbcEntreFechas (){
   }
 
 
+
+
   return (
     <div className='page-container'>
       <h2>Tuberculosis</h2>
