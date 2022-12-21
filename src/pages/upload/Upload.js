@@ -43,7 +43,7 @@ function Upload() {
     });
     promise.then((d) => {
       setBaseCompleta(d);
-      console.log(d);
+     // console.log(d);
 setSpinner(false)
     });
   };
@@ -84,7 +84,7 @@ setSpinner(false)
       title: `Debe completar ambas fechas por favor`,
     });
   }
-console.log(spinner)
+//console.log(spinner)
 
 function loadLocalFile() {
   setSpinnerHome(true);
@@ -142,7 +142,7 @@ function loadLocalFile() {
       const sheetNameClinica = workbookClinica.SheetNames[0]
       const worksheetClinica = workbookClinica.Sheets[sheetNameClinica]
        jsonClinica = xlsx.utils.sheet_to_json(worksheetClinica)
-      console.log(jsonClinica)
+      //console.log(jsonClinica)
       setBaseCompletaClinica(jsonClinica)
       setSpinnerHomeClinica(false)
   };
@@ -172,7 +172,7 @@ function loadLocalFile() {
             const file = e.target.files[0];
             readExcel(file);
             setSpinner(true)
-            console.log(spinner)
+           // console.log(spinner)
           }}
         />
 

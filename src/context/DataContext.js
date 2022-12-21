@@ -119,7 +119,13 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
   return (baseCompleta.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón"  && el.CLASIFICACION_MANUAL == clasificacion && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)).length || 0
 }
 
-  function calcularConfirmadosTuberculosis(clasificacion, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+
+function calcularConfirmadosTuberculosis(clasificacion) {
+
+  return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.DEPARTAMENTO_RESIDENCIA == "Morón")
+}
+
+  function calcularConfirmadosTuberculosisEntreFechas(clasificacion, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
 
     return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
       
@@ -144,7 +150,16 @@ let ab = [...a, ...b]
     return ab
   }
 
-  function calcularDescartadosTuberculosis(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularDescartadosTuberculosis() {
+    let a =  baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Descartado TBC - Micobacteria no tuberculosis" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
+    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Bacteriología Negativa" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
+    let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
+    
+    let abc = [...a, ...b, ...c]
+     return abc
+  }
+
+  function calcularDescartadosTuberculosisEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     let a =  baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Descartado TBC - Micobacteria no tuberculosis" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0 
     let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Bacteriología Negativa" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
      return a + b
@@ -190,7 +205,19 @@ let ab = [...a, ...b]
     return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
   }
 
-  function calcularConfirmadosEmbarazoTuberculosis(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularConfirmadosEmbarazoTuberculosis() {
+
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" )
+      let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" )
+      let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI")
+
+      let abc = [...a, ...b, ...c]
+
+      return abc
+  }
+
+  
+  function calcularConfirmadosEmbarazoTuberculosisEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
 
     let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
       let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
@@ -796,46 +823,72 @@ const porcentajeNotificadosHivMoronEntreFechas = Math.round(numeroTotalGeneralHi
   const numeroTotalNotificadosTuberculosisA = calcularPorSexo(arrayTotalNotificadosTuberculosis, "A")
   const numeroTotalNotificadosTuberculosisSd = parseInt(numeroTotalNotificadosTuberculosisNA) + parseInt(numeroTotalNotificadosTuberculosisA)
 //entre fechas
-  const numeroTotalNotificadosTuberculosisFemeninoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosis, "F", fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroTotalNotificadosTuberculosisMasculinoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosis, "M", fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroTotalNotificadosTuberculosisNAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosis, "NA" , fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroTotalNotificadosTuberculosisAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosis, "A", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisFemeninoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "F", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisMasculinoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "M", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisNAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "NA" , fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "A", fechaInicioFormatoNumero, fechaFinFormatoNumero)
   const numeroTotalNotificadosTuberculosisSdEntreFechas = parseInt(numeroTotalNotificadosTuberculosisNAEntreFechas) + parseInt(numeroTotalNotificadosTuberculosisAEntreFechas)
 
   //---------------clasificaciones totales
   //confirmados
-  const numeroConfirmadosTotalTuberculosis = calcularConfirmadosTuberculosis("Baciloscopía positiva") + calcularConfirmadosTuberculosis("Complejo Mycobacterium tuberculosis") + calcularConfirmadosTuberculosis("Mycobacterium tuberculosis") + calcularConfirmadosTuberculosis("Histopatologia sugestiva")
+let arrayBaciloscopiaPositiva = calcularConfirmadosTuberculosis("Baciloscopía positiva");
+let arrayComplejoTBC = calcularConfirmadosTuberculosis("Complejo Mycobacterium tuberculosis");
+let arrayMicobacterium = calcularConfirmadosTuberculosis("Mycobacterium tuberculosis");
+let arrayHistopatologiaSugestiva = calcularConfirmadosTuberculosis("Histopatologia sugestiva");
+
+let arrayConfirmadosTbc = [...arrayBaciloscopiaPositiva, ...arrayComplejoTBC, ...arrayMicobacterium, ...arrayHistopatologiaSugestiva];
+
+arrayConfirmadosTbc = quitarDuplicados(arrayConfirmadosTbc);
+
+  const numeroConfirmadosTotalTuberculosis = arrayConfirmadosTbc.length || 0;
 
   //descartados
-  const numeroDescartadosTotalTuberculosis = calcularDescartadosTuberculosis()
+  let arrayDescartadosTotalTuberculosis = calcularDescartadosTuberculosis()
+  arrayDescartadosTotalTuberculosis = quitarDuplicados(arrayDescartadosTotalTuberculosis);
+
+  const numeroDescartadosTotalTuberculosis = arrayDescartadosTotalTuberculosis.length || 0;
 
   //embarazadas
-  const numeroEmbarazadasNotificadasTotalTuberculosis = calcularEventoEnEmbarazo("Tuberculosis")
-  const numeroEmbarazadasConfirmadasTuberculosis = calcularConfirmadosEmbarazoTuberculosis()
-  const numeroEmbarazadasDescartadasTuberculosis = calcularDescartadosEmbarazoTuberculosis()
+let arrayNotificadosTbcEmbarazadas = arrayTotalNotificadosTuberculosis.filter(el=>el.EMBARAZADA == "SI")
+const numeroEmbarazadasNotificadasTotalTuberculosis = arrayNotificadosTbcEmbarazadas.length || 0
+
+let arrayConfirmadosTbcEmbarazadas = arrayConfirmadosTbc.filter(el=>el.EMBARAZADA == "SI")
+const numeroEmbarazadasConfirmadasTuberculosis = arrayConfirmadosTbcEmbarazadas.length || 0;
+
+let arrayDescartadasTbcEmbarazadas = arrayDescartadosTotalTuberculosis.filter(el=>el.EMBARAZADA == "SI")
+  const numeroEmbarazadasDescartadasTuberculosis = arrayDescartadasTbcEmbarazadas.length || 0;
 
   //En estudio
-  const numeroEnEstudioTotalTuberculosis = parseInt(calcularClasificacionManualPorEvento("Tuberculosis", "En estudio").length)
+  const arrayTbcEstudio = calcularClasificacionManualPorEvento("Tuberculosis", "En estudio")
+  const arrayTbcMuestraNoApta = calcularClasificacionManualPorEvento("Tuberculosis", "Muestra no apta para el diagnostico")
+  let arrayEnEstudioTbc = [...arrayTbcEstudio, ...arrayTbcMuestraNoApta];
+  arrayEnEstudioTbc = quitarDuplicados(arrayEnEstudioTbc)
+  const numeroEnEstudioTotalTuberculosis  = arrayEnEstudioTbc.length || 0;
 
   //entre fechas-----------
   //confirmados
-  const numeroConfirmadosTotalTuberculosisEntreFechas = calcularConfirmadosTuberculosis("Baciloscopía positiva", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosis("Complejo Mycobacterium tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosis("Mycobacterium tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosis("Histopatologia sugestiva", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroConfirmadosTotalTuberculosisEntreFechas = calcularConfirmadosTuberculosisEntreFechas("Baciloscopía positiva", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosisEntreFechas("Complejo Mycobacterium tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosisEntreFechas("Mycobacterium tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosisEntreFechas("Histopatologia sugestiva", fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
   //descartados
   const numeroDescartadosTotalTuberculosisEntreFechas = calcularDescartadosTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
   //embarazadas
+
   const numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas = calcularEventoEnEmbarazo("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero)
   const numeroEmbarazadasConfirmadasTuberculosisEntreFechas = calcularConfirmadosEmbarazoTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
   const numeroEmbarazadasDescartadasTuberculosisEntreFechas = calcularDescartadosEmbarazoTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
   //En estudio
-  const numeroEnEstudioTotalTuberculosisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Tuberculosis", "En estudio", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroEnEstudioTotalTuberculosisEntreFechas  = arrayEnEstudioTbc.length || 0; //esto hay que arreglarlo
 
   //-------------Departamento de carga
-  const numeroTotalGeneralTuberculosisMoron = calcularDptoCargaMoron("Tuberculosis")
+  let arrayTotalGeneralTuberculosisMoron = calcularDptoCargaMoron("Tuberculosis");
+  arrayTotalGeneralTuberculosisMoron = quitarDuplicados(arrayTotalGeneralTuberculosisMoron);
+  const numeroTotalGeneralTuberculosisMoron = arrayTotalGeneralTuberculosisMoron.length || 0;
 
-  const numeroTotalGeneralTuberculosisNoMoron = calcularDptoCargaNoMoron("Tuberculosis")
+  let arrayTotalGeneralTuberculosisNoMoron = calcularDptoCargaNoMoron("Tuberculosis");
+  arrayTotalGeneralTuberculosisNoMoron = quitarDuplicados(arrayTotalGeneralTuberculosisNoMoron);
+  const numeroTotalGeneralTuberculosisNoMoron = arrayTotalGeneralTuberculosisNoMoron.length || 0;
 
   const porcentajeNotificadosTuberculosisMoron = Math.round(numeroTotalGeneralTuberculosisMoron / (numeroTotalGeneralTuberculosisNoMoron + numeroTotalGeneralTuberculosisMoron) * 100) || 0
 
@@ -1245,7 +1298,7 @@ const etiXse = [
   calcularNotificadosXSEClinica(arrayTotalNotificadosETI,53),
 ]
 
-console.log(arrayTotalNotificadosTuberculosis);
+//console.log(arrayTotalNotificadosTuberculosis);
 
 
 

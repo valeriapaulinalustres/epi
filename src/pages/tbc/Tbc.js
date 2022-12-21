@@ -108,9 +108,9 @@ function Tbc() {
   const label1RestultadoTuberculosis = "Positivos"
   const label2RestultadoTuberculosis = "Negativos"
   const label3RestultadoTuberculosis = "En estudio"
-  const dataPositivosTuberculosis = [numeroTotalPositivosTuberculosis]
-  const dataNegativosTuberculosis = [numeroTotalNegativosTuberculosis]
-  const dataSinResultadosTuberculosis = [numeroTotalSinResultadoTuberculosis]
+  const dataPositivosTuberculosis = [numeroConfirmadosTotalTuberculosis]
+  const dataNegativosTuberculosis = [numeroDescartadosTotalTuberculosis]
+  const dataSinResultadosTuberculosis = [numeroEnEstudioTotalTuberculosis]
 
   //Gráfico Edad x sexo
 
