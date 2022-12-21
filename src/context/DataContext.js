@@ -79,7 +79,12 @@ const a = calcularTotalNotificadosX()
 
   //-------TOTALES
 
-  function calcularTotalNotificados(enfermedad, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  
+  function calcularTotalNotificados(enfermedad) {
+    return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" )
+  }
+
+  function calcularTotalNotificadosEntreFechas(enfermedad, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
   }
 
@@ -87,7 +92,12 @@ const a = calcularTotalNotificadosX()
     return baseCompleta.filter(el => el.EVENTO == enfermedad && el.DEPARTAMENTO_RESIDENCIA == "Morón").length || 0
   }
 
-  function calcularPorSexo(arr, sexo, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularPorSexo(arr, sexo) {
+    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón" ).length || 0
+
+  }
+
+  function calcularPorSexoEntreFechas(arr, sexo, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
 
   }
@@ -96,7 +106,11 @@ const a = calcularTotalNotificadosX()
     return baseCompleta.filter(el => el.EVENTO == enfermedad && el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón")
   }
 
-  function calcularClasificacionManualPorEvento(evento, clasificacion,fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularClasificacionManualPorEvento(evento, clasificacion) {
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
+  }
+
+  function calcularClasificacionManualPorEventoEntreFechas(evento, clasificacion,fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
   }
 
@@ -112,13 +126,22 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
 
   }
 
-  function calcularConfirmadosDengue(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularConfirmadosDengue() {
 
- 
-    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
 
-    return a + b
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
+    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
+let ab = [...a, ...b]
+    return ab
+  }
+
+  function calcularConfirmadosDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+
+
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
+    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
+let ab = [...a, ...b]
+    return ab
   }
 
   function calcularDescartadosTuberculosis(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
@@ -127,7 +150,16 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
      return a + b
   }
 
-  function calcularDescartadosDengue(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularDescartadosDengue() {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
+      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" )
+      let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" )
+
+      let abc = [...a,...b,...c]
+      return abc
+  }
+
+  function calcularDescartadosDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
       let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
       let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
@@ -135,14 +167,26 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
       return a+b+c
   }
 
-  function calcularSospechososDengue(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularSospechososDengue() {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" )
+      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso no conclusivo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" )
+
+      let ab = [...a,...b]
+      return ab
+  }
+
+  function calcularSospechososDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue"  && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
       let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso no conclusivo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue"  && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
 
       return a + b
   }
 
-  function calcularEventoEnEmbarazo(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularEventoEnEmbarazo(evento) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
+  }
+
+  function calcularEventoEnEmbarazoEntreFechas(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
   }
 
@@ -162,14 +206,33 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
       return a + b
   }
 
-  function calcularConfirmadosEmbarazoDengue(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularConfirmadosEmbarazoDengue() {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" )
+      let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" )
+
+      let ab = [...a,...b]
+
+      return ab
+  }
+
+  function calcularConfirmadosEmbarazoDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
       let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
 
       return a+b
   }
 
-  function calcularDescartadosEmbarazoDengue(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularDescartadosEmbarazoDengue() {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI")
+    let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI")
+    let c =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI")
+    let d =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI")
+
+    let abcd = [...a,...b,...c, ...d]
+    return abcd
+  }
+
+  function calcularDescartadosEmbarazoDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
     let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
     let c =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
@@ -177,11 +240,19 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
     return a + b + c
   }
 
-  function calcularDptoCargaMoron(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularDptoCargaMoron(evento) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón")
+  }
+
+  function calcularDptoCargaMoronEntreFechas(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
   }
 
-  function calcularDptoCargaNoMoron(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularDptoCargaNoMoron(evento) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA !== "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón")
+  }
+
+  function calcularDptoCargaNoMoronEntreFechas(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
     return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA !== "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
   }
 
@@ -212,6 +283,20 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
   
   }
 
+  function quitarDuplicados(arr) {
+    let sinDuplicados = []
+
+    for (let i = 0; i < arr.length; i++) {
+        const el1 = arr[i];
+        //console.log(el1.DNI);
+        let filtrado = sinDuplicados.filter(el => el.NRO_DOC === el1.NRO_DOC)
+
+        if (filtrado.length == 0) { sinDuplicados.push(el1) }
+    }
+//console.log(sinDuplicados);
+    return sinDuplicados
+}
+
 
   //==================================================
   //----------ENFERMEDADES----------------------------
@@ -224,15 +309,16 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
   //-----------arrays totales
   const arrayTotalNotificadosSifilis = calcularTotalNotificados("Sífilis");
   const arrayTotalNotificadosSifilisCongenita = calcularTotalNotificados("Sífilis congénita");
-  const arrayTotalNotificadosSifilisEmbarazadas = calcularTotalNotificados("Sífilis en Embarazadas");
+  const arrayTotalNotificadosSifilisEmbarazadas = calcularTotalNotificados("Sífilis en personas gestantes");
 
-  const arrayTotalGeneralNotificadosSifilis = [...arrayTotalNotificadosSifilis, ...arrayTotalNotificadosSifilisCongenita, ...arrayTotalNotificadosSifilisEmbarazadas];
+  let arrayTotalGeneralNotificadosSifilis = [...arrayTotalNotificadosSifilis, ...arrayTotalNotificadosSifilisCongenita, ...arrayTotalNotificadosSifilisEmbarazadas];
 
+ arrayTotalGeneralNotificadosSifilis = quitarDuplicados(arrayTotalGeneralNotificadosSifilis)  
 
   //-----------arrays totales entre fechas
-  const arrayTotalNotificadosSifilisEntreFechas = calcularTotalNotificados("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const arrayTotalNotificadosSifilisCongenitaEntreFechas = calcularTotalNotificados("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const arrayTotalNotificadosSifilisEmbarazadasEntreFechas = calcularTotalNotificados("Sífilis en Embarazadas", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const arrayTotalNotificadosSifilisEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const arrayTotalNotificadosSifilisCongenitaEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const arrayTotalNotificadosSifilisEmbarazadasEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis en personas gestantes", fechaInicioFormatoNumero, fechaFinFormatoNumero);
 
   const arrayTotalGeneralNotificadosSifilisEntreFechas = [...arrayTotalNotificadosSifilisEntreFechas, ...arrayTotalNotificadosSifilisCongenitaEntreFechas, ...arrayTotalNotificadosSifilisEmbarazadasEntreFechas];
 
@@ -273,7 +359,7 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
 
   const numeroConfirmadosTotalSiflisCongenita = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso de Sífilis congénita confirmada por laboratorio").length)
 
-  const numeroConfirmadosTotalSifilisEmbarazadas = parseInt(calcularClasificacionManualPorEvento("Sífilis en Embarazadas", "Caso confirmado de Sífilis").length)
+  const numeroConfirmadosTotalSifilisEmbarazadas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso confirmado de Sífilis").length)
 
   const numeroConfirmadosTotalGeneralSifilis = numeroConfirmadosTotalSifilis + numeroConfirmadosTotalSiflisCongenita + numeroConfirmadosTotalSifilisEmbarazadas
 
@@ -283,7 +369,7 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
 
   const numeroProbablesTotalSifilisCongenita = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso probable de sífilis sin especificar estadío").length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable de sífilis temprana").length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable en banco de sangre").length)
 
-  const numeroProbablesTotalSifilisEmbarazadas = parseInt(calcularClasificacionManualPorEvento("Sífilis en embarazadas", "Caso probable de sífilis sin especificar estadío").length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en Embarazadas", "Caso probable de sífilis").length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en Embarazadas", "Caso probable en banco de sangre").length)
+  const numeroProbablesTotalSifilisEmbarazadas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis sin especificar estadío").length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis").length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable en banco de sangre").length)
 
   const numeroProbablesTotalGeneralSifilis = numeroProbablesTotalSifilis + numeroProbablesTotalSifilisCongenita + numeroProbablesTotalSifilisEmbarazadas
 
@@ -293,7 +379,7 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
 
   const numeroDescartadosTotalSifilisCongenita = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso descartado de Sífilis").length) || 0
 
-  const numeroDescartadosTotalSifilisEmbarazadas = parseInt(calcularClasificacionManualPorEvento("Sífilis en embarazadas", "Caso descartado de Sífilis").length) || 0
+  const numeroDescartadosTotalSifilisEmbarazadas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso descartado de Sífilis").length) || 0
 
   const numeroDescartadosTotalGeneralSifilis = numeroDescartadosTotalSifilis + numeroDescartadosTotalSifilisCongenita + numeroDescartadosTotalSifilisEmbarazadas
 
@@ -305,7 +391,7 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
 
   const numeroConfirmadosTotalSiflisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso de Sífilis congénita confirmada por laboratorio", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
 
-  const numeroConfirmadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en Embarazadas", "Caso confirmado de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroConfirmadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso confirmado de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
 
   const numeroConfirmadosTotalGeneralSifilisEntreFechas = numeroConfirmadosTotalSifilisEntreFechas + numeroConfirmadosTotalSiflisCongenitaEntreFechas + numeroConfirmadosTotalSifilisEmbarazadasEntreFechas
 
@@ -316,7 +402,7 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
 
   const numeroProbablesTotalSifilisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso probable de sífilis sin especificar estadío" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable de sífilis temprana" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable en banco de sangre" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
 
-  const numeroProbablesTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en embarazadas", "Caso probable de sífilis sin especificar estadío" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en Embarazadas", "Caso probable de sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en Embarazadas", "Caso probable en banco de sangre" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroProbablesTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis sin especificar estadío" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable en banco de sangre" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
 
   const numeroProbablesTotalGeneralSifilisEntreFechas = numeroProbablesTotalSifilisEntreFechas + numeroProbablesTotalSifilisCongenitaEntreFechas + numeroProbablesTotalSifilisEmbarazadasEntreFechas
 
@@ -326,21 +412,21 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroForm
 
   const numeroDescartadosTotalSifilisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso descartado de Sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
 
-  const numeroDescartadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en embarazadas", "Caso descartado de Sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+  const numeroDescartadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso descartado de Sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
 
   const numeroDescartadosTotalGeneralSifilisEntreFechas = numeroDescartadosTotalSifilisEntreFechas + numeroDescartadosTotalSifilisCongenitaEntreFechas + numeroDescartadosTotalSifilisEmbarazadasEntreFechas
 
   //-------------Departamento de carga
-  const numeroTotalGeneralSifilisMoron = calcularDptoCargaMoron("Sífilis") + calcularDptoCargaMoron("Sífilis congénita") + calcularDptoCargaMoron("Sífilis en Embarazadas")
+  const numeroTotalGeneralSifilisMoron = calcularDptoCargaMoron("Sífilis") + calcularDptoCargaMoron("Sífilis congénita") + calcularDptoCargaMoron("Sífilis en personas gestantes")
 
-  const numeroTotalGeneralSifilisNoMoron = calcularDptoCargaNoMoron("Sífilis") + calcularDptoCargaNoMoron("Sífilis congénita") + calcularDptoCargaNoMoron("Sífilis en Embarazadas")
+  const numeroTotalGeneralSifilisNoMoron = calcularDptoCargaNoMoron("Sífilis") + calcularDptoCargaNoMoron("Sífilis congénita") + calcularDptoCargaNoMoron("Sífilis en personas gestantes")
 
   const porcentajeNotificadosSifilisMoron = Math.round(numeroTotalGeneralSifilisMoron / (numeroTotalGeneralSifilisMoron + numeroTotalGeneralSifilisNoMoron) * 100) || 0
 
   //-------------Departamento de carga entre fechas
-  const numeroTotalGeneralSifilisMoronEntreFechas = calcularDptoCargaMoron("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaMoron("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaMoron("Sífilis en Embarazadas", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralSifilisMoronEntreFechas = calcularDptoCargaMoron("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaMoron("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaMoron("Sífilis en personas gestantes", fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
-  const numeroTotalGeneralSifilisNoMoronEntreFechas = calcularDptoCargaNoMoron("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaNoMoron("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaNoMoron("Sífilis en Embarazadas", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralSifilisNoMoronEntreFechas = calcularDptoCargaNoMoron("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaNoMoron("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaNoMoron("Sífilis en personas gestantes", fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
   const porcentajeNotificadosSifilisMoronEntreFechas = Math.round(numeroTotalGeneralSifilisMoronEntreFechas / (numeroTotalGeneralSifilisMoronEntreFechas + numeroTotalGeneralSifilisNoMoronEntreFechas) * 100) || 0
 
@@ -491,12 +577,13 @@ const sifilisXse = [
   const arrayTotalNotificadosHivPerinatal = calcularTotalNotificados("VIH - Expuesto perinatal");
   const arrayTotalNotificadosHivEmbarazo = calcularTotalNotificados("VIH en embarazo");
 
-  const arrayTotalGeneralNotificadosHiv = [...arrayTotalNotificadosHiv, ...arrayTotalNotificadosHivPerinatal, ...arrayTotalNotificadosHivEmbarazo]
+  let arrayTotalGeneralNotificadosHiv = [...arrayTotalNotificadosHiv, ...arrayTotalNotificadosHivPerinatal, ...arrayTotalNotificadosHivEmbarazo]
 
+arrayTotalGeneralNotificadosHiv = quitarDuplicados(arrayTotalGeneralNotificadosHiv)
   //-----------arrays totales entre fechas
-  const arrayTotalNotificadosHivEntreFechas = calcularTotalNotificados("VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const arrayTotalNotificadosHivPerinatalEntreFechas = calcularTotalNotificados("VIH - Expuesto perinatal", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const arrayTotalNotificadosHivEmbarazoEntreFechas = calcularTotalNotificados("VIH en embarazo", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const arrayTotalNotificadosHivEntreFechas = calcularTotalNotificadosEntreFechas("VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const arrayTotalNotificadosHivPerinatalEntreFechas = calcularTotalNotificadosEntreFechas("VIH - Expuesto perinatal", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const arrayTotalNotificadosHivEmbarazoEntreFechas = calcularTotalNotificadosEntreFechas("VIH en embarazo", fechaInicioFormatoNumero, fechaFinFormatoNumero);
 
   const arrayTotalGeneralNotificadosHivEntreFechas = [...arrayTotalNotificadosHivEntreFechas, ...arrayTotalNotificadosHivPerinatalEntreFechas, ...arrayTotalNotificadosHivEmbarazoEntreFechas]
 
@@ -691,10 +778,11 @@ const porcentajeNotificadosHivMoronEntreFechas = Math.round(numeroTotalGeneralHi
 
   //-------Tuberculosis----------------------------------------------------------------------
   //-----------array total
-  const arrayTotalNotificadosTuberculosis = calcularTotalNotificados("Tuberculosis");
+  let arrayTotalNotificadosTuberculosis = calcularTotalNotificados("Tuberculosis");
 
+  arrayTotalNotificadosTuberculosis = quitarDuplicados(arrayTotalNotificadosTuberculosis)
 //entre fechas
-  const arrayTotalNotificadosTuberculosisEntreFechas = calcularTotalNotificados("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  const arrayTotalNotificadosTuberculosisEntreFechas = calcularTotalNotificadosEntreFechas("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
 
   //------------valores totales
   const numeroTotalNotificadosTuberculosis = arrayTotalNotificadosTuberculosis.length;
@@ -858,9 +946,11 @@ const tuberculosisXse = [
 
   //-------------Dengue---------------------------------------------------------------------
   //-------------array total
-  const arrayTotalNotificadosDengue = calcularTotalNotificados("Dengue");
+  let arrayTotalNotificadosDengue = calcularTotalNotificados("Dengue");
+
+  arrayTotalNotificadosDengue = quitarDuplicados(arrayTotalNotificadosDengue)
 //entre fechas
-const arrayTotalNotificadosDengueEntreFechas = calcularTotalNotificados("Dengue" , fechaInicioFormatoNumero, fechaFinFormatoNumero);
+const arrayTotalNotificadosDengueEntreFechas = calcularTotalNotificadosEntreFechas("Dengue" , fechaInicioFormatoNumero, fechaFinFormatoNumero);
 
   //------------valores totales
   const numeroTotalNotificadosDengue = arrayTotalNotificadosDengue.length;
@@ -880,52 +970,72 @@ const numeroTotalNotificadosDengueEntreFechas = arrayTotalNotificadosDengueEntre
 
   //---------------clasificaciones totales
   //confirmados
-  const numeroConfirmadosTotalDengue = calcularConfirmadosDengue()
+  let arrayConfirmadosTotalDengue = calcularConfirmadosDengue()
 
+  arrayConfirmadosTotalDengue = quitarDuplicados(arrayConfirmadosTotalDengue)
+
+  let numeroConfirmadosTotalDengue = arrayConfirmadosTotalDengue.length || 0
   //probables
-  const numeroProbablesTotalDengue = parseInt(calcularClasificacionManualPorEvento("Dengue", "Caso probable").length) || 0
-
+  let arrayProbablesTotalDengue = calcularClasificacionManualPorEvento("Dengue", "Caso probable")
+  arrayProbablesTotalDengue = quitarDuplicados(arrayProbablesTotalDengue)
+  let numeroProbablesTotalDengue = arrayProbablesTotalDengue.length || 0;
   //descartados
-  const numeroDescartadosTotalDengue = calcularDescartadosDengue()
+  let arrayDescartadosTotalDengue = calcularDescartadosDengue()
+  arrayDescartadosTotalDengue = quitarDuplicados(arrayDescartadosTotalDengue)
+  let numeroDescartadosTotalDengue = arrayDescartadosTotalDengue.length || 0
 
   //sospechosos
-  const numeroSospechososTotalDengue = calcularSospechososDengue()
+  let arraySospechososTotalDengue = calcularSospechososDengue()
+  arraySospechososTotalDengue = quitarDuplicados(arraySospechososTotalDengue)
+  let numeroSospechososTotalDengue = arraySospechososTotalDengue.length || 0
 
 //entre fechas
 //confirmados
-const numeroConfirmadosTotalDengueEntreFechas = calcularConfirmadosDengue(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+const numeroConfirmadosTotalDengueEntreFechas = calcularConfirmadosDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
 //probables
-const numeroProbablesTotalDengueEntreFechas = parseInt(calcularClasificacionManualPorEvento("Dengue", "Caso probable", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+const numeroProbablesTotalDengueEntreFechas = parseInt(calcularClasificacionManualPorEventoEntreFechas("Dengue", "Caso probable", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
 
 //descartados
-const numeroDescartadosTotalDengueEntreFechas = calcularDescartadosDengue(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+const numeroDescartadosTotalDengueEntreFechas = calcularDescartadosDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
 //sospechosos
-const numeroSospechososTotalDengueEntreFechas = calcularSospechososDengue(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+const numeroSospechososTotalDengueEntreFechas = calcularSospechososDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
 
   //embarazadas
-  const numeroEmbarazadasNotificadoTotalDengue = calcularEventoEnEmbarazo("Dengue")
-  const numeroEmbarazadasConfirmadasDengue = calcularConfirmadosEmbarazoDengue()
-  const numeroEmbarazadasDescartadasDengue = calcularDescartadosEmbarazoDengue()
+  let arrayEmbarazadasNotificadoTotalDengue = calcularEventoEnEmbarazo("Dengue");
+  arrayEmbarazadasNotificadoTotalDengue = quitarDuplicados(arrayEmbarazadasNotificadoTotalDengue)
+let numeroEmbarazadasNotificadoTotalDengue = arrayEmbarazadasNotificadoTotalDengue.length || 0;
+
+  let arrayEmbarazadasConfirmadasDengue = calcularConfirmadosEmbarazoDengue();
+  arrayEmbarazadasConfirmadasDengue = quitarDuplicados(arrayEmbarazadasConfirmadasDengue)
+let numeroEmbarazadasConfirmadasDengue = arrayEmbarazadasConfirmadasDengue.length || 0;
+
+  let arrayEmbarazadasDescartadasDengue = calcularDescartadosEmbarazoDengue()
+  arrayEmbarazadasDescartadasDengue = quitarDuplicados(arrayEmbarazadasDescartadasDengue)
+  let numeroEmbarazadasDescartadasDengue = arrayEmbarazadasDescartadasDengue.length || 0;
 
   //embarazadas entre fechas
-  const numeroEmbarazadasNotificadoTotalDengueEntreFechas = calcularEventoEnEmbarazo("Dengue",fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroEmbarazadasConfirmadasDengueEntreFechas = calcularConfirmadosEmbarazoDengue(fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroEmbarazadasDescartadasDengueEntreFechas = calcularDescartadosEmbarazoDengue(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroEmbarazadasNotificadoTotalDengueEntreFechas = calcularEventoEnEmbarazoEntreFechas("Dengue",fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroEmbarazadasConfirmadasDengueEntreFechas = calcularConfirmadosEmbarazoDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroEmbarazadasDescartadasDengueEntreFechas = calcularDescartadosEmbarazoDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
   //-------------Departamento de carga
-  const numeroTotalGeneralDengueMoron = calcularDptoCargaMoron("Dengue")
+  let arrayTotalGeneralDengueMoron = calcularDptoCargaMoron("Dengue")
+  arrayTotalGeneralDengueMoron = quitarDuplicados(arrayTotalGeneralDengueMoron)
+  let numeroTotalGeneralDengueMoron = arrayTotalGeneralDengueMoron.length || 0;
 
-  const numeroTotalGeneralDengueNoMoron = calcularDptoCargaNoMoron("Dengue")
+  let arrayTotalGeneralDengueNoMoron = calcularDptoCargaNoMoron("Dengue");
+  arrayTotalGeneralDengueNoMoron = quitarDuplicados(arrayTotalGeneralDengueNoMoron)
+  let numeroTotalGeneralDengueNoMoron = arrayTotalGeneralDengueNoMoron.length || 0 ;
 
   const porcentajeNotificadosDengueMoron = Math.round(numeroTotalGeneralDengueMoron / (numeroTotalGeneralDengueNoMoron + numeroTotalGeneralDengueMoron) * 100) || 0
 
   //-------------Departamento de carga entre fechas
-  const numeroTotalGeneralDengueMoronEntreFechas = calcularDptoCargaMoron("Dengue", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralDengueMoronEntreFechas = calcularDptoCargaMoronEntreFechas("Dengue", fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
-  const numeroTotalGeneralDengueNoMoronEntreFechas = calcularDptoCargaNoMoron("Dengue", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralDengueNoMoronEntreFechas = calcularDptoCargaNoMoronEntreFechas("Dengue", fechaInicioFormatoNumero, fechaFinFormatoNumero)
 
   const porcentajeNotificadosDengueMoronEntreFechas = Math.round(numeroTotalGeneralDengueMoronEntreFechas / (numeroTotalGeneralDengueNoMoronEntreFechas + numeroTotalGeneralDengueMoronEntreFechas) * 100) || 0
 
@@ -1017,7 +1127,7 @@ const dengueXse = [
 
 //------------------Todas las ENOs---------------------------------------
 
-const x = ["Accidente potencialmente rábico (APR)", "Alacranismo", "Brucelosis", "Caso sospechoso de intoxicación por consumo de cocaína contaminada", "Celiaquía", "Chagas agudo congénito", "Chagas crónico", "Chagas en embarazadas", "Coqueluche", "Dengue", "Diarrea aguda", "Encefalitis de San Luis", "Enfermedad Febril Exantemática-EFE (Sarampión/Rubéola)", "Enfermedad Pie-Mano-Boca", "Estudio de SARS-COV-2 en situaciones especiales", "Fiebre del Nilo Occidental", "Gonorrea", "Hantavirosis", "Hepatitis B", "Hepatitis C", "Hepatitis E", "Hidatidosis", "HTLV", "Infección respiratoria aguda viral sin especificar", "Intoxicación con otros tóxicos", "Intoxicación/Exposición a Mercurio", "Intoxicación/Exposición por Monóxido de Carbono", "IRAG", "Leptospirosis", "Meningoencefalitis", "Otras infecciones invasivas (bacterianas y otras)", "Poliomielitis-Parálisis flácida aguda en menores de 15 años", "SARS-COV-2 en puntos de entrada y casos relacionados con importación", "Sífilis", "Sífilis congénita", "Sífilis en Embarazadas", "Sindrome inflamatorio multisistémico (SIM)", "Streptococcus agalactiae grupo B en embarazadas", "SUH - Sindrome Urémico Hemolítico", "Toxoplasmosis congénita", "Toxoplasmosis en embarazadas", "Tuberculosis", "Vigilancia genómica de SARS-CoV-2", "VIH", "VIH - Expuesto perinatal", "VIH en embarazo", "Viruela símica", ]
+const x = ["Accidente potencialmente rábico (APR)", "Alacranismo", "Brucelosis", "Caso sospechoso de intoxicación por consumo de cocaína contaminada", "Celiaquía", "Chagas agudo congénito", "Chagas crónico", "Chagas en embarazadas", "Coqueluche", "Dengue", "Diarrea aguda", "Encefalitis de San Luis", "Enfermedad Febril Exantemática-EFE (Sarampión/Rubéola)", "Enfermedad Pie-Mano-Boca", "Estudio de SARS-COV-2 en situaciones especiales", "Fiebre del Nilo Occidental", "Gonorrea", "Hantavirosis", "Hepatitis B", "Hepatitis C", "Hepatitis E", "Hidatidosis", "HTLV", "Infección respiratoria aguda viral sin especificar", "Intoxicación con otros tóxicos", "Intoxicación/Exposición a Mercurio", "Intoxicación/Exposición por Monóxido de Carbono", "IRAG", "Leptospirosis", "Meningoencefalitis", "Otras infecciones invasivas (bacterianas y otras)", "Poliomielitis-Parálisis flácida aguda en menores de 15 años", "SARS-COV-2 en puntos de entrada y casos relacionados con importación", "Sífilis", "Sífilis congénita", "Sífilis en personas gestantes", "Sindrome inflamatorio multisistémico (SIM)", "Streptococcus agalactiae grupo B en embarazadas", "SUH - Sindrome Urémico Hemolítico", "Toxoplasmosis congénita", "Toxoplasmosis en embarazadas", "Tuberculosis", "Vigilancia genómica de SARS-CoV-2", "VIH", "VIH - Expuesto perinatal", "VIH en embarazo", "Viruela símica", ]
 
 const notificadosEno1 = [
   calcularNumeroTotalNotificados("Accidente potencialmente rábico (APR)"),
@@ -1059,7 +1169,7 @@ const notificadosEno2 = [
  // calcularNumeroTotalNotificados("SARS-COV-2 en puntos de entrada y casos relacionados con importación"),
   //("Sífilis"),
   //calcularNumeroTotalNotificados("Sífilis congénita"),
-  //calcularNumeroTotalNotificados("Sífilis en Embarazadas"),
+  //calcularNumeroTotalNotificados("Sífilis en personas gestantes"),
   calcularNumeroTotalNotificados("Sindrome inflamatorio multisistémico (SIM)"),
   calcularNumeroTotalNotificados("Streptococcus agalactiae grupo B en embarazadas"),
   calcularNumeroTotalNotificados("SUH - Sindrome Urémico Hemolítico"),

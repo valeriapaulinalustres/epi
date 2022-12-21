@@ -1,0 +1,11 @@
+16/12: 
+
+La función de duplicados funciona genial.
+
+Se separaron las funciones de obtener array totales, una general otra por fechas, porque la de fechas aún NO FUNCIONA, no se encuentra el error.
+
+En las 4 enfermedades se corrigieron los arrays generales de notificados, y se ven bien en pantalla. 
+En sífilis además se probó y agregó la función de quitar duplicados. Va re bien. Se visualiza bien en pantalla.
+Hay que ponerla en las otras 3 enfermedades. 
+
+DENGUE ya está todo hecho, funcionando y checkeado
