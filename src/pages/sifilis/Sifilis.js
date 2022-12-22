@@ -27,17 +27,8 @@ function Sifilis() {
     numeroTotalNotificadosSifilisCongenita,
     numeroTotalNotificadosSifilisEmbarazadas,
     numeroConfirmadosTotalGeneralSifilis,
-    numeroConfirmadosTotalSiflisCongenita,
-    numeroConfirmadosTotalSifilisEmbarazadas,
-    numeroConfirmadosTotalSifilis,
     numeroProbablesTotalGeneralSifilis,
-    numeroProbablesTotalSifilis,
-    numeroProbablesTotalSifilisCongenita,
-    numeroProbablesTotalSifilisEmbarazadas,
     numeroDescartadosTotalGeneralSifilis,
-    numeroDescartadosTotalSifilis,
-    numeroDescartadosTotalSifilisCongenita,
-    numeroDescartadosTotalSifilisEmbarazadas,
     numeroTotalGeneralSifilisNoMoron,
     numeroTotalGeneralSifilisMoron,
     porcentajeNotificadosSifilisMoron,
@@ -173,22 +164,7 @@ function Sifilis() {
 
   //--------ALERTS----------------
 
-  function detallarConfirmadosSifilis() {
-    Toast.fire({
-      title: `Confirmados en gestantes: ${numeroConfirmadosTotalSifilisEmbarazadas}, \n 
-    Confirmados congénitos: ${numeroConfirmadosTotalSiflisCongenita}, \n
-    Confirmados restantes: ${numeroConfirmadosTotalSifilis}`
-    })
-  }
-
-  function detallarProbablesSifilis() {
-    Toast.fire({
-      title: `Probables en gestantes: ${numeroProbablesTotalSifilisEmbarazadas}, \n 
-    Probables en congénitos: ${numeroProbablesTotalSifilisCongenita}, \n
-    Probables en restantes: ${numeroProbablesTotalSifilis}`
-    })
-  }
-
+/*
   function detallarDescartadosSifilis() {
     Toast.fire({
       title: `Descartados en gestantes: ${numeroDescartadosTotalSifilisEmbarazadas}, \n 
@@ -197,7 +173,7 @@ function Sifilis() {
     })
   }
 
-
+*/
   return (
     <div className='page-container'>
       <h2>Sífilis</h2>
@@ -338,19 +314,19 @@ function Sifilis() {
                 {numeroTotalGeneralNotificadosSifilis}
               </p>
             </div>
-            <div className='recuadro salmon' onClick={detallarConfirmadosSifilis}>
+            <div className='recuadro salmon'>
               Confirmados:
               <p className='totalNumber'>
                 {numeroConfirmadosTotalGeneralSifilis}
               </p>
             </div>
-            <div className='recuadro rosa' onClick={detallarProbablesSifilis}>
+            <div className='recuadro rosa'>
               Probables:
               <p className='totalNumber'>
                 {numeroProbablesTotalGeneralSifilis}
               </p>
             </div>
-            <div className='recuadro lila' onClick={detallarDescartadosSifilis}>
+            <div className='recuadro lila'>
               Descartados:
               <p className='totalNumber'>
                 {numeroDescartadosTotalGeneralSifilis}
