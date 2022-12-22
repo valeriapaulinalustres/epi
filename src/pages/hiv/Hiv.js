@@ -26,17 +26,8 @@ function Hiv() {
     numeroTotalNotificadosHivPerinatal,
     numeroTotalNotificadosHivEmbarazo,
     numeroConfirmadosTotalGeneralHiv,
-    numeroConfirmadosTotalHiv,
-    numeroConfirmadosTotalHivEmbarazo,
-    numeroConfirmadosTotalHivPerinatal,
     numeroProbablesTotalGeneralHiv,
-    numeroProbablesTotalHivEmbarazo,
-    numeroProbablesTotalHivPerinatal,
-    numeroProbablesTotalHiv,
     numeroDescartadosTotalGeneralHiv,
-    numeroDescartadosTotalHiv,
-    numeroDescartadosTotalHivPerinatal,
-    numeroDescartadosTotalHivEmbarazadas,
     porcentajeNotificadosHivMoron,
     numeroTotalGeneralHivNoMoron,
     numeroTotalGeneralHivMoron,
@@ -142,32 +133,6 @@ function Hiv() {
 
    const notificadosHivEstablecimientoCargaEntreFechas = [numeroTotalGeneralHivMoronEntreFechas, numeroTotalGeneralHivNoMoronEntreFechas]
    const titleEstablecimientoHivEntreFechas = `Casos notificados según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
-
-  //----------ALERTS-----------------------
-
-  function detallarConfirmadosHiv() {
-    Toast.fire({
-      title: `Confirmados en gestantes: ${numeroConfirmadosTotalHivEmbarazo}, \n 
-      Confirmados perinatal: ${numeroConfirmadosTotalHivPerinatal}, \n
-      Confirmados restantes: ${numeroConfirmadosTotalHiv}`
-    })
-  }
-
-  function detallarProbablesHiv() {
-    Toast.fire({
-      title: `Probables en gestantes: ${numeroProbablesTotalHivEmbarazo}, \n 
-      Probables perinatal: ${numeroProbablesTotalHivPerinatal}, \n
-      Probables restantes: ${numeroProbablesTotalHiv}`
-    })
-  }
-
-  function detallarDescartadosHiv() {
-    Toast.fire({
-      title: `Descartados en gestantes: ${numeroDescartadosTotalHivEmbarazadas}, \n 
-      Descartados perinatal: ${numeroDescartadosTotalHivPerinatal}, \n
-      Descartados restantes: ${numeroDescartadosTotalHiv}`
-    })
-  }
 
 
   return (
@@ -290,33 +255,33 @@ function Hiv() {
                 {numeroTotalGeneralNotificadosHiv}
               </p>
             </div>
-            <div className='recuadro salmon' onClick={detallarConfirmadosHiv}>
+            <div className='recuadro salmon'>
               Confirmados:
               <p className='totalNumber'>
                 {numeroConfirmadosTotalGeneralHiv}
               </p>
             </div>
-            <div className='recuadro rosa' onClick={detallarProbablesHiv}>
+            <div className='recuadro rosa' >
               Probables:
               <p className='totalNumber'>
                 {numeroProbablesTotalGeneralHiv}
               </p>
             </div>
-            <div className='recuadro lila' onClick={detallarDescartadosHiv}>
+            <div className='recuadro lila'>
               Descartados:
               <p className='totalNumber'>
                 {numeroDescartadosTotalGeneralHiv}
               </p>
             </div>
-            <div className='recuadro salmon'>
-              Gestantes:<p className='totalNumber'>
-                {numeroTotalNotificadosHivEmbarazo}
-              </p>
-            </div>
             <div className='recuadro rosa'>
-              Congénitos:
+              Expuesto perinatal:
               <p className='totalNumber'>
                 {numeroTotalNotificadosHivPerinatal}
+              </p>
+            </div>
+            <div className='recuadro salmon'>
+              Gestantes del total:<p className='totalNumber'>
+                {numeroTotalNotificadosHivEmbarazo}
               </p>
             </div>
             <div className='recuadro lila'>
