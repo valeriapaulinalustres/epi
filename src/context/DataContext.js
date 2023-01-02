@@ -1289,7 +1289,7 @@ const etiXse = [
   calcularNotificadosXSEClinica(arrayTotalNotificadosETI,53),
 ]
 
-
+console.log(baseCompleta);
 
 
 

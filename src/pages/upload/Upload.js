@@ -10,6 +10,7 @@ import Loading from '../../components/Loading/Loading';
 
 
 import excelFile from './moron.csv';
+import excelFile2023 from './moron2023.csv';
 import excelFileClinica from './clinica.csv';
 import * as xlsx from 'xlsx';
 
@@ -118,7 +119,34 @@ function loadLocalFile() {
       setSpinnerHome(false)
       setAnioBaseActual(2022)
   };
-  request.send()  
+  request.send()
+  
+  //load moron2023.csv file ***********************************
+  let json2023;
+
+  // get file from the imported url
+  let request2023 = new XMLHttpRequest();
+  request2023.open('GET', excelFile, true);
+  request2023.responseType = "arraybuffer";
+  request2023.onload = function() {
+  
+      /* convert data to binary string */
+      let data2023 = new Uint8Array(request2023.response);
+      let arr2023 = new Array();
+      for (var i = 0; i != data2023.length; ++i) arr2023[i] = String.fromCharCode(data2023[i]);
+      data2023 = arr2023.join("");
+  
+      //using xlsx library convert file to json
+      const workbook = xlsx.read(data2023, { type: "binary" })
+      const sheetName = workbook.SheetNames[0]
+      const worksheet = workbook.Sheets[sheetName]
+       json2023 = xlsx.utils.sheet_to_json(worksheet)
+      //console.log(json)
+      setBaseCompleta(json2023)
+      setSpinnerHome(false)
+      setAnioBaseActual(2023)
+  };
+  request2023.send()
 
   
 //load clinica.csv file ***********************************
@@ -152,8 +180,88 @@ function loadLocalFile() {
 
 
 
+  
+
+
 //*************************************
 }
+
+
+
+
+
+
+
+
+
+function loadLocalFile2023() {
+  setSpinnerHome(true);
+  setSpinnerHomeClinica(true);
+
+  //load moron2023.csv file ***********************************
+  let json2023;
+
+  // get file from the imported url
+  let request2023 = new XMLHttpRequest();
+  request2023.open('GET', excelFile2023, true);
+  request2023.responseType = "arraybuffer";
+  request2023.onload = function() {
+  
+      /* convert data to binary string */
+      let data2023 = new Uint8Array(request2023.response);
+      let arr2023 = new Array();
+      for (var i = 0; i != data2023.length; ++i) arr2023[i] = String.fromCharCode(data2023[i]);
+      data2023 = arr2023.join("");
+  
+      //using xlsx library convert file to json
+      const workbook = xlsx.read(data2023, { type: "binary" })
+      const sheetName = workbook.SheetNames[0]
+      const worksheet = workbook.Sheets[sheetName]
+       json2023 = xlsx.utils.sheet_to_json(worksheet)
+      //console.log(json)
+      setBaseCompleta(json2023)
+      setSpinnerHome(false)
+      setAnioBaseActual(2023)
+  };
+  request2023.send()
+
+  
+// //load clinica.csv file ***********************************
+
+//   let jsonClinica;
+
+//   // get file from the imported url
+//   let requestClinica = new XMLHttpRequest();
+//   requestClinica.open('GET', excelFileClinica , true);
+//   requestClinica.responseType = "arraybuffer";
+//   requestClinica.onload = function() {
+  
+  
+      
+    
+//       let dataClinica = new Uint8Array(requestClinica.response);
+//       let arrClinica = new Array();
+//       for (var i = 0; i != dataClinica.length; ++i) arrClinica[i] = String.fromCharCode(dataClinica[i]);
+//       dataClinica = arrClinica.join("");
+  
+//       //using xlsx library convert file to json
+//       const workbookClinica = xlsx.read(dataClinica, { type: "binary" })
+//       const sheetNameClinica = workbookClinica.SheetNames[0]
+//       const worksheetClinica = workbookClinica.Sheets[sheetNameClinica]
+//        jsonClinica = xlsx.utils.sheet_to_json(worksheetClinica)
+//       //console.log(jsonClinica)
+//       setBaseCompletaClinica(jsonClinica)
+//       setSpinnerHomeClinica(false)
+//   };
+//   requestClinica.send()  
+
+}
+
+
+
+
+
+
 
   return (
     <div className="upload-container">
@@ -161,6 +269,7 @@ function loadLocalFile() {
         Carga de archivos excel descargados desde la base de datos de SISA
       </h2>
       <button onClick={loadLocalFile} className= "buttonActive">Cargar archivo local 2022</button>
+      <button onClick={loadLocalFile2023} className= "buttonActive">Cargar archivo local 2023, ARCHIVO DE PRUEBA, DATOS NO REALES</button>
       {spinnerHomeClinica && <Loading />}
       {spinnerHome && <Loading />}
       
@@ -179,8 +288,12 @@ function loadLocalFile() {
            // console.log(spinner)
           }}
         />
+      
 
       </div>
+
+  
+
       {baseCompleta.length != 0 ? (
         <p>Archivo cargado</p>
       ) : (
