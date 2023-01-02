@@ -17,6 +17,7 @@ function Dengue() {
   //destructuring from context
   const {
     anioActual,
+    anioBaseActual,
     se,
     semanas,
     calendar,
@@ -172,7 +173,7 @@ const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue segú
           className={ultimoMesDengue ? "button" : "buttonActive"}
           onClick={() => setUltimoMesDengue(false)}
         >
-          Acumulado {anioActual}
+          Acumulado {anioBaseActual}
         </button>
         <button
           className={ultimoMesDengue ? "buttonActive" : "button"}
@@ -186,6 +187,7 @@ const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue segú
 
         ?
         <div className='totalesGraphs-container'>
+          <h2>PÁGINA EN REPARACIÓN</h2>
           {
             calendar.dateFrom
               ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>

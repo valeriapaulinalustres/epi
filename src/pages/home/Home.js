@@ -24,6 +24,7 @@ function Home() {
     se,
     semanas,
     anioActual,
+    anioBaseActual,
     calendar,
     numeroTotalGeneralNotificadosSifilis,
     numeroTotalGeneralNotificadosHiv,
@@ -152,7 +153,13 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
     <div className='home-container'>
 
       <h2>Vigilancia de Enfermedades de Notificación Obligatoria</h2>
-      <h3>{anioActual}</h3>
+      
+      
+  {anioBaseActual
+      && <h3>Datos del año {anioBaseActual}</h3>
+    }
+    
+      
       <div className='home-text-container'>
         <p>
           La LEY N° 15.465 en su Artículo N°1 declara obligatoria, en todo el territorio de la Nación, la notificación de los casos de enfermedades infecciosas comprendidas en el Artículo 2 de la mencionada Ley. 
@@ -174,7 +181,7 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
           className={ultimoMesHome ? "button" : "buttonActive"}
           onClick={() => setUltimoMesHome(false)}
         >
-          Acumulado {anioActual}
+          Acumulado {anioBaseActual}
         </button>
         <button
           className={ultimoMesHome ? "buttonActive" : "button"}
@@ -379,3 +386,4 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
 }
 
 export default Home
+

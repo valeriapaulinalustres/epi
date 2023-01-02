@@ -16,6 +16,7 @@ function Hiv() {
   //destructuring from context
   const {
     anioActual,
+    anioBaseActual,
     se,
     semanas,
     calendar,
@@ -143,7 +144,7 @@ function Hiv() {
           className={ultimoMesHiv ? "button" : "buttonActive"}
           onClick={() => setUltimoMesHiv(false)}
         >
-          Acumulado {anioActual}
+          Acumulado {anioBaseActual}
         </button>
         <button
           className={ultimoMesHiv ? "buttonActive" : "button"}
@@ -157,6 +158,7 @@ function Hiv() {
 
         ?
         <div className='totalesGraphs-container'>
+          <h2>PÁGINA EN REPARACIÓN</h2>
            {
             calendar.dateFrom
               ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>

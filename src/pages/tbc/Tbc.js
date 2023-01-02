@@ -17,6 +17,7 @@ function Tbc() {
 
   const {
     anioActual,
+    anioBaseActual,
     se,
     calendar,
     semanas,
@@ -175,7 +176,7 @@ function handleEmbarazadasTbcEntreFechas (){
           className={ultimoMesTbc ? "button" : "buttonActive"}
           onClick={() => setUltimoMesTbc(false)}
         >
-          Acumulado {anioActual}
+          Acumulado {anioBaseActual}
         </button>
         <button
           className={ultimoMesTbc ? "buttonActive" : "button"}
@@ -190,6 +191,7 @@ function handleEmbarazadasTbcEntreFechas (){
       {ultimoMesTbc
         ?
         <div className='totalesGraphs-container'>
+          <h2>PÁGINA EN REPARACIÓN</h2>
           {
             calendar.dateFrom
               ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
@@ -204,37 +206,37 @@ function handleEmbarazadasTbcEntreFechas (){
             <div className='recuadro naranja'>
               Total entre fechas:
               <p className='totalNumber'>
-                {numeroTotalNotificadosTuberculosisEntreFechas}
+                {}
               </p>
             </div>
             <div className='recuadro salmon'>
               Confirmados:
               <p className='totalNumber'>
-                { numeroConfirmadosTotalTuberculosisEntreFechas}
+                { }
               </p>
             </div>
             <div className='recuadro rosa'>
               Descartados:
               <p className='totalNumber'>
-                {numeroDescartadosTotalTuberculosisEntreFechas }
+                { }
               </p>
             </div>
             <div className='recuadro lila'>
               En estudio:
               <p className='totalNumber'>
-                {numeroEnEstudioTotalTuberculosisEntreFechas }
+                { }
               </p>
             </div>
             <div className='recuadro salmon' onClick={handleEmbarazadasTbcEntreFechas}>
               Gestantes:
               <p className='totalNumber'>
-                {numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas }
+                { }
               </p>
             </div>
             <div className='recuadro rosa'>
               Notificados por Morón:
               <p className='totalNumber'>
-                {porcentajeNotificadosTuberculosisMoronEntreFechas }%
+                { }%
               </p>
             </div>
           </div>

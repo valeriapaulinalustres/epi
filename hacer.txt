@@ -8,4 +8,12 @@ En las 4 enfermedades se corrigieron los arrays generales de notificados, y se v
 En sífilis además se probó y agregó la función de quitar duplicados. Va re bien. Se visualiza bien en pantalla.
 Hay que ponerla en las otras 3 enfermedades. 
 
-DENGUE, TBC y HIV ya está todo hecho, funcionando y checkeado
+DENGUE, TBC, HIV y Sífilis ya está todo hecho, funcionando y checkeado.
+
+Falta:
+
+-Corregir "entre fechas".
+-Sacar del excel una variable que capture el año vigente y llevarla a toda la app.
+-Crear un nuevo botón para cargar año 2023.
+-Separar las fórmulas en otro archivo que se pueda importar al context.
+-Ordenar el código.

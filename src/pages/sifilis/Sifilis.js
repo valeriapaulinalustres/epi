@@ -17,6 +17,7 @@ function Sifilis() {
   //destructuring from context
   const {
     anioActual,
+    anioBaseActual,
     se,
     semanas,
     calendar, 
@@ -182,7 +183,7 @@ function Sifilis() {
           className={ultimoMesSifilis ? "button" : "buttonActive"}
           onClick={() => setUltimoMesSifilis(false)}
         >
-          Acumulado {anioActual}
+          Acumulado {anioBaseActual}
         </button>
         <button
           className={ultimoMesSifilis ? "buttonActive" : "button"}
@@ -197,6 +198,7 @@ function Sifilis() {
 
         ?
         <div className='totalesGraphs-container'>
+          <h2>PÁGINA EN REPARACIÓN</h2>
            {
             calendar.dateFrom
               ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>

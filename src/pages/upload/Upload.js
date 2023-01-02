@@ -19,7 +19,8 @@ function Upload() {
   const [spinnerHome, setSpinnerHome] = useState(false)
   const [spinnerHomeClinica, setSpinnerHomeClinica] = useState(false)
 
-  const { setBaseCompleta, baseCompleta, setCalendar,   setBaseCompletaClinica, } =
+
+  const { setBaseCompleta, baseCompleta, setCalendar,   setBaseCompletaClinica, setAnioBaseActual} =
     useContext(DataContext);
 
   const navigate = useNavigate();
@@ -115,6 +116,7 @@ function loadLocalFile() {
       //console.log(json)
       setBaseCompleta(json)
       setSpinnerHome(false)
+      setAnioBaseActual(2022)
   };
   request.send()  
 
@@ -158,9 +160,11 @@ function loadLocalFile() {
       <h2>
         Carga de archivos excel descargados desde la base de datos de SISA
       </h2>
-      <button onClick={loadLocalFile} className= "buttonActive">Cargar archivo local</button>
+      <button onClick={loadLocalFile} className= "buttonActive">Cargar archivo local 2022</button>
       {spinnerHomeClinica && <Loading />}
       {spinnerHome && <Loading />}
+      
+
       <div className="file-select" id="src-file1">
        
       <input
