@@ -22,3 +22,4 @@ function quitarDuplicados(arr) {
     }
     console.log(sinDuplicados);
 }
+

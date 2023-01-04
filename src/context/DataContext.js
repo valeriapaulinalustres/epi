@@ -9,6 +9,7 @@ const DataProvider = ({ children }) => {
 
   const [baseCompleta, setBaseCompleta] = useState([]);
 const [calendar, setCalendar] = useState({});
+const [weeksCalendar, setWeeksCalendar] = useState({});
 const [baseCompletaClinica, setBaseCompletaClinica] = useState([]);
 const [anioBaseActual, setAnioBaseActual] = useState()
 
@@ -73,13 +74,13 @@ function calcularTotalNotificadosX() {
 const a = calcularTotalNotificadosX()
 //console.log(a);
 
+console.log(weeksCalendar);
 
   //==================================================
   //----------FÓRMULAS----------------------------
   //==================================================
 
   //-------TOTALES
-
   function calcularTotalNotificados(enfermedad) {
     return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" )
   }
@@ -346,12 +347,15 @@ let ab = [...a, ...b]
  arrayTotalGeneralNotificadosSifilis = quitarDuplicados(arrayTotalGeneralNotificadosSifilis)  
 
   //-----------arrays totales entre fechas
-  const arrayTotalNotificadosSifilisEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const arrayTotalNotificadosSifilisCongenitaEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const arrayTotalNotificadosSifilisEmbarazadasEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis en personas gestantes", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  let arrayTotalNotificadosSifilisEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  arrayTotalNotificadosSifilisEntreFechas = quitarDuplicados(arrayTotalNotificadosSifilisEntreFechas)
+  let arrayTotalNotificadosSifilisCongenitaEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  arrayTotalNotificadosSifilisCongenitaEntreFechas = quitarDuplicados(arrayTotalNotificadosSifilisCongenitaEntreFechas)
+  let arrayTotalNotificadosSifilisEmbarazadasEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis en personas gestantes", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  arrayTotalNotificadosSifilisEmbarazadasEntreFechas = quitarDuplicados(arrayTotalNotificadosSifilisEmbarazadasEntreFechas)
 
-  const arrayTotalGeneralNotificadosSifilisEntreFechas = [...arrayTotalNotificadosSifilisEntreFechas, ...arrayTotalNotificadosSifilisCongenitaEntreFechas, ...arrayTotalNotificadosSifilisEmbarazadasEntreFechas];
-
+  let arrayTotalGeneralNotificadosSifilisEntreFechas = [...arrayTotalNotificadosSifilisEntreFechas, ...arrayTotalNotificadosSifilisCongenitaEntreFechas, ...arrayTotalNotificadosSifilisEmbarazadasEntreFechas];
+  arrayTotalGeneralNotificadosSifilisEntreFechas = quitarDuplicados(arrayTotalGeneralNotificadosSifilisEntreFechas)
   //-------valores totales
   const numeroTotalNotificadosSifilis = arrayTotalNotificadosSifilis.length || 0;
   const numeroTotalNotificadosSifilisCongenita = arrayTotalNotificadosSifilisCongenita.length || 0;
@@ -361,11 +365,11 @@ let ab = [...a, ...b]
 
 
   //-------valores totales entre fechas
-  const numeroTotalNotificadosSifilisEntreFechas = arrayTotalNotificadosSifilisEntreFechas.length;
-  const numeroTotalNotificadosSifilisCongenitaEntreFechas = arrayTotalNotificadosSifilisCongenitaEntreFechas.length;
-  const numeroTotalNotificadosSifilisEmbarazadasEntreFechas = arrayTotalNotificadosSifilisEmbarazadasEntreFechas.length;
+  const numeroTotalNotificadosSifilisEntreFechas = arrayTotalNotificadosSifilisEntreFechas.length || 0;
+  const numeroTotalNotificadosSifilisCongenitaEntreFechas = arrayTotalNotificadosSifilisCongenitaEntreFechas.length || 0;
+  const numeroTotalNotificadosSifilisEmbarazadasEntreFechas = arrayTotalNotificadosSifilisEmbarazadasEntreFechas.length || 0;
 
-  const numeroTotalGeneralNotificadosSifilisEntreFechas = arrayTotalGeneralNotificadosSifilisEntreFechas.length;
+  const numeroTotalGeneralNotificadosSifilisEntreFechas = arrayTotalGeneralNotificadosSifilisEntreFechas.length || 0;
 
   //---------por sexo
   const numeroTotalGeneralNotificadosSifilisFemenino = calcularPorSexo(arrayTotalGeneralNotificadosSifilis, "F")
@@ -1289,14 +1293,10 @@ const etiXse = [
   calcularNotificadosXSEClinica(arrayTotalNotificadosETI,53),
 ]
 
-console.log(baseCompleta);
 
 
 
-
-
-
-  const data = {  anioBaseActual, setAnioBaseActual, anioActual, se, calendar, semanas, baseCompleta, setBaseCompleta, setBaseCompletaClinica, baseCompletaClinica, calendar, setCalendar, notificadosEno1, notificadosEno2, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalGeneralHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad, tuberculosisXse, dengueXse, hivXse, sifilisXse, numeroTotalNotificadosTuberculosisEntreFechas, numeroTotalNotificadosTuberculosisFemeninoEntreFechas, numeroTotalNotificadosTuberculosisMasculinoEntreFechas, numeroTotalNotificadosTuberculosisSdEntreFechas, numeroConfirmadosTotalTuberculosisEntreFechas, numeroDescartadosTotalTuberculosisEntreFechas, 
+  const data = {  anioBaseActual, setAnioBaseActual, anioActual, se, calendar, semanas, weeksCalendar, setWeeksCalendar, baseCompleta, setBaseCompleta, setBaseCompletaClinica, baseCompletaClinica, calendar, setCalendar, notificadosEno1, notificadosEno2, numeroTotalGeneralNotificadosSifilis, numeroTotalGeneralNotificadosHiv, numeroTotalNotificadosTuberculosis, numeroTotalNotificadosDengue, numeroTotalGeneralNotificadosSifilisFemenino, numeroTotalGeneralNotificadosSifilisMasculino, numeroTotalGeneralNotificadosSifilisSd, numeroTotalNotificadosSifilisCongenita, numeroTotalNotificadosSifilisEmbarazadas, numeroTotalGeneralNotificadosHivFemenino, numeroTotalGeneralNotificadosHivMasculino, numeroTotalGeneralNotificadosHivSd, numeroTotalNotificadosHivPerinatal, numeroTotalNotificadosHivEmbarazo, numeroTotalNotificadosTuberculosisFemenino, numeroTotalNotificadosTuberculosisMasculino, numeroTotalNotificadosTuberculosisSd, numeroTotalNotificadosDengueFemenino, numeroTotalNotificadosDengueMasculino, numeroTotalNotificadosDengueSd, numeroConfirmadosTotalGeneralSifilis, numeroConfirmadosTotalGeneralHiv, numeroConfirmadosTotalTuberculosis, numeroConfirmadosTotalDengue, numeroProbablesTotalGeneralSifilis, numeroProbablesTotalGeneralHiv, numeroProbablesTotalDengue, numeroDescartadosTotalGeneralSifilis, numeroDescartadosTotalGeneralHiv, numeroDescartadosTotalTuberculosis, numeroDescartadosTotalDengue, numeroEmbarazadasNotificadasTotalTuberculosis, numeroEmbarazadasNotificadoTotalDengue, numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis, numeroEmbarazadasConfirmadasDengue, numeroEmbarazadasDescartadasDengue, numeroEnEstudioTotalTuberculosis, numeroSospechososTotalDengue, numeroTotalGeneralSifilisNoMoron, numeroTotalGeneralSifilisMoron, porcentajeNotificadosSifilisMoron, porcentajeNotificadosHivMoron, numeroTotalGeneralHivNoMoron, numeroTotalGeneralHivMoron, numeroTotalGeneralTuberculosisMoron, numeroTotalGeneralTuberculosisNoMoron, porcentajeNotificadosTuberculosisMoron, numeroTotalGeneralDengueMoron, numeroTotalGeneralDengueNoMoron, porcentajeNotificadosDengueMoron, numeroConfirmadosMasculinosSifilis, numeroConfirmadosFemeninosSifilis, numeroConfirmadosSDSifilis, numeroProbablesFemeninosSifilis, numeroProbablesMasculinosSifilis, numeroProbablesSDSifilis, numeroTotalPositivosTuberculosis, numeroTotalNegativosTuberculosis, numeroTotalSinResultadoTuberculosis, dengueSexoEdad, tuberculosisSexoEdad, hivSexoEdad, sifilisSexoEdad, tuberculosisXse, dengueXse, hivXse, sifilisXse, numeroTotalNotificadosTuberculosisEntreFechas, numeroTotalNotificadosTuberculosisFemeninoEntreFechas, numeroTotalNotificadosTuberculosisMasculinoEntreFechas, numeroTotalNotificadosTuberculosisSdEntreFechas, numeroConfirmadosTotalTuberculosisEntreFechas, numeroDescartadosTotalTuberculosisEntreFechas, 
     numeroEnEstudioTotalTuberculosisEntreFechas, numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas, numeroEmbarazadasConfirmadasTuberculosisEntreFechas, numeroEmbarazadasDescartadasTuberculosisEntreFechas, porcentajeNotificadosTuberculosisMoronEntreFechas, numeroTotalGeneralTuberculosisMoronEntreFechas, numeroTotalGeneralTuberculosisNoMoronEntreFechas, numeroTotalNotificadosDengueEntreFechas, numeroTotalNotificadosDengueFemeninoEntreFechas,numeroTotalNotificadosDengueMasculinoEntreFechas, numeroTotalNotificadosDengueSdEntreFechas, numeroConfirmadosTotalDengueEntreFechas, numeroProbablesTotalDengueEntreFechas, numeroDescartadosTotalDengueEntreFechas, numeroSospechososTotalDengueEntreFechas, porcentajeNotificadosDengueMoronEntreFechas, numeroTotalGeneralDengueNoMoronEntreFechas, numeroTotalGeneralDengueMoronEntreFechas,numeroEmbarazadasNotificadoTotalDengueEntreFechas,numeroEmbarazadasConfirmadasDengueEntreFechas, numeroEmbarazadasDescartadasDengueEntreFechas,numeroTotalNotificadosHivEntreFechas, numeroTotalGeneralNotificadosHivEntreFechas, numeroTotalNotificadosHivEmbarazoEntreFechas, numeroTotalGeneralNotificadosHivMasculinoEntreFechas, numeroTotalGeneralNotificadosHivFemeninoEntreFechas, numeroTotalGeneralNotificadosHivSdEntreFechas, numeroConfirmadosTotalGeneralHivEntreFechas, numeroProbablesTotalGeneralHivEntreFechas, numeroDescartadosTotalGeneralHivEntreFechas, numeroTotalNotificadosHivPerinatalEntreFechas, porcentajeNotificadosHivMoronEntreFechas, numeroTotalGeneralHivMoronEntreFechas, numeroTotalGeneralHivNoMoronEntreFechas, numeroTotalGeneralNotificadosSifilisEntreFechas, numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas, numeroTotalGeneralNotificadosSifilisMasculinoEntreFechas, numeroTotalGeneralNotificadosSifilisSdEntreFechas, numeroDescartadosTotalGeneralSifilisEntreFechas, numeroProbablesTotalGeneralSifilisEntreFechas, numeroConfirmadosTotalGeneralSifilisEntreFechas, numeroTotalGeneralSifilisMoronEntreFechas, numeroTotalGeneralSifilisNoMoronEntreFechas, porcentajeNotificadosSifilisMoronEntreFechas, numeroTotalNotificadosSifilisEmbarazadasEntreFechas, numeroTotalNotificadosSifilisCongenitaEntreFechas, numeroConfirmadosFemeninosSifilisEntreFechas, numeroConfirmadosMasculinosSifilisEntreFechas, numeroConfirmadosSDSifilisEntreFechas, numeroProbablesFemeninosSifilisEntreFechas, numeroProbablesMasculinosSifilisEntreFechas, numeroProbablesSDSifilisEntreFechas, totalNotificadosETI, etiXse}
 
 
