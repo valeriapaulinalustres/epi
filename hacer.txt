@@ -1,17 +1,8 @@
-16/12: 
-
-La función de duplicados funciona genial.
-
-Se separaron las funciones de obtener array totales, una general otra por fechas, porque la de fechas aún NO FUNCIONA, no se encuentra el error.
-
-En las 4 enfermedades se corrigieron los arrays generales de notificados, y se ven bien en pantalla. 
-En sífilis además se probó y agregó la función de quitar duplicados. Va re bien. Se visualiza bien en pantalla.
-Hay que ponerla en las otras 3 enfermedades. 
+5/1
 
 DENGUE, TBC, HIV y Sífilis ya está todo hecho, funcionando y checkeado.
+Entre fechas valores totales funcionan bien las 4
 
 Falta:
 
--Corregir "entre fechas".
--Separar las fórmulas en otro archivo que se pueda importar al context.
--Ordenar el código.
+-el resto de entre fechas

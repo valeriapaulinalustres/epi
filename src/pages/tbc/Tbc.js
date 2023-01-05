@@ -51,7 +51,9 @@ function Tbc() {
     numeroEmbarazadasDescartadasTuberculosisEntreFechas,
     porcentajeNotificadosTuberculosisMoronEntreFechas,
     numeroTotalGeneralTuberculosisMoronEntreFechas,
-    numeroTotalGeneralTuberculosisNoMoronEntreFechas
+    numeroTotalGeneralTuberculosisNoMoronEntreFechas,
+    
+    
   } = useContext(DataContext);
 
   const [salmonTransparente, salmon, lilaTransparente, lila, rosaTransparente, rosa] = Colors
@@ -206,7 +208,7 @@ function handleEmbarazadasTbcEntreFechas (){
             <div className='recuadro naranja'>
               Total entre fechas:
               <p className='totalNumber'>
-                {}
+                {numeroTotalNotificadosTuberculosisEntreFechas}
               </p>
             </div>
             <div className='recuadro salmon'>

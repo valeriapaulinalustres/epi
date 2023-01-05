@@ -17,64 +17,61 @@ const [anioBaseActual, setAnioBaseActual] = useState()
 
 const se = 48;
 
-const date = new Date()// calcula fecha y hora actual
-const hoy = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear();
-const fechaActual = date.getFullYear() + "-" + (date.getMonth() +1) + "-" +  date.getDate();
-const fechaActualFormatoNumero = pasarFechaAFormatoNumero(fechaActual)
-  const anioActual = date.getFullYear();
-  const eneroFormatoNumero = pasarFechaAFormatoNumero(1-1-2022)
+ const date = new Date()// calcula fecha y hora actual
+// const hoy = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear();
+// const fechaActual = date.getFullYear() + "-" + (date.getMonth() +1) + "-" +  date.getDate();
+// const fechaActualFormatoNumero = pasarFechaAFormatoNumero(fechaActual)
+   const anioActual = date.getFullYear();
+//   const eneroFormatoNumero = pasarFechaAFormatoNumero(1-1-2022)
   
- // console.log(fechaActualFormatoNumero)
-
 
   const semanas = ['1', '2', '3','4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27','28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40','41', '42', '43', '44', '45','46','47','48', '49', '50','51', '52'];
 
 
   
-//fecha con formato de objeto
-const actualDate = {
-  day: date.getDate(),
-  month: date.getMonth() + 1,
-  year: date.getFullYear()
-}
-//calcula fecha actual con barras idem sisa (español)
+// //fecha con formato de objeto
+// const actualDate = {
+//   day: date.getDate(),
+//   month: date.getMonth() + 1,
+//   year: date.getFullYear()
+// }
+// //calcula fecha actual con barras idem sisa (español)
+
+// let miliSec = date.getTime();
+
+// // Calcula días desde 1-1-1970 (fecha formato JS)
+// let days = Math.round(date.getTime() / (1000*60*60*24));
 
 
 
-let miliSec = date.getTime();
-
-// Calcula días desde 1-1-1970 (fecha formato JS)
-let days = Math.round(date.getTime() / (1000*60*60*24));
+// let fechaInicio = new Date('1899-12-31').getTime();
+// let fechaHoy    = new Date(date).getTime();
 
 
-
-let fechaInicio = new Date('1899-12-31').getTime();
-let fechaHoy    = new Date(date).getTime();
+// let diff = Math.round((fechaHoy - (fechaInicio))/(1000*60*60*24)) + 1
 
 
-let diff = Math.round((fechaHoy - (fechaInicio))/(1000*60*60*24)) + 1
+// //para contar cantidad de días desde 1-1-1900 (formato número del excel)
+// function pasarFechaAFormatoNumero (fechaApasarAformatoNumero){
+//   let a = new Date('1899-12-31').getTime();
+// let b = new Date(fechaApasarAformatoNumero).getTime();
+//   return Math.round(((b - (a))/(1000*60*60*24))+1) 
+// }
+
+// const fechaInicioFormatoNumero = pasarFechaAFormatoNumero(calendar.dateFrom)//acá entre paréntesis irá el input del calendario "desde"
+// const fechaFinFormatoNumero = pasarFechaAFormatoNumero(calendar.dateTo)//acá entre paréntesis irá el input del calendario "hasta"
+
+const semanaInicial = weeksCalendar.weekFrom;
+const semanaFinal = weeksCalendar.weekTo;
+
+// function calcularTotalNotificadosX() {
+//   return baseCompleta.filter(el => el.EVENTO === "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.FECHA_APERTURA >= fechaInicioFormatoNumero && el.FECHA_APERTURA <= fechaFinFormatoNumero)
+// }
+
+// const a = calcularTotalNotificadosX()
 
 
-//para contar cantidad de días desde 1-1-1900 (formato número del excel)
-function pasarFechaAFormatoNumero (fechaApasarAformatoNumero){
-  let a = new Date('1899-12-31').getTime();
-let b = new Date(fechaApasarAformatoNumero).getTime();
-  return Math.round(((b - (a))/(1000*60*60*24))+1) 
-}
-
-const fechaInicioFormatoNumero = pasarFechaAFormatoNumero(calendar.dateFrom)//acá entre paréntesis irá el input del calendario "desde"
-const fechaFinFormatoNumero = pasarFechaAFormatoNumero(calendar.dateTo)//acá entre paréntesis irá el input del calendario "hasta"
-
-
-
-function calcularTotalNotificadosX() {
-  return baseCompleta.filter(el => el.EVENTO === "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.FECHA_APERTURA >= fechaInicioFormatoNumero && el.FECHA_APERTURA <= fechaFinFormatoNumero)
-}
-
-const a = calcularTotalNotificadosX()
-//console.log(a);
-
-console.log(weeksCalendar);
+console.log(semanaInicial, semanaFinal);
 
   //==================================================
   //----------FÓRMULAS----------------------------
@@ -85,8 +82,8 @@ console.log(weeksCalendar);
     return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" )
   }
 
-  function calcularTotalNotificadosEntreFechas(enfermedad, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
+  function calcularTotalNotificadosEntreFechas(enfermedad, fechaInicio = 1, fechaFin = 53) {
+    return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
   }
 
   function calcularNumeroTotalNotificados(enfermedad) {
@@ -98,8 +95,8 @@ console.log(weeksCalendar);
 
   }
 
-  function calcularPorSexoEntreFechas(arr, sexo, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularPorSexoEntreFechas(arr, sexo, fechaInicio = 1, fechaFin = 53) {
+    return arr.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
 
   }
 
@@ -111,13 +108,13 @@ console.log(weeksCalendar);
     return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
   }
 
-  function calcularClasificacionManualPorEventoEntreFechas(evento, clasificacion,fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
+  function calcularClasificacionManualPorEventoEntreFechas(evento, clasificacion,fechaInicio = 1, fechaFin = 53) {
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
   }
 
 
-function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero){
-  return (baseCompleta.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón"  && el.CLASIFICACION_MANUAL == clasificacion && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)).length || 0
+function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = 1, fechaFin = 53){
+  return (baseCompleta.filter(el => el.SEXO == sexo && el.DEPARTAMENTO_RESIDENCIA == "Morón"  && el.CLASIFICACION_MANUAL == clasificacion && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)).length || 0
 }
 
 
@@ -126,9 +123,9 @@ function calcularConfirmadosPorClasificacion(clasificacion) {
   return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.DEPARTAMENTO_RESIDENCIA == "Morón")
 }
 
-  function calcularConfirmadosTuberculosisEntreFechas(clasificacion, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularConfirmadosTuberculosisEntreFechas(clasificacion, fechaInicio = 1, fechaFin = 53) {
 
-    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+    return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
       
 
   }
@@ -142,11 +139,11 @@ let ab = [...a, ...b]
     return ab
   }
 
-  function calcularConfirmadosDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularConfirmadosDengueEntreFechas(fechaInicio = 1, fechaFin = 53) {
 
 
-    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
-    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin)
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
+    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
 let ab = [...a, ...b]
     return ab
   }
@@ -160,9 +157,9 @@ let ab = [...a, ...b]
      return abc
   }
 
-  function calcularDescartadosTuberculosisEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    let a =  baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Descartado TBC - Micobacteria no tuberculosis" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0 
-    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Bacteriología Negativa" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularDescartadosTuberculosisEntreFechas(fechaInicio = 1, fechaFin = 53) {
+    let a =  baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Descartado TBC - Micobacteria no tuberculosis" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0 
+    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Bacteriología Negativa" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
      return a + b
   }
 
@@ -175,10 +172,10 @@ let ab = [...a, ...b]
       return abc
   }
 
-  function calcularDescartadosDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-      let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularDescartadosDengueEntreFechas(fechaInicio = 1, fechaFin = 53) {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+      let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
 
       return a+b+c
   }
@@ -191,9 +188,9 @@ let ab = [...a, ...b]
       return ab
   }
 
-  function calcularSospechososDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue"  && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso no conclusivo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue"  && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularSospechososDengueEntreFechas(fechaInicio = 1, fechaFin = 53) {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue"  && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso sospechoso no conclusivo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Dengue"  && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
 
       return a + b
   }
@@ -202,8 +199,8 @@ let ab = [...a, ...b]
     return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
   }
 
-  function calcularEventoEnEmbarazoEntreFechas(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularEventoEnEmbarazoEntreFechas(evento, fechaInicio = 1, fechaFin = 53) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.EMBARAZADA == "SI" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
   }
 
   function calcularConfirmadosEmbarazoTuberculosis() {
@@ -218,18 +215,18 @@ let ab = [...a, ...b]
   }
 
   
-  function calcularConfirmadosEmbarazoTuberculosisEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
+  function calcularConfirmadosEmbarazoTuberculosisEntreFechas(fechaInicio = 1, fechaFin = 53) {
 
-    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-      let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-      let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Baciloscopía positiva" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+      let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Complejo Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+      let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Mycobacterium tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EVENTO == "Tuberculosis" && el.EMBARAZADA == "SI" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
 
       return a +b + c
   }
 
-  function calcularDescartadosEmbarazoTuberculosis(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularDescartadosEmbarazoTuberculosis(fechaInicio = 1, fechaFin = 53) {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+      let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.EVENTO == "Tuberculosis" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
 
       return a + b
   }
@@ -243,9 +240,9 @@ let ab = [...a, ...b]
       return ab
   }
 
-  function calcularConfirmadosEmbarazoDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-      let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularConfirmadosEmbarazoDengueEntreFechas(fechaInicio = 1, fechaFin = 53) {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado DEN-1" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+      let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso confirmado sin serotipo" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
 
       return a+b
   }
@@ -260,10 +257,10 @@ let ab = [...a, ...b]
     return abcd
   }
 
-  function calcularDescartadosEmbarazoDengueEntreFechas(fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-    let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
-    let c =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularDescartadosEmbarazoDengueEntreFechas(fechaInicio = 1, fechaFin = 53) {
+    let a = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+    let b =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por diagnóstico diferencial" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
+    let c =baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso descartado por epidemiología" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.EMBARAZADA == "SI"&& el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
 
     return a + b + c
   }
@@ -272,16 +269,16 @@ let ab = [...a, ...b]
     return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón")
   }
 
-  function calcularDptoCargaMoronEntreFechas(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularDptoCargaMoronEntreFechas(evento, fechaInicio = 1, fechaFin = 53) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA == "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
   }
 
   function calcularDptoCargaNoMoron(evento) {
     return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA !== "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón")
   }
 
-  function calcularDptoCargaNoMoronEntreFechas(evento, fechaInicio = eneroFormatoNumero, fechaFin = fechaActualFormatoNumero) {
-    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA !== "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.FECHA_APERTURA >= fechaInicio && el.FECHA_APERTURA <= fechaFin).length || 0
+  function calcularDptoCargaNoMoronEntreFechas(evento, fechaInicio = 1, fechaFin = 53) {
+    return baseCompleta.filter(el => el.EVENTO == evento && el.DEPARTAMENTO_CARGA !== "Morón" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
   }
 
   
@@ -347,11 +344,11 @@ let ab = [...a, ...b]
  arrayTotalGeneralNotificadosSifilis = quitarDuplicados(arrayTotalGeneralNotificadosSifilis)  
 
   //-----------arrays totales entre fechas
-  let arrayTotalNotificadosSifilisEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  let arrayTotalNotificadosSifilisEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis", semanaInicial, semanaFinal);
   arrayTotalNotificadosSifilisEntreFechas = quitarDuplicados(arrayTotalNotificadosSifilisEntreFechas)
-  let arrayTotalNotificadosSifilisCongenitaEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  let arrayTotalNotificadosSifilisCongenitaEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis congénita", semanaInicial, semanaFinal);
   arrayTotalNotificadosSifilisCongenitaEntreFechas = quitarDuplicados(arrayTotalNotificadosSifilisCongenitaEntreFechas)
-  let arrayTotalNotificadosSifilisEmbarazadasEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis en personas gestantes", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  let arrayTotalNotificadosSifilisEmbarazadasEntreFechas = calcularTotalNotificadosEntreFechas("Sífilis en personas gestantes", semanaInicial, semanaFinal);
   arrayTotalNotificadosSifilisEmbarazadasEntreFechas = quitarDuplicados(arrayTotalNotificadosSifilisEmbarazadasEntreFechas)
 
   let arrayTotalGeneralNotificadosSifilisEntreFechas = [...arrayTotalNotificadosSifilisEntreFechas, ...arrayTotalNotificadosSifilisCongenitaEntreFechas, ...arrayTotalNotificadosSifilisEmbarazadasEntreFechas];
@@ -379,11 +376,11 @@ let ab = [...a, ...b]
   const numeroTotalGeneralNotificadosSifilisSd = calcularPorSexo(arrayTotalGeneralNotificadosSifilis, "NA")
 
   //---------por sexo entre fechas
-  const numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas = calcularPorSexo(arrayTotalGeneralNotificadosSifilisEntreFechas, "F", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas = calcularPorSexo(arrayTotalGeneralNotificadosSifilisEntreFechas, "F", semanaInicial, semanaFinal)
 
-  const numeroTotalGeneralNotificadosSifilisMasculinoEntreFechas = calcularPorSexo(arrayTotalGeneralNotificadosSifilisEntreFechas, "M", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralNotificadosSifilisMasculinoEntreFechas = calcularPorSexo(arrayTotalGeneralNotificadosSifilisEntreFechas, "M", semanaInicial, semanaFinal)
 
-  const numeroTotalGeneralNotificadosSifilisSdEntreFechas = calcularPorSexo(arrayTotalGeneralNotificadosSifilisEntreFechas, "NA", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralNotificadosSifilisSdEntreFechas = calcularPorSexo(arrayTotalGeneralNotificadosSifilisEntreFechas, "NA", semanaInicial, semanaFinal)
 
   //---------------clasificaciones totales
   //confirmados
@@ -414,32 +411,32 @@ const numeroDescartadosTotalGeneralSifilis = arrayDescartadosTotalGeneralSifilis
   //confirmados entre fechas
 
 
-  const numeroConfirmadosTotalSifilisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confimado en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confirmado de sífilis sin especificar", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confirmado de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroConfirmadosTotalSifilisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confimado en banco de sangre", semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confirmado de sífilis sin especificar", semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confirmado de sífilis temprana", semanaInicial, semanaFinal).length)
 
-  const numeroConfirmadosTotalSiflisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso de Sífilis congénita confirmada por laboratorio", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroConfirmadosTotalSiflisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso de Sífilis congénita confirmada por laboratorio", semanaInicial, semanaFinal).length)
 
-  const numeroConfirmadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso confirmado de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroConfirmadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso confirmado de Sífilis", semanaInicial, semanaFinal).length)
 
   const numeroConfirmadosTotalGeneralSifilisEntreFechas = numeroConfirmadosTotalSifilisEntreFechas + numeroConfirmadosTotalSiflisCongenitaEntreFechas + numeroConfirmadosTotalSifilisEmbarazadasEntreFechas
 
 
   //probables entre fechas
 
-  const numeroProbablesTotalSifilisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable de sífilis sin especificar estadío", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroProbablesTotalSifilisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable de sífilis sin especificar estadío", semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable de sífilis temprana", semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable en banco de sangre", semanaInicial, semanaFinal).length)
 
-  const numeroProbablesTotalSifilisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso probable de sífilis sin especificar estadío" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable de sífilis temprana" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable en banco de sangre" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroProbablesTotalSifilisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso probable de sífilis sin especificar estadío" , semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable de sífilis temprana" , semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable en banco de sangre" , semanaInicial, semanaFinal).length)
 
-  const numeroProbablesTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis sin especificar estadío" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable en banco de sangre" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroProbablesTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis sin especificar estadío" , semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis" , semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable en banco de sangre" , semanaInicial, semanaFinal).length)
 
   const numeroProbablesTotalGeneralSifilisEntreFechas = numeroProbablesTotalSifilisEntreFechas + numeroProbablesTotalSifilisCongenitaEntreFechas + numeroProbablesTotalSifilisEmbarazadasEntreFechas
 
   //descartados entre fechas
 
-  const numeroDescartadosTotalSifilisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso descartado de Sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroDescartadosTotalSifilisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso descartado de Sífilis" , semanaInicial, semanaFinal).length)
 
-  const numeroDescartadosTotalSifilisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso descartado de Sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+  const numeroDescartadosTotalSifilisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso descartado de Sífilis" , semanaInicial, semanaFinal).length) || 0
 
-  const numeroDescartadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso descartado de Sífilis" , fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+  const numeroDescartadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso descartado de Sífilis" , semanaInicial, semanaFinal).length) || 0
 
   const numeroDescartadosTotalGeneralSifilisEntreFechas = numeroDescartadosTotalSifilisEntreFechas + numeroDescartadosTotalSifilisCongenitaEntreFechas + numeroDescartadosTotalSifilisEmbarazadasEntreFechas
 
@@ -456,9 +453,9 @@ arrayTotalGeneralSifilisMoron = quitarDuplicados(arrayTotalGeneralSifilisMoron)
   const porcentajeNotificadosSifilisMoron = Math.round(numeroTotalGeneralSifilisMoron / (numeroTotalGeneralSifilisMoron + numeroTotalGeneralSifilisNoMoron) * 100) || 0
 
   //-------------Departamento de carga entre fechas
-  const numeroTotalGeneralSifilisMoronEntreFechas = calcularDptoCargaMoron("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaMoron("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaMoron("Sífilis en personas gestantes", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralSifilisMoronEntreFechas = calcularDptoCargaMoron("Sífilis", semanaInicial, semanaFinal) + calcularDptoCargaMoron("Sífilis congénita", semanaInicial, semanaFinal) + calcularDptoCargaMoron("Sífilis en personas gestantes", semanaInicial, semanaFinal)
 
-  const numeroTotalGeneralSifilisNoMoronEntreFechas = calcularDptoCargaNoMoron("Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaNoMoron("Sífilis congénita", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaNoMoron("Sífilis en personas gestantes", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralSifilisNoMoronEntreFechas = calcularDptoCargaNoMoron("Sífilis", semanaInicial, semanaFinal) + calcularDptoCargaNoMoron("Sífilis congénita", semanaInicial, semanaFinal) + calcularDptoCargaNoMoron("Sífilis en personas gestantes", semanaInicial, semanaFinal)
 
   const porcentajeNotificadosSifilisMoronEntreFechas = Math.round(numeroTotalGeneralSifilisMoronEntreFechas / (numeroTotalGeneralSifilisMoronEntreFechas + numeroTotalGeneralSifilisNoMoronEntreFechas) * 100) || 0
 
@@ -481,13 +478,13 @@ const numeroConfirmadosSDSifilis = arrayConfirmadosSDSifilis.length || 0;
  //---------confirmados femeninos, masculinos y sin datos entre fechas
 
 
- const numeroConfirmadosFemeninosSifilisEntreFechas = parseInt(calcularSexoClasificacion("F", "Caso confimado en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("F", "Caso confirmado de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero))+ parseInt(calcularSexoClasificacion("F", "Caso confirmado de sífilis sin especificar", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("F", "Caso confirmado de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("F", "Caso de Sífilis congénita confirmada por laboratorio", fechaInicioFormatoNumero, fechaFinFormatoNumero))
+ const numeroConfirmadosFemeninosSifilisEntreFechas = parseInt(calcularSexoClasificacion("F", "Caso confimado en banco de sangre", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("F", "Caso confirmado de Sífilis", semanaInicial, semanaFinal))+ parseInt(calcularSexoClasificacion("F", "Caso confirmado de sífilis sin especificar", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("F", "Caso confirmado de sífilis temprana", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("F", "Caso de Sífilis congénita confirmada por laboratorio", semanaInicial, semanaFinal))
 
- const numeroConfirmadosMasculinosSifilisEntreFechas = parseInt(calcularSexoClasificacion("M", "Caso confimado en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("M", "Caso confirmado de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero))+ parseInt(calcularSexoClasificacion("M", "Caso confirmado de sífilis sin especificar", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("M", "Caso confirmado de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("M", "Caso de Sífilis congénita confirmada por laboratorio", fechaInicioFormatoNumero, fechaFinFormatoNumero))
+ const numeroConfirmadosMasculinosSifilisEntreFechas = parseInt(calcularSexoClasificacion("M", "Caso confimado en banco de sangre", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("M", "Caso confirmado de Sífilis", semanaInicial, semanaFinal))+ parseInt(calcularSexoClasificacion("M", "Caso confirmado de sífilis sin especificar", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("M", "Caso confirmado de sífilis temprana", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("M", "Caso de Sífilis congénita confirmada por laboratorio", semanaInicial, semanaFinal))
 
- const numeroConfirmadosNASifilisEntreFechas = parseInt(calcularSexoClasificacion("NA", "Caso confimado en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("NA", "Caso confirmado de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero))+ parseInt(calcularSexoClasificacion("NA", "Caso confirmado de sífilis sin especificar", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("NA", "Caso confirmado de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("NA", "Caso de Sífilis congénita confirmada por laboratorio", fechaInicioFormatoNumero, fechaFinFormatoNumero))
+ const numeroConfirmadosNASifilisEntreFechas = parseInt(calcularSexoClasificacion("NA", "Caso confimado en banco de sangre", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("NA", "Caso confirmado de Sífilis", semanaInicial, semanaFinal))+ parseInt(calcularSexoClasificacion("NA", "Caso confirmado de sífilis sin especificar", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("NA", "Caso confirmado de sífilis temprana", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("NA", "Caso de Sífilis congénita confirmada por laboratorio", semanaInicial, semanaFinal))
 
- const numeroConfirmadosASifilisEntreFechas = parseInt(calcularSexoClasificacion("A", "Caso confimado en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("A", "Caso confirmado de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero))+ parseInt(calcularSexoClasificacion("A", "Caso confirmado de sífilis sin especificar", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("A", "Caso confirmado de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("A", "Caso de Sífilis congénita confirmada por laboratorio", fechaInicioFormatoNumero, fechaFinFormatoNumero))
+ const numeroConfirmadosASifilisEntreFechas = parseInt(calcularSexoClasificacion("A", "Caso confimado en banco de sangre", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("A", "Caso confirmado de Sífilis", semanaInicial, semanaFinal))+ parseInt(calcularSexoClasificacion("A", "Caso confirmado de sífilis sin especificar", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("A", "Caso confirmado de sífilis temprana", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("A", "Caso de Sífilis congénita confirmada por laboratorio", semanaInicial, semanaFinal))
 
  const numeroConfirmadosSDSifilisEntreFechas = numeroConfirmadosNASifilisEntreFechas + numeroConfirmadosASifilisEntreFechas
 
@@ -506,13 +503,13 @@ const numeroConfirmadosSDSifilis = arrayConfirmadosSDSifilis.length || 0;
  //---------probables femeninas, masculinos y sin  entre fechas
 
 
- const numeroProbablesFemeninosSifilisEntreFechas = parseInt(calcularSexoClasificacion("F", "Caso probable de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("F", "Caso probable en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero))+ parseInt(calcularSexoClasificacion("F", "Caso probable de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("F", "Caso probable de sífilis sin especificar estadío", fechaInicioFormatoNumero, fechaFinFormatoNumero))
+ const numeroProbablesFemeninosSifilisEntreFechas = parseInt(calcularSexoClasificacion("F", "Caso probable de Sífilis", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("F", "Caso probable en banco de sangre", semanaInicial, semanaFinal))+ parseInt(calcularSexoClasificacion("F", "Caso probable de sífilis temprana", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("F", "Caso probable de sífilis sin especificar estadío", semanaInicial, semanaFinal))
 
- const numeroProbablesMasculinosSifilisEntreFechas = parseInt(calcularSexoClasificacion("M", "Caso probable de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("M", "Caso probable en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero))+ parseInt(calcularSexoClasificacion("M", "Caso probable de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("M", "Caso probable de sífilis sin especificar estadío", fechaInicioFormatoNumero, fechaFinFormatoNumero))
+ const numeroProbablesMasculinosSifilisEntreFechas = parseInt(calcularSexoClasificacion("M", "Caso probable de Sífilis", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("M", "Caso probable en banco de sangre", semanaInicial, semanaFinal))+ parseInt(calcularSexoClasificacion("M", "Caso probable de sífilis temprana", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("M", "Caso probable de sífilis sin especificar estadío", semanaInicial, semanaFinal))
 
- const numeroProbablesNASifilisEntreFechas = parseInt(calcularSexoClasificacion("NA", "Caso probable de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("NA", "Caso probable en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero))+ parseInt(calcularSexoClasificacion("NA", "Caso probable de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("NA", "Caso probable de sífilis sin especificar estadío", fechaInicioFormatoNumero, fechaFinFormatoNumero))
+ const numeroProbablesNASifilisEntreFechas = parseInt(calcularSexoClasificacion("NA", "Caso probable de Sífilis", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("NA", "Caso probable en banco de sangre", semanaInicial, semanaFinal))+ parseInt(calcularSexoClasificacion("NA", "Caso probable de sífilis temprana", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("NA", "Caso probable de sífilis sin especificar estadío", semanaInicial, semanaFinal))
 
- const numeroProbablesASifilisEntreFechas = parseInt(calcularSexoClasificacion("A", "Caso probable de Sífilis", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("A", "Caso probable en banco de sangre", fechaInicioFormatoNumero, fechaFinFormatoNumero))+ parseInt(calcularSexoClasificacion("A", "Caso probable de sífilis temprana", fechaInicioFormatoNumero, fechaFinFormatoNumero)) + parseInt(calcularSexoClasificacion("A", "Caso probable de sífilis sin especificar estadío", fechaInicioFormatoNumero, fechaFinFormatoNumero))
+ const numeroProbablesASifilisEntreFechas = parseInt(calcularSexoClasificacion("A", "Caso probable de Sífilis", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("A", "Caso probable en banco de sangre", semanaInicial, semanaFinal))+ parseInt(calcularSexoClasificacion("A", "Caso probable de sífilis temprana", semanaInicial, semanaFinal)) + parseInt(calcularSexoClasificacion("A", "Caso probable de sífilis sin especificar estadío", semanaInicial, semanaFinal))
 
  const numeroProbablesSDSifilisEntreFechas = numeroProbablesNASifilisEntreFechas + numeroProbablesASifilisEntreFechas
 
@@ -617,13 +614,16 @@ const sifilisXse = [
 
 
   //-----------arrays totales entre fechas
-  const arrayTotalNotificadosHivEntreFechas = calcularTotalNotificadosEntreFechas("VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const arrayTotalNotificadosHivPerinatalEntreFechas = calcularTotalNotificadosEntreFechas("VIH - Expuesto perinatal", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const arrayTotalNotificadosHivEmbarazoEntreFechas = calcularTotalNotificadosEntreFechas("VIH en embarazo", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  let arrayTotalNotificadosHivEntreFechas = calcularTotalNotificadosEntreFechas("VIH", semanaInicial, semanaFinal);
+  arrayTotalNotificadosHivEntreFechas = quitarDuplicados(arrayTotalNotificadosHivEntreFechas)
+  let arrayTotalNotificadosHivPerinatalEntreFechas = calcularTotalNotificadosEntreFechas("VIH - Expuesto perinatal", semanaInicial, semanaFinal);
+  arrayTotalNotificadosHivPerinatalEntreFechas = quitarDuplicados(arrayTotalNotificadosHivPerinatalEntreFechas)
+  let arrayTotalNotificadosHivEmbarazoEntreFechas = calcularTotalNotificadosEntreFechas("VIH en embarazo", semanaInicial, semanaFinal);
+  arrayTotalNotificadosHivEmbarazoEntreFechas = quitarDuplicados(arrayTotalNotificadosHivEmbarazoEntreFechas)
 
-  const arrayTotalGeneralNotificadosHivEntreFechas = [...arrayTotalNotificadosHivEntreFechas, ...arrayTotalNotificadosHivPerinatalEntreFechas, ...arrayTotalNotificadosHivEmbarazoEntreFechas]
+  let arrayTotalGeneralNotificadosHivEntreFechas = [...arrayTotalNotificadosHivEntreFechas, ...arrayTotalNotificadosHivPerinatalEntreFechas, ...arrayTotalNotificadosHivEmbarazoEntreFechas]
 
-
+  arrayTotalGeneralNotificadosHivEntreFechas = quitarDuplicados(arrayTotalGeneralNotificadosHivEntreFechas)
   //------------valores totales--
   const numeroTotalNotificadosHiv = arrayTotalNotificadosHiv.length || 0;
   const numeroTotalNotificadosHivPerinatal = arrayTotalNotificadosHivPerinatal.length || 0;
@@ -665,31 +665,31 @@ const numeroDescartadosTotalGeneralHiv = arrayDescartadosTotalGeneralHiv.length 
   //---------------clasificaciones totales entre fechas
   //confirmados entre fechas
 
-  const numeroConfirmadosTotalHivEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH", "Caso confirmado de VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroConfirmadosTotalHivEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH", "Caso confirmado de VIH", semanaInicial, semanaFinal).length)
 
-  const numeroConfirmadosTotalHivEmbarazoEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH en embarazo", "Caso confirmado de VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroConfirmadosTotalHivEmbarazoEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH en embarazo", "Caso confirmado de VIH", semanaInicial, semanaFinal).length)
 
-  const numeroConfirmadosTotalHivPerinatalEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH - Expuesto perinatal", "Caso confirmado de VIH perinatal", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroConfirmadosTotalHivPerinatalEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH - Expuesto perinatal", "Caso confirmado de VIH perinatal", semanaInicial, semanaFinal).length)
 
   const numeroConfirmadosTotalGeneralHivEntreFechas = numeroConfirmadosTotalHivEntreFechas + numeroConfirmadosTotalHivEmbarazoEntreFechas + numeroConfirmadosTotalHivPerinatalEntreFechas
 
   //probables entre fechas
 
-  const numeroProbablesTotalHivEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH", "Caso probable de VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+  const numeroProbablesTotalHivEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH", "Caso probable de VIH", semanaInicial, semanaFinal).length) || 0
 
-  const numeroProbablesTotalHivEmbarazoEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH en embarazo", "Caso probable de VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+  const numeroProbablesTotalHivEmbarazoEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH en embarazo", "Caso probable de VIH", semanaInicial, semanaFinal).length) || 0
 
-  const numeroProbablesTotalHivPerinatalEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH - Expuesto perinatal", "Caso probable de VIH perinatal", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+  const numeroProbablesTotalHivPerinatalEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH - Expuesto perinatal", "Caso probable de VIH perinatal", semanaInicial, semanaFinal).length) || 0
 
   const numeroProbablesTotalGeneralHivEntreFechas = numeroProbablesTotalHivEntreFechas + numeroProbablesTotalHivEmbarazoEntreFechas + numeroProbablesTotalHivPerinatalEntreFechas
 
   //descartados entre fechas
 
-  const numeroDescartadosTotalHivEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH", "Caso descartado de VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero).length)
+  const numeroDescartadosTotalHivEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH", "Caso descartado de VIH", semanaInicial, semanaFinal).length)
 
-  const numeroDescartadosTotalHivPerinatalEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH en embarazo", "Caso descartado de VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+  const numeroDescartadosTotalHivPerinatalEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH en embarazo", "Caso descartado de VIH", semanaInicial, semanaFinal).length) || 0
 
-  const numeroDescartadosTotalHivEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH - Expuesto perinatal", "Caso descartado de VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+  const numeroDescartadosTotalHivEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("VIH - Expuesto perinatal", "Caso descartado de VIH", semanaInicial, semanaFinal).length) || 0
 
   const numeroDescartadosTotalGeneralHivEntreFechas = numeroDescartadosTotalHivEntreFechas + numeroDescartadosTotalHivPerinatalEntreFechas + numeroDescartadosTotalHivEmbarazadasEntreFechas
 
@@ -704,9 +704,9 @@ arrayTotalGeneralHivNoMoron = quitarDuplicados(arrayTotalGeneralHivNoMoron)
   const porcentajeNotificadosHivMoron = Math.round(numeroTotalGeneralHivMoron / (numeroTotalGeneralHivMoron + numeroTotalGeneralHivNoMoron) * 100) || 0
 
 //-------------Departamento de carga entre fechas
-const numeroTotalGeneralHivMoronEntreFechas = calcularDptoCargaMoron("VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaMoron("VIH - Expuesto perinatal", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaMoron("VIH en embarazo", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+const numeroTotalGeneralHivMoronEntreFechas = calcularDptoCargaMoron("VIH", semanaInicial, semanaFinal) + calcularDptoCargaMoron("VIH - Expuesto perinatal", semanaInicial, semanaFinal) + calcularDptoCargaMoron("VIH en embarazo", semanaInicial, semanaFinal)
 
-const numeroTotalGeneralHivNoMoronEntreFechas = calcularDptoCargaNoMoron("VIH", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaNoMoron("VIH - Expuesto perinatal", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularDptoCargaNoMoron("VIH en embarazo", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+const numeroTotalGeneralHivNoMoronEntreFechas = calcularDptoCargaNoMoron("VIH", semanaInicial, semanaFinal) + calcularDptoCargaNoMoron("VIH - Expuesto perinatal", semanaInicial, semanaFinal) + calcularDptoCargaNoMoron("VIH en embarazo", semanaInicial, semanaFinal)
 
 const porcentajeNotificadosHivMoronEntreFechas = Math.round(numeroTotalGeneralHivMoronEntreFechas / (numeroTotalGeneralHivMoronEntreFechas + numeroTotalGeneralHivNoMoronEntreFechas) * 100) || 0
 
@@ -801,15 +801,16 @@ const porcentajeNotificadosHivMoronEntreFechas = Math.round(numeroTotalGeneralHi
   //-------Tuberculosis----------------------------------------------------------------------
   //-----------array total
   let arrayTotalNotificadosTuberculosis = calcularTotalNotificados("Tuberculosis");
+  arrayTotalNotificadosTuberculosis = quitarDuplicados(arrayTotalNotificadosTuberculosis);
 
-  arrayTotalNotificadosTuberculosis = quitarDuplicados(arrayTotalNotificadosTuberculosis)
 //entre fechas
-  const arrayTotalNotificadosTuberculosisEntreFechas = calcularTotalNotificadosEntreFechas("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero);
+  let arrayTotalNotificadosTuberculosisEntreFechas = calcularTotalNotificadosEntreFechas("Tuberculosis", semanaInicial, semanaFinal);
+arrayTotalNotificadosTuberculosisEntreFechas = quitarDuplicados(arrayTotalNotificadosTuberculosisEntreFechas);
 
   //------------valores totales
-  const numeroTotalNotificadosTuberculosis = arrayTotalNotificadosTuberculosis.length;
+  const numeroTotalNotificadosTuberculosis = arrayTotalNotificadosTuberculosis.length || 0;
   //entre fechas
-  const numeroTotalNotificadosTuberculosisEntreFechas = arrayTotalNotificadosTuberculosisEntreFechas.length;
+  const numeroTotalNotificadosTuberculosisEntreFechas = arrayTotalNotificadosTuberculosisEntreFechas.length ||0;
 
   //------------por sexo
   const numeroTotalNotificadosTuberculosisFemenino = calcularPorSexo(arrayTotalNotificadosTuberculosis, "F")
@@ -818,10 +819,10 @@ const porcentajeNotificadosHivMoronEntreFechas = Math.round(numeroTotalGeneralHi
   const numeroTotalNotificadosTuberculosisA = calcularPorSexo(arrayTotalNotificadosTuberculosis, "A")
   const numeroTotalNotificadosTuberculosisSd = parseInt(numeroTotalNotificadosTuberculosisNA) + parseInt(numeroTotalNotificadosTuberculosisA)
 //entre fechas
-  const numeroTotalNotificadosTuberculosisFemeninoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "F", fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroTotalNotificadosTuberculosisMasculinoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "M", fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroTotalNotificadosTuberculosisNAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "NA" , fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroTotalNotificadosTuberculosisAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "A", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosTuberculosisFemeninoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "F", semanaInicial, semanaFinal)
+  const numeroTotalNotificadosTuberculosisMasculinoEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "M", semanaInicial, semanaFinal)
+  const numeroTotalNotificadosTuberculosisNAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "NA" , semanaInicial, semanaFinal)
+  const numeroTotalNotificadosTuberculosisAEntreFechas = calcularPorSexo(arrayTotalNotificadosTuberculosisEntreFechas, "A", semanaInicial, semanaFinal)
   const numeroTotalNotificadosTuberculosisSdEntreFechas = parseInt(numeroTotalNotificadosTuberculosisNAEntreFechas) + parseInt(numeroTotalNotificadosTuberculosisAEntreFechas)
 
   //---------------clasificaciones totales
@@ -862,16 +863,16 @@ let arrayDescartadasTbcEmbarazadas = arrayDescartadosTotalTuberculosis.filter(el
 
   //entre fechas-----------
   //confirmados
-  const numeroConfirmadosTotalTuberculosisEntreFechas = calcularConfirmadosTuberculosisEntreFechas("Baciloscopía positiva", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosisEntreFechas("Complejo Mycobacterium tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosisEntreFechas("Mycobacterium tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero) + calcularConfirmadosTuberculosisEntreFechas("Histopatologia sugestiva", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroConfirmadosTotalTuberculosisEntreFechas = calcularConfirmadosTuberculosisEntreFechas("Baciloscopía positiva", semanaInicial, semanaFinal) + calcularConfirmadosTuberculosisEntreFechas("Complejo Mycobacterium tuberculosis", semanaInicial, semanaFinal) + calcularConfirmadosTuberculosisEntreFechas("Mycobacterium tuberculosis", semanaInicial, semanaFinal) + calcularConfirmadosTuberculosisEntreFechas("Histopatologia sugestiva", semanaInicial, semanaFinal)
 
   //descartados
-  const numeroDescartadosTotalTuberculosisEntreFechas = calcularDescartadosTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroDescartadosTotalTuberculosisEntreFechas = calcularDescartadosTuberculosis(semanaInicial, semanaFinal)
 
   //embarazadas
 
-  const numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas = calcularEventoEnEmbarazo("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroEmbarazadasConfirmadasTuberculosisEntreFechas = calcularConfirmadosEmbarazoTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroEmbarazadasDescartadasTuberculosisEntreFechas = calcularDescartadosEmbarazoTuberculosis(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas = calcularEventoEnEmbarazo("Tuberculosis", semanaInicial, semanaFinal)
+  const numeroEmbarazadasConfirmadasTuberculosisEntreFechas = calcularConfirmadosEmbarazoTuberculosis(semanaInicial, semanaFinal)
+  const numeroEmbarazadasDescartadasTuberculosisEntreFechas = calcularDescartadosEmbarazoTuberculosis(semanaInicial, semanaFinal)
 
   //En estudio
   const numeroEnEstudioTotalTuberculosisEntreFechas  = arrayEnEstudioTbc.length || 0; //esto hay que arreglarlo
@@ -888,9 +889,9 @@ let arrayDescartadasTbcEmbarazadas = arrayDescartadosTotalTuberculosis.filter(el
   const porcentajeNotificadosTuberculosisMoron = Math.round(numeroTotalGeneralTuberculosisMoron / (numeroTotalGeneralTuberculosisNoMoron + numeroTotalGeneralTuberculosisMoron) * 100) || 0
 
   //entre fechas
-  const numeroTotalGeneralTuberculosisMoronEntreFechas = calcularDptoCargaMoron("Tuberculosis",fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralTuberculosisMoronEntreFechas = calcularDptoCargaMoron("Tuberculosis",semanaInicial, semanaFinal)
 
-  const numeroTotalGeneralTuberculosisNoMoronEntreFechas = calcularDptoCargaNoMoron("Tuberculosis", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralTuberculosisNoMoronEntreFechas = calcularDptoCargaNoMoron("Tuberculosis", semanaInicial, semanaFinal)
 
   const porcentajeNotificadosTuberculosisMoronEntreFechas = Math.round(numeroTotalGeneralTuberculosisMoronEntreFechas / (numeroTotalGeneralTuberculosisNoMoronEntreFechas + numeroTotalGeneralTuberculosisMoronEntreFechas) * 100) || 0
 
@@ -995,15 +996,16 @@ const tuberculosisXse = [
   //-------------Dengue---------------------------------------------------------------------
   //-------------array total
   let arrayTotalNotificadosDengue = calcularTotalNotificados("Dengue");
+  arrayTotalNotificadosDengue = quitarDuplicados(arrayTotalNotificadosDengue);
 
-  arrayTotalNotificadosDengue = quitarDuplicados(arrayTotalNotificadosDengue)
 //entre fechas
-const arrayTotalNotificadosDengueEntreFechas = calcularTotalNotificadosEntreFechas("Dengue" , fechaInicioFormatoNumero, fechaFinFormatoNumero);
+let arrayTotalNotificadosDengueEntreFechas = calcularTotalNotificadosEntreFechas("Dengue" , semanaInicial, semanaFinal);
+arrayTotalNotificadosDengueEntreFechas = quitarDuplicados(arrayTotalNotificadosDengueEntreFechas)
 
   //------------valores totales
-  const numeroTotalNotificadosDengue = arrayTotalNotificadosDengue.length;
+  const numeroTotalNotificadosDengue = arrayTotalNotificadosDengue.length || 0;
 //entre fechas
-const numeroTotalNotificadosDengueEntreFechas = arrayTotalNotificadosDengueEntreFechas.length;
+const numeroTotalNotificadosDengueEntreFechas = arrayTotalNotificadosDengueEntreFechas.length || 0;
 
   //--------------por sexo
   const numeroTotalNotificadosDengueFemenino = calcularPorSexo(arrayTotalNotificadosDengue, "F");
@@ -1011,9 +1013,9 @@ const numeroTotalNotificadosDengueEntreFechas = arrayTotalNotificadosDengueEntre
   const numeroTotalNotificadosDengueSd = calcularPorSexo(arrayTotalNotificadosDengue, "NA")
 
   //entre fechas
-  const numeroTotalNotificadosDengueFemeninoEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "F", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const numeroTotalNotificadosDengueMasculinoEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "M", fechaInicioFormatoNumero, fechaFinFormatoNumero);
-  const numeroTotalNotificadosDengueSdEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "NA", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalNotificadosDengueFemeninoEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "F", semanaInicial, semanaFinal);
+  const numeroTotalNotificadosDengueMasculinoEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "M", semanaInicial, semanaFinal);
+  const numeroTotalNotificadosDengueSdEntreFechas = calcularPorSexo(arrayTotalNotificadosDengue, "NA", semanaInicial, semanaFinal)
 
 
   //---------------clasificaciones totales
@@ -1039,16 +1041,16 @@ const numeroTotalNotificadosDengueEntreFechas = arrayTotalNotificadosDengueEntre
 
 //entre fechas
 //confirmados
-const numeroConfirmadosTotalDengueEntreFechas = calcularConfirmadosDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+const numeroConfirmadosTotalDengueEntreFechas = calcularConfirmadosDengueEntreFechas(semanaInicial, semanaFinal)
 
 //probables
-const numeroProbablesTotalDengueEntreFechas = parseInt(calcularClasificacionManualPorEventoEntreFechas("Dengue", "Caso probable", fechaInicioFormatoNumero, fechaFinFormatoNumero).length) || 0
+const numeroProbablesTotalDengueEntreFechas = parseInt(calcularClasificacionManualPorEventoEntreFechas("Dengue", "Caso probable", semanaInicial, semanaFinal).length) || 0
 
 //descartados
-const numeroDescartadosTotalDengueEntreFechas = calcularDescartadosDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+const numeroDescartadosTotalDengueEntreFechas = calcularDescartadosDengueEntreFechas(semanaInicial, semanaFinal)
 
 //sospechosos
-const numeroSospechososTotalDengueEntreFechas = calcularSospechososDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+const numeroSospechososTotalDengueEntreFechas = calcularSospechososDengueEntreFechas(semanaInicial, semanaFinal)
 
 
   //embarazadas
@@ -1065,9 +1067,9 @@ let numeroEmbarazadasConfirmadasDengue = arrayEmbarazadasConfirmadasDengue.lengt
   let numeroEmbarazadasDescartadasDengue = arrayEmbarazadasDescartadasDengue.length || 0;
 
   //embarazadas entre fechas
-  const numeroEmbarazadasNotificadoTotalDengueEntreFechas = calcularEventoEnEmbarazoEntreFechas("Dengue",fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroEmbarazadasConfirmadasDengueEntreFechas = calcularConfirmadosEmbarazoDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
-  const numeroEmbarazadasDescartadasDengueEntreFechas = calcularDescartadosEmbarazoDengueEntreFechas(fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroEmbarazadasNotificadoTotalDengueEntreFechas = calcularEventoEnEmbarazoEntreFechas("Dengue",semanaInicial, semanaFinal)
+  const numeroEmbarazadasConfirmadasDengueEntreFechas = calcularConfirmadosEmbarazoDengueEntreFechas(semanaInicial, semanaFinal)
+  const numeroEmbarazadasDescartadasDengueEntreFechas = calcularDescartadosEmbarazoDengueEntreFechas(semanaInicial, semanaFinal)
 
   //-------------Departamento de carga
   let arrayTotalGeneralDengueMoron = calcularDptoCargaMoron("Dengue")
@@ -1081,9 +1083,9 @@ let numeroEmbarazadasConfirmadasDengue = arrayEmbarazadasConfirmadasDengue.lengt
   const porcentajeNotificadosDengueMoron = Math.round(numeroTotalGeneralDengueMoron / (numeroTotalGeneralDengueNoMoron + numeroTotalGeneralDengueMoron) * 100) || 0
 
   //-------------Departamento de carga entre fechas
-  const numeroTotalGeneralDengueMoronEntreFechas = calcularDptoCargaMoronEntreFechas("Dengue", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralDengueMoronEntreFechas = calcularDptoCargaMoronEntreFechas("Dengue", semanaInicial, semanaFinal)
 
-  const numeroTotalGeneralDengueNoMoronEntreFechas = calcularDptoCargaNoMoronEntreFechas("Dengue", fechaInicioFormatoNumero, fechaFinFormatoNumero)
+  const numeroTotalGeneralDengueNoMoronEntreFechas = calcularDptoCargaNoMoronEntreFechas("Dengue", semanaInicial, semanaFinal)
 
   const porcentajeNotificadosDengueMoronEntreFechas = Math.round(numeroTotalGeneralDengueMoronEntreFechas / (numeroTotalGeneralDengueNoMoronEntreFechas + numeroTotalGeneralDengueMoronEntreFechas) * 100) || 0
 

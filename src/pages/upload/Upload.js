@@ -329,7 +329,8 @@ function Upload() {
       ) : (
         <p>No hay archivos cargados</p>
       )}
-      <div className="calendar-container">
+
+      {/* <div className="calendar-container">
         <p className="calendar-title">Seleccionar fechas</p>
         <div className="calendar-inputs-btn-container">
           <form onSubmit={handleCalendar} className="calendar-form-container">
@@ -347,11 +348,8 @@ function Upload() {
             />
             <input type="submit" value="Enviar" className="buttonActive" />
           </form>
-          <button onClick={() => navigate(-1)} className="button right">
-            Volver
-          </button>
         </div>
-      </div>
+      </div> */}
 
 <div className="calendar-container">
 <p className="calendar-title">Seleccionar Semanas Epidemiológicas</p>
@@ -359,7 +357,7 @@ function Upload() {
         <form onSubmit={handleWeeksForm} className="calendar-form-container">
           <input
             type="number"
-            placeholder="SE inicial"
+            placeholder="SE inicial inclusive"
             className="calendar-input"
           />
           <datalist id="drugs">
@@ -368,18 +366,19 @@ function Upload() {
 
           <input
             type="number"
-            placeholder="SE final"
+            placeholder="SE final inclusive"
             className="calendar-input"
           />
           <datalist id="drugs">
-            {semanasNumber.map((el) => <option value={el}>{el}</option>)}
+            {semanasNumber.map((el, index) => <option value={el}>{el}</option>)}
           </datalist>
 
           <input type="submit" value="Enviar" className="buttonActive" ></input>
-          <button onClick={() => navigate(-1)} className="button right">
+         
+        </form>
+        <button onClick={() => navigate(-1)} className="button right">
             Volver
           </button>
-        </form>
       </div>
 
   </div>      
