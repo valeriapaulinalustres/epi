@@ -82,7 +82,7 @@ console.log(semanaInicial, semanaFinal);
     return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" )
   }
 
-  function calcularTotalNotificadosEntreFechas(enfermedad, fechaInicio = 1, fechaFin = 53) {
+  function calcularTotalNotificadosEntreFechas(enfermedad, fechaInicio, fechaFin) {
     return baseCompleta.filter(el => el.EVENTO === enfermedad && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
   }
 
@@ -121,6 +121,12 @@ function calcularSexoClasificacion (sexo, clasificacion, fechaInicio = 1, fechaF
 function calcularConfirmadosPorClasificacion(clasificacion) {
 
   return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.DEPARTAMENTO_RESIDENCIA == "Morón")
+}
+
+
+function calcularConfirmadosPorClasificacionEntreFechas(clasificacion, fechaInicio , fechaFin) {
+
+  return baseCompleta.filter(el => el.CLASIFICACION_MANUAL === clasificacion && el.DEPARTAMENTO_RESIDENCIA === "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
 }
 
   function calcularConfirmadosTuberculosisEntreFechas(clasificacion, fechaInicio = 1, fechaFin = 53) {
@@ -410,25 +416,23 @@ const numeroDescartadosTotalGeneralSifilis = arrayDescartadosTotalGeneralSifilis
   //---------------clasificaciones totales entre fechas
   //confirmados entre fechas
 
+  let arrayConfirmadosTotalGeneralSifilisEntreFechas = [...calcularConfirmadosPorClasificacionEntreFechas("Caso confimado en banco de sangre", semanaInicial, semanaFinal), ...calcularConfirmadosPorClasificacionEntreFechas('Caso confirmado de sífilis sin especificar', semanaInicial, semanaFinal), ...calcularConfirmadosPorClasificacionEntreFechas('Caso confirmado de sífilis temprana', semanaInicial, semanaFinal), ...calcularConfirmadosPorClasificacionEntreFechas('Caso de Sífilis congénita confirmada por laboratorio', semanaInicial, semanaFinal), ...calcularConfirmadosPorClasificacionEntreFechas('Caso confirmado de Sífilis')];
 
-  const numeroConfirmadosTotalSifilisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confimado en banco de sangre", semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confirmado de sífilis sin especificar", semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso confirmado de sífilis temprana", semanaInicial, semanaFinal).length)
-
-  const numeroConfirmadosTotalSiflisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso de Sífilis congénita confirmada por laboratorio", semanaInicial, semanaFinal).length)
-
-  const numeroConfirmadosTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso confirmado de Sífilis", semanaInicial, semanaFinal).length)
-
-  const numeroConfirmadosTotalGeneralSifilisEntreFechas = numeroConfirmadosTotalSifilisEntreFechas + numeroConfirmadosTotalSiflisCongenitaEntreFechas + numeroConfirmadosTotalSifilisEmbarazadasEntreFechas
-
+  arrayConfirmadosTotalGeneralSifilisEntreFechas = arrayConfirmadosTotalGeneralSifilisEntreFechas.filter(el=>el.EVENTO === 'Sífilis' || el.EVENTO === 'Sífilis en personas gestantes' || el.EVENTO === 'Sífilis congénita')
+  
+  arrayConfirmadosTotalGeneralSifilisEntreFechas = quitarDuplicados(arrayConfirmadosTotalGeneralSifilisEntreFechas)
+  const numeroConfirmadosTotalGeneralSifilisEntreFechas = arrayConfirmadosTotalGeneralSifilisEntreFechas.length || 0;
 
   //probables entre fechas
 
-  const numeroProbablesTotalSifilisEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable de sífilis sin especificar estadío", semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable de sífilis temprana", semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis", "Caso probable en banco de sangre", semanaInicial, semanaFinal).length)
+  let arrayProbablesTotalGeneralSifilisEntreFechas = [...calcularConfirmadosPorClasificacionEntreFechas('Caso probable de sífilis sin especificar estadío', semanaInicial, semanaFinal), ...calcularConfirmadosPorClasificacionEntreFechas('Caso probable de sífilis temprana', semanaInicial, semanaFinal), ...calcularConfirmadosPorClasificacionEntreFechas('Caso probable en banco de sangre', semanaInicial, semanaFinal), ...calcularConfirmadosPorClasificacionEntreFechas('Caso probable de sífilis', semanaInicial, semanaFinal)];
 
-  const numeroProbablesTotalSifilisCongenitaEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis congénita", "Caso probable de sífilis sin especificar estadío" , semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable de sífilis temprana" , semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis Congénita", "Caso probable en banco de sangre" , semanaInicial, semanaFinal).length)
+arrayProbablesTotalGeneralSifilisEntreFechas = arrayProbablesTotalGeneralSifilisEntreFechas.filter(el=>el.EVENTO === 'Sífilis' || el.EVENTO === 'Sífilis en personas gestantes' || el.EVENTO === 'Sífilis congénita')
 
-  const numeroProbablesTotalSifilisEmbarazadasEntreFechas = parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis sin especificar estadío" , semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable de sífilis" , semanaInicial, semanaFinal).length) + parseInt(calcularClasificacionManualPorEvento("Sífilis en personas gestantes", "Caso probable en banco de sangre" , semanaInicial, semanaFinal).length)
+arrayProbablesTotalGeneralSifilisEntreFechas = quitarDuplicados(arrayProbablesTotalGeneralSifilisEntreFechas);
 
-  const numeroProbablesTotalGeneralSifilisEntreFechas = numeroProbablesTotalSifilisEntreFechas + numeroProbablesTotalSifilisCongenitaEntreFechas + numeroProbablesTotalSifilisEmbarazadasEntreFechas
+const numeroProbablesTotalGeneralSifilisEntreFechas =  arrayProbablesTotalGeneralSifilisEntreFechas.length || 0;
+
 
   //descartados entre fechas
 
