@@ -158,7 +158,6 @@ function Hiv() {
 
         ?
         <div className='totalesGraphs-container'>
-          <h2>PÁGINA EN REPARACIÓN</h2>
            {
             calendar.dateFrom
               ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>

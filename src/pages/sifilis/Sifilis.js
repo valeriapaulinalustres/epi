@@ -198,7 +198,6 @@ function Sifilis() {
 
         ?
         <div className='totalesGraphs-container'>
-          <h2>PÁGINA EN REPARACIÓN</h2>
            {
             calendar.dateFrom
               ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
@@ -248,7 +247,7 @@ function Sifilis() {
             <div className='recuadro lila'>
               Notificados por Morón:
               <p className='totalNumber'>
-                {porcentajeNotificadosSifilisMoronEntreFechas }
+                {porcentajeNotificadosSifilisMoronEntreFechas }%
               </p>
             </div>
           </div>
