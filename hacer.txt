@@ -8,4 +8,4 @@ Falta:
 -el resto de entre fechas
 -arreglar código
 -entre fechas que sea otra página
--poner en la vista entre fechas, de título las semanas que comprende
+-poner bien en los títulos de los gráficos las se entre

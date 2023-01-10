@@ -189,7 +189,6 @@ const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue segú
 
         ?
         <div className='totalesGraphs-container'>
-          <h2>PÁGINA EN REPARACIÓN</h2>
           {
             semanaInicial
               ? <h3>Semanas Epidemiológicas {semanaInicial} a {semanaFinal}</h3>
