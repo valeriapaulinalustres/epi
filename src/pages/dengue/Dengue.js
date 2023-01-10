@@ -323,16 +323,16 @@ const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue segú
                 {numeroDescartadosTotalDengue}
               </p>
             </div>
-            <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>
-              Gestantes:
-              <p className='totalNumber'>
-                {numeroEmbarazadasNotificadoTotalDengue}
-              </p>
-            </div>
             <div className='recuadro rosa'>
               Sospechosos:
               <p className='totalNumber'>
                 {numeroSospechososTotalDengue}
+              </p>
+            </div>
+            <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>
+              Gestantes:
+              <p className='totalNumber'>
+                {numeroEmbarazadasNotificadoTotalDengue}
               </p>
             </div>
             <div className='recuadro lila'>
