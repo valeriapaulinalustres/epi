@@ -1,8 +1,11 @@
 5/1
 
 DENGUE, TBC, HIV y Sífilis ya está todo hecho, funcionando y checkeado.
-Entre fechas valores totales funcionan bien las 4
+Entre fechas HIV y Sífilis está listo.
 
 Falta:
 
 -el resto de entre fechas
+-arreglar código
+-entre fechas que sea otra página
+-poner en la vista entre fechas, de título las semanas que comprende

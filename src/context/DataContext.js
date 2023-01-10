@@ -107,7 +107,7 @@ const semanaFinal = weeksCalendar.weekTo;
     return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón" )
   }
 
-  function calcularClasificacionManualPorEventoEntreFechas(evento, clasificacion,fechaInicio = 1, fechaFin = 53) {
+  function calcularClasificacionManualPorEventoEntreFechas(evento, clasificacion,fechaInicio, fechaFin) {
     return baseCompleta.filter(el => el.CLASIFICACION_MANUAL == clasificacion && el.EVENTO == evento && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
   }
 
@@ -162,10 +162,13 @@ let ab = [...a, ...b]
      return abc
   }
 
-  function calcularDescartadosTuberculosisEntreFechas(fechaInicio = 1, fechaFin = 53) {
-    let a =  baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Descartado TBC - Micobacteria no tuberculosis" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0 
-    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Bacteriología Negativa" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin).length || 0
-     return a + b
+  function calcularDescartadosTuberculosisEntreFechas(fechaInicio, fechaFin) {
+    let a =  baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Descartado TBC - Micobacteria no tuberculosis" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
+    let b = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Bacteriología Negativa" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
+    let c = baseCompleta.filter(el => el.CLASIFICACION_MANUAL == "Caso invalidado por epidemiología" && el.EVENTO == "Tuberculosis" && el.DEPARTAMENTO_RESIDENCIA == "Morón" && el.SEPI_APERTURA >= fechaInicio && el.SEPI_APERTURA <= fechaFin)
+
+    let abc = [...a, ...b, ...c]
+    return abc
   }
 
   function calcularDescartadosDengue() {
@@ -859,19 +862,47 @@ let arrayDescartadasTbcEmbarazadas = arrayDescartadosTotalTuberculosis.filter(el
 
   //entre fechas-----------
   //confirmados
-  const numeroConfirmadosTotalTuberculosisEntreFechas = calcularConfirmadosTuberculosisEntreFechas("Baciloscopía positiva", semanaInicial, semanaFinal) + calcularConfirmadosTuberculosisEntreFechas("Complejo Mycobacterium tuberculosis", semanaInicial, semanaFinal) + calcularConfirmadosTuberculosisEntreFechas("Mycobacterium tuberculosis", semanaInicial, semanaFinal) + calcularConfirmadosTuberculosisEntreFechas("Histopatologia sugestiva", semanaInicial, semanaFinal)
+
+  let arrayBaciloscopiaPositivaEntreFechas = calcularConfirmadosPorClasificacionEntreFechas("Baciloscopía positiva", semanaInicial, semanaFinal);
+  let arrayComplejoTBCEntreFechas = calcularConfirmadosPorClasificacionEntreFechas("Complejo Mycobacterium tuberculosis", semanaInicial, semanaFinal);
+  let arrayMicobacteriumEntreFechas = calcularConfirmadosPorClasificacionEntreFechas("Mycobacterium tuberculosis", semanaInicial, semanaFinal);
+  let arrayHistopatologiaSugestivaEntreFechas = calcularConfirmadosPorClasificacionEntreFechas("Histopatologia sugestiva", semanaInicial, semanaFinal);
+  
+  let arrayConfirmadosTbcEntreFechas = [...arrayBaciloscopiaPositivaEntreFechas, ...arrayComplejoTBCEntreFechas, ...arrayMicobacteriumEntreFechas, ...arrayHistopatologiaSugestivaEntreFechas];
+  
+  arrayConfirmadosTbcEntreFechas = quitarDuplicados(arrayConfirmadosTbcEntreFechas);
+  
+    const numeroConfirmadosTotalTuberculosisEntreFechas = arrayConfirmadosTbcEntreFechas.length || 0;
+  
 
   //descartados
-  const numeroDescartadosTotalTuberculosisEntreFechas = calcularDescartadosTuberculosis(semanaInicial, semanaFinal)
 
+  let arrayDescartadosTotalTuberculosisEntreFechas = calcularDescartadosTuberculosisEntreFechas(semanaInicial, semanaFinal)
+  arrayDescartadosTotalTuberculosisEntreFechas = quitarDuplicados(arrayDescartadosTotalTuberculosisEntreFechas);
+
+  const numeroDescartadosTotalTuberculosisEntreFechas = arrayDescartadosTotalTuberculosisEntreFechas.length || 0;
+
+  
   //embarazadas
 
-  const numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas = calcularEventoEnEmbarazo("Tuberculosis", semanaInicial, semanaFinal)
-  const numeroEmbarazadasConfirmadasTuberculosisEntreFechas = calcularConfirmadosEmbarazoTuberculosis(semanaInicial, semanaFinal)
-  const numeroEmbarazadasDescartadasTuberculosisEntreFechas = calcularDescartadosEmbarazoTuberculosis(semanaInicial, semanaFinal)
+  
+let arrayNotificadosTbcEmbarazadasEntreFechas = arrayTotalNotificadosTuberculosisEntreFechas.filter(el=>el.EMBARAZADA == "SI")
+const numeroEmbarazadasNotificadasTotalTuberculosisEntreFechas = arrayNotificadosTbcEmbarazadasEntreFechas.length || 0
+
+let arrayConfirmadosTbcEmbarazadasEntreFechas = arrayConfirmadosTbcEntreFechas.filter(el=>el.EMBARAZADA == "SI")
+const numeroEmbarazadasConfirmadasTuberculosisEntreFechas = arrayConfirmadosTbcEmbarazadasEntreFechas.length || 0;
+
+let arrayDescartadasTbcEmbarazadasEntreFechas = arrayDescartadosTotalTuberculosisEntreFechas.filter(el=>el.EMBARAZADA == "SI")
+  const numeroEmbarazadasDescartadasTuberculosisEntreFechas = arrayDescartadasTbcEmbarazadasEntreFechas.length || 0;
+
 
   //En estudio
-  const numeroEnEstudioTotalTuberculosisEntreFechas  = arrayEnEstudioTbc.length || 0; //esto hay que arreglarlo
+  const arrayTbcEstudioEntreFechas = calcularClasificacionManualPorEventoEntreFechas("Tuberculosis", "En estudio", semanaInicial, semanaFinal)
+  const arrayTbcMuestraNoAptaEntreFechas = calcularClasificacionManualPorEventoEntreFechas("Tuberculosis", "Muestra no apta para el diagnostico", semanaInicial, semanaFinal)
+  let arrayEnEstudioTbcEntreFechas = [...arrayTbcEstudioEntreFechas, ...arrayTbcMuestraNoAptaEntreFechas];
+  arrayEnEstudioTbcEntreFechas = quitarDuplicados(arrayEnEstudioTbcEntreFechas)
+  const numeroEnEstudioTotalTuberculosisEntreFechas  = arrayEnEstudioTbcEntreFechas.length || 0;
+
 
   //-------------Departamento de carga
   let arrayTotalGeneralTuberculosisMoron = calcularDptoCargaMoron("Tuberculosis");
@@ -885,9 +916,13 @@ let arrayDescartadasTbcEmbarazadas = arrayDescartadosTotalTuberculosis.filter(el
   const porcentajeNotificadosTuberculosisMoron = Math.round(numeroTotalGeneralTuberculosisMoron / (numeroTotalGeneralTuberculosisNoMoron + numeroTotalGeneralTuberculosisMoron) * 100) || 0
 
   //entre fechas
-  const numeroTotalGeneralTuberculosisMoronEntreFechas = calcularDptoCargaMoron("Tuberculosis",semanaInicial, semanaFinal)
+  let arrayTotalGeneralTuberculosisMoronEntreFechas = calcularDptoCargaMoronEntreFechas("Tuberculosis", semanaInicial, semanaFinal);
+  arrayTotalGeneralTuberculosisMoronEntreFechas = quitarDuplicados(arrayTotalGeneralTuberculosisMoronEntreFechas);
+  const numeroTotalGeneralTuberculosisMoronEntreFechas = arrayTotalGeneralTuberculosisMoronEntreFechas.length || 0;
 
-  const numeroTotalGeneralTuberculosisNoMoronEntreFechas = calcularDptoCargaNoMoron("Tuberculosis", semanaInicial, semanaFinal)
+  let arrayTotalGeneralTuberculosisNoMoronEntreFechas = calcularDptoCargaNoMoronEntreFechas("Tuberculosis", semanaInicial, semanaFinal);
+  arrayTotalGeneralTuberculosisNoMoronEntreFechas = quitarDuplicados(arrayTotalGeneralTuberculosisNoMoronEntreFechas);
+  const numeroTotalGeneralTuberculosisNoMoronEntreFechas = arrayTotalGeneralTuberculosisNoMoronEntreFechas.length || 0;
 
   const porcentajeNotificadosTuberculosisMoronEntreFechas = Math.round(numeroTotalGeneralTuberculosisMoronEntreFechas / (numeroTotalGeneralTuberculosisNoMoronEntreFechas + numeroTotalGeneralTuberculosisMoronEntreFechas) * 100) || 0
 

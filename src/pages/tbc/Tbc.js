@@ -52,6 +52,7 @@ function Tbc() {
     porcentajeNotificadosTuberculosisMoronEntreFechas,
     numeroTotalGeneralTuberculosisMoronEntreFechas,
     numeroTotalGeneralTuberculosisNoMoronEntreFechas,
+  
     
     
   } = useContext(DataContext);
@@ -167,7 +168,7 @@ function handleEmbarazadasTbcEntreFechas (){
     })
   }
 
-
+  
 
 
   return (
@@ -193,7 +194,6 @@ function handleEmbarazadasTbcEntreFechas (){
       {ultimoMesTbc
         ?
         <div className='totalesGraphs-container'>
-          <h2>PÁGINA EN REPARACIÓN</h2>
           {
             calendar.dateFrom
               ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
@@ -214,31 +214,31 @@ function handleEmbarazadasTbcEntreFechas (){
             <div className='recuadro salmon'>
               Confirmados:
               <p className='totalNumber'>
-                { }
+                { numeroConfirmadosTotalTuberculosisEntreFechas}
               </p>
             </div>
             <div className='recuadro rosa'>
               Descartados:
               <p className='totalNumber'>
-                { }
+                { numeroDescartadosTotalTuberculosisEntreFechas }
               </p>
             </div>
             <div className='recuadro lila'>
               En estudio:
               <p className='totalNumber'>
-                { }
+                { numeroEnEstudioTotalTuberculosisEntreFechas }
               </p>
             </div>
             <div className='recuadro salmon' onClick={handleEmbarazadasTbcEntreFechas}>
               Gestantes:
               <p className='totalNumber'>
-                { }
+                { numeroEmbarazadasDescartadasTuberculosisEntreFechas }
               </p>
             </div>
             <div className='recuadro rosa'>
               Notificados por Morón:
               <p className='totalNumber'>
-                { }%
+                { porcentajeNotificadosTuberculosisMoronEntreFechas }%
               </p>
             </div>
           </div>
