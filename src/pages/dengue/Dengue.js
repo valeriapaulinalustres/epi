@@ -140,11 +140,11 @@ function Dengue() {
   //Gráfico notificados según sexo entre fechas
 
   const totalPorSexoDengueEntreFechas = [numeroTotalNotificadosDengueMasculinoEntreFechas, numeroTotalNotificadosDengueFemeninoEntreFechas, numeroTotalNotificadosDengueSdEntreFechas]
-  const titleSexoDengueEntreFechas = `Casos notificados de Dengue según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+  const titleSexoDengueEntreFechas = `Casos notificados de Dengue según sexo. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
 //Gráfico clasificación entre fechas
 
-const titleClasificacionDengueEntreFechas = `Clasificación de los casos de Dengue. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+const titleClasificacionDengueEntreFechas = `Clasificación de los casos de Dengue. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 const dataConfirmadosClasificacionDengueEntreFechas = [numeroConfirmadosTotalDengueEntreFechas]
 const dataProbablesClasificacionDengueEntreFechas = [numeroProbablesTotalDengueEntreFechas]
 const dataSospechososNoConcClasificacionDengueEntreFechas = [numeroConfirmadosTotalDengueEntreFechas]
@@ -154,7 +154,7 @@ const dataDescartadosClasificacionDengueEntreFechas = [numeroDescartadosTotalDen
 //Gráfico notificados Morón/Total entre fechas
 
 const notificadosDengueEstablecimientoCargaEntreFechas = [numeroTotalGeneralDengueMoronEntreFechas, numeroTotalGeneralDengueNoMoronEntreFechas]
-const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}..`
+const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue según Establecimiento de carga. Morón, SE ${semanaInicial} a ${semanaFinal}..`
 
   //Alerts
 

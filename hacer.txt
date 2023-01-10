@@ -4,8 +4,9 @@ DENGUE, TBC, HIV y Sífilis ya está todo hecho, funcionando y checkeado.
 Entre fechas HIV y Sífilis está listo.
 
 Falta:
-
--el resto de entre fechas
+-mejorar ux/ui de upload
 -arreglar código
 -entre fechas que sea otra página
 -poner bien en los títulos de los gráficos las se entre
+-crear pantallas de login
+-continuar con covid y eti

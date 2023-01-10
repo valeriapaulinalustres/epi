@@ -22,6 +22,8 @@ function Home() {
     baseCompleta,
     setBaseCompletaClinica,
     se,
+    semanaInicial,
+    semanaFinal,
     semanas,
     anioActual,
     anioBaseActual,
@@ -132,7 +134,7 @@ function Home() {
 
   //entre fechas, notificados
 
-  const enoPriorizadasNotificadosTitleEntreFechas =  `Casos notificados de ENO priorizadas. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+  const enoPriorizadasNotificadosTitleEntreFechas =  `Casos notificados de ENO priorizadas. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
 const enoPriorizadasNotificadosLabelsEntreFechas = ["ENO priorizadas"];
 const labelsNotificadosEjeY = ["Casos notificados"];
@@ -197,8 +199,8 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
         ?
         <div className='totalesGraphs-container'>
           {
-            calendar.dateFrom
-              ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
+            semanaInicial
+              ? <h3>Semanas Epidemiológicas {semanaInicial} a {semanaFinal}</h3>
               : <div>
                 <p>No hay fechas ingresadas</p>
 <Link to="/upload"><button className='button'>Ingresar fechas</button></Link>
@@ -258,11 +260,11 @@ const datanumeroTotalGeneralNotificadosHivEntreFechas = [numeroTotalGeneralNotif
                 bgColor4={amarillo}             
               />
             </div>
-            <div className='barChart-sifilis'>
+            {/* <div className='barChart-sifilis'>
               <BarChartFourData             
                 
               />
-            </div>
+            </div> */}
           </div>
         </div>
 

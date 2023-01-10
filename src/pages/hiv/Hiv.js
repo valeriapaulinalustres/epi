@@ -125,17 +125,17 @@ function Hiv() {
   //Gráfico notificados según sexo entre fechas
 
   const totalPorSexoHivEntreFechas = [numeroTotalGeneralNotificadosHivMasculinoEntreFechas, numeroTotalGeneralNotificadosHivFemeninoEntreFechas, numeroTotalGeneralNotificadosHivSdEntreFechas]
-  const titleSexoHivEntreFechas = `Casos notificados según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+  const titleSexoHivEntreFechas = `Casos notificados según sexo. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
   //Gráfico embarazadas sobre total de notificadas mujeres entre fechas
 
   const embarazadasEnMujeresHivEntreFechas = [numeroTotalNotificadosHivEmbarazoEntreFechas, parseInt(numeroTotalGeneralNotificadosHivFemeninoEntreFechas - numeroTotalNotificadosHivEmbarazoEntreFechas)]
-  const titleEmbarazoHivEntreFechas = `Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+  const titleEmbarazoHivEntreFechas = `Casos notificados en gestantes, sobre personas con posibilidad de gestar. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
    //Gráfico notificados Morón/Total entre fechas 
 
    const notificadosHivEstablecimientoCargaEntreFechas = [numeroTotalGeneralHivMoronEntreFechas, numeroTotalGeneralHivNoMoronEntreFechas]
-   const titleEstablecimientoHivEntreFechas = `Casos notificados según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+   const titleEstablecimientoHivEntreFechas = `Casos notificados según Establecimiento de carga. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
 
   return (

@@ -145,22 +145,22 @@ function Sifilis() {
   //Gráfico notificados según sexo entre fechas
 
   const totalPorSexoSifilisEntreFechas = [numeroTotalGeneralNotificadosSifilisMasculinoEntreFechas, numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas, numeroTotalGeneralNotificadosSifilisSdEntreFechas]
-  const titleSexoSifilisEntreFechas = `Casos notificados de Sífilis según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+  const titleSexoSifilisEntreFechas = `Casos notificados de Sífilis según sexo. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
  //Gráfico embarazadas sobre total de notificadas mujeres entre fechas
 
  const embarazadasEnMujeresSifilisEntreFechas = [numeroTotalNotificadosSifilisEmbarazadasEntreFechas, parseInt(numeroTotalGeneralNotificadosSifilisFemeninoEntreFechas - numeroTotalNotificadosSifilisEmbarazadasEntreFechas)]
- const titleEmbarazoSifilisEntreFechas = `Casos notificados de Síflis en gestantes, sobre personas con posibilidad de gestar. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+ const titleEmbarazoSifilisEntreFechas = `Casos notificados de Síflis en gestantes, sobre personas con posibilidad de gestar. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
 
   //Gráfico notificados Morón/Total entre fechas
 
   const notificadosSifilisEstablecimientoCargaEntreFechas = [numeroTotalGeneralSifilisMoronEntreFechas, numeroTotalGeneralSifilisNoMoronEntreFechas]
-  const titleEstablecimientoSifilisEntreFechas = `Casos notificados de Sífilis según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+  const titleEstablecimientoSifilisEntreFechas = `Casos notificados de Sífilis según Establecimiento de carga. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
    //Gráfico tabla probables y confirmados entre fechas
 
-   const titleConfProbSifilisEntreFechas = `Casos confirmados y probables de Sífilis. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+   const titleConfProbSifilisEntreFechas = `Casos confirmados y probables de Sífilis. Morón, SE ${semanaInicial} a ${semanaFinal}.`
    const femeninoConfProbSifilisEntreFechas = [numeroConfirmadosFemeninosSifilisEntreFechas, numeroProbablesFemeninosSifilisEntreFechas];
    const masculinoConfProbSifilisEntreFechas = [numeroConfirmadosMasculinosSifilisEntreFechas, numeroProbablesMasculinosSifilisEntreFechas];
    const sdConfProbSifilisEntreFechas = [numeroConfirmadosSDSifilisEntreFechas, numeroProbablesSDSifilisEntreFechas]

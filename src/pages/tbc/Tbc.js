@@ -138,16 +138,16 @@ function Tbc() {
   //Gráfico notificados según sexo
 
   const totalPorSexoTbcEntreFechas = [numeroTotalNotificadosTuberculosisMasculinoEntreFechas, numeroTotalNotificadosTuberculosisFemeninoEntreFechas, numeroTotalNotificadosTuberculosisSdEntreFechas]
-  const titleSexoTbcEntreFechas = `Casos notificados según sexo. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+  const titleSexoTbcEntreFechas = `Casos notificados según sexo. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
 //Gráfico notificados Morón/Total
 
 const notificadosTbcEstablecimientoCargaEntreFechas = [numeroTotalGeneralTuberculosisMoronEntreFechas, numeroTotalGeneralTuberculosisNoMoronEntreFechas]
-const titleEstablecimientoTbcEntreFechas = `Casos notificados de Tuberculosis según Establecimiento de carga. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+const titleEstablecimientoTbcEntreFechas = `Casos notificados de Tuberculosis según Establecimiento de carga. Morón, SE ${semanaInicial} a ${semanaFinal}.`
 
  //Tabla resultados
 
- const titleResultadoTuberculosisEntreFechas = `Casos notificados de Tuberculosis según resultado de laboratorio. Morón, ${calendar.dateFrom} al ${calendar.dateTo}.`
+ const titleResultadoTuberculosisEntreFechas = `Casos notificados de Tuberculosis según resultado de laboratorio. Morón, SE ${semanaInicial} a ${semanaFinal}.`
  const dataPositivosTuberculosisEntreFechas = [numeroConfirmadosTotalTuberculosisEntreFechas]
  const dataNegativosTuberculosisEntreFechas = [numeroDescartadosTotalTuberculosisEntreFechas]
  const dataSinResultadosTuberculosisEntreFechas = [numeroEnEstudioTotalTuberculosisEntreFechas]
