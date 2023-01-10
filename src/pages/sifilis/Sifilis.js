@@ -20,6 +20,8 @@ function Sifilis() {
     anioBaseActual,
     se,
     semanas,
+    semanaInicial,
+    semanaFinal,
     calendar, 
     numeroTotalGeneralNotificadosSifilis,
     numeroTotalGeneralNotificadosSifilisFemenino,
@@ -199,8 +201,8 @@ function Sifilis() {
         ?
         <div className='totalesGraphs-container'>
            {
-            calendar.dateFrom
-              ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
+            semanaInicial
+              ? <h3>Semanas Epidemiológicas {semanaInicial} a {semanaFinal}</h3>
               : <div>
                 <p>No hay fechas ingresadas</p>
 <Link to="/upload"><button className='button'>Ingresar fechas</button></Link>

@@ -20,6 +20,8 @@ function Dengue() {
     anioBaseActual,
     se,
     semanas,
+    semanaInicial,
+    semanaFinal,
     calendar,
     numeroTotalNotificadosDengue,
     numeroTotalNotificadosDengueFemenino,
@@ -189,8 +191,8 @@ const titleEstablecimientoDengueEntreFechas = `Casos notificados de Dengue segú
         <div className='totalesGraphs-container'>
           <h2>PÁGINA EN REPARACIÓN</h2>
           {
-            calendar.dateFrom
-              ? <h3>{calendar.dateFrom} al {calendar.dateTo}</h3>
+            semanaInicial
+              ? <h3>Semanas Epidemiológicas {semanaInicial} a {semanaFinal}</h3>
               : <div>
                 <p>No hay fechas ingresadas</p>
 <Link to="/upload"><button className='button'>Ingresar fechas</button></Link>
