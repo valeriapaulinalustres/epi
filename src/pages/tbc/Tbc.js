@@ -25,7 +25,7 @@ function Tbc() {
     })
   }
 
-  
+
   return (
     <div className='page-container'>
       <h2>Tuberculosis</h2>
@@ -46,7 +46,7 @@ function Tbc() {
 
       {ultimoMesTbc
         ? <TbcEntreFechas />
-        :  <TbcTotal />
+        : <TbcTotal />
       }    </div>
   )
 }

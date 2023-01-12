@@ -6,7 +6,6 @@ import Toast from 'sweetalert2';
 import Colors from '../../components/Colors';
 import BarChartSexAge from '../../components/BarChartSexAge';
 import BarChartSe from '../../components/BarChartSe';
-import { Link } from 'react-router-dom';
 
 function HivTotal() {
 
@@ -102,111 +101,111 @@ function HivTotal() {
 
 
   return (
-        <div className='totalesGraphs-container'>
-          <div className='totales-page-container'>
-            <div className='recuadro naranja'>
-              Total {anioActual}:
-              <p className='totalNumber'>
-                {numeroTotalGeneralNotificadosHiv}
-              </p>
-            </div>
-            <div className='recuadro salmon'>
-              Confirmados:
-              <p className='totalNumber'>
-                {numeroConfirmadosTotalGeneralHiv}
-              </p>
-            </div>
-            <div className='recuadro rosa' >
-              Probables:
-              <p className='totalNumber'>
-                {numeroProbablesTotalGeneralHiv}
-              </p>
-            </div>
-            <div className='recuadro lila'>
-              Descartados:
-              <p className='totalNumber'>
-                {numeroDescartadosTotalGeneralHiv}
-              </p>
-            </div>
-            <div className='recuadro rosa'>
-              Expuesto perinatal:
-              <p className='totalNumber'>
-                {numeroTotalNotificadosHivPerinatal}
-              </p>
-            </div>
-            <div className='recuadro salmon'>
-              Gestantes del total:<p className='totalNumber'>
-                {numeroTotalNotificadosHivEmbarazo}
-              </p>
-            </div>
-            <div className='recuadro lila'>
-              Notificados por Morón:
-              <p className='totalNumber'>
-                {porcentajeNotificadosHivMoron}%
-              </p>
-            </div>
-          </div>
-
-
-          <div className='graphs-container'>
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleSexoHiv}
-                datos={totalPorSexoHiv}
-                labels={labelsSexoHiv}
-                backgroundColor={backgroundColorHiv}
-                borderColor={borderColorHiv}
-              />
-            </div>
-
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleEmbarazoHiv}
-                datos={embarazadasEnMujeresHiv}
-                labels={labelsEmbarazoHiv}
-                backgroundColor={backgroundColorEmbarazoHiv}
-                borderColor={borderColorEmbarazoHiv}
-              />
-            </div>
-
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleEstablecimientoHiv}
-                datos={notificadosHivEstablecimientoCarga}
-                labels={labelsEstablecimientoHiv}
-                backgroundColor={backgroundColorEstablecimientoHiv}
-                borderColor={borderColorEstablecimientoHiv}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSexAge
-                title={titleEdadSexoHiv}
-                barLabels={labelsEdadSexoHiv}
-                label1={label1Hiv}
-                label2={label2Hiv}
-                data1={femeninoHiv}
-                data2={masculinoHiv}
-                borderColor1={lila}
-                borderColor2={salmon}
-                bgColor1={lilaTransparente}
-                bgColor2={salmonTransparente}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSe
-                eje={'x'}
-                title={titleSeHiv}
-                barLabels={labelsSeHiv}
-                label1={labelSeHiv}
-                data1={seHiv}
-                borderColor1={salmon}
-                bgColor1={salmonTransparente}
-              />
-            </div>
-          </div>
+    <div className='totalesGraphs-container'>
+      <div className='totales-page-container'>
+        <div className='recuadro naranja'>
+          Total {anioActual}:
+          <p className='totalNumber'>
+            {numeroTotalGeneralNotificadosHiv}
+          </p>
         </div>
+        <div className='recuadro salmon'>
+          Confirmados:
+          <p className='totalNumber'>
+            {numeroConfirmadosTotalGeneralHiv}
+          </p>
+        </div>
+        <div className='recuadro rosa' >
+          Probables:
+          <p className='totalNumber'>
+            {numeroProbablesTotalGeneralHiv}
+          </p>
+        </div>
+        <div className='recuadro lila'>
+          Descartados:
+          <p className='totalNumber'>
+            {numeroDescartadosTotalGeneralHiv}
+          </p>
+        </div>
+        <div className='recuadro rosa'>
+          Expuesto perinatal:
+          <p className='totalNumber'>
+            {numeroTotalNotificadosHivPerinatal}
+          </p>
+        </div>
+        <div className='recuadro salmon'>
+          Gestantes del total:<p className='totalNumber'>
+            {numeroTotalNotificadosHivEmbarazo}
+          </p>
+        </div>
+        <div className='recuadro lila'>
+          Notificados por Morón:
+          <p className='totalNumber'>
+            {porcentajeNotificadosHivMoron}%
+          </p>
+        </div>
+      </div>
+
+
+      <div className='graphs-container'>
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleSexoHiv}
+            datos={totalPorSexoHiv}
+            labels={labelsSexoHiv}
+            backgroundColor={backgroundColorHiv}
+            borderColor={borderColorHiv}
+          />
+        </div>
+
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleEmbarazoHiv}
+            datos={embarazadasEnMujeresHiv}
+            labels={labelsEmbarazoHiv}
+            backgroundColor={backgroundColorEmbarazoHiv}
+            borderColor={borderColorEmbarazoHiv}
+          />
+        </div>
+
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleEstablecimientoHiv}
+            datos={notificadosHivEstablecimientoCarga}
+            labels={labelsEstablecimientoHiv}
+            backgroundColor={backgroundColorEstablecimientoHiv}
+            borderColor={borderColorEstablecimientoHiv}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartSexAge
+            title={titleEdadSexoHiv}
+            barLabels={labelsEdadSexoHiv}
+            label1={label1Hiv}
+            label2={label2Hiv}
+            data1={femeninoHiv}
+            data2={masculinoHiv}
+            borderColor1={lila}
+            borderColor2={salmon}
+            bgColor1={lilaTransparente}
+            bgColor2={salmonTransparente}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartSe
+            eje={'x'}
+            title={titleSeHiv}
+            barLabels={labelsSeHiv}
+            label1={labelSeHiv}
+            data1={seHiv}
+            borderColor1={salmon}
+            bgColor1={salmonTransparente}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 

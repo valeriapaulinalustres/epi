@@ -11,7 +11,7 @@ function Hiv() {
   //destructuring from context
   const {
     anioActual,
-    anioBaseActual, 
+    anioBaseActual,
   } = useContext(DataContext);
 
 
@@ -35,9 +35,9 @@ function Hiv() {
 
       {ultimoMesHiv
         ? <HivEntreFechas />
-        :  <HivTotal />
+        : <HivTotal />
       }
-           </div>
+    </div>
   )
 }
 

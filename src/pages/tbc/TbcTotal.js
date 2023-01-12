@@ -108,12 +108,11 @@ function TbcTotal() {
   const labelSeTuberculosis = "SE";
   const seTuberculosis = tuberculosisXse;
 
-
   //Alerts
 
-function handleEmbarazadasTbc (){
-  detallarEmbarazadasTuberculosis(numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis)
-}
+  function handleEmbarazadasTbc() {
+    detallarEmbarazadasTuberculosis(numeroEmbarazadasConfirmadasTuberculosis, numeroEmbarazadasDescartadasTuberculosis)
+  }
 
   function detallarEmbarazadasTuberculosis(conf, desc) {
     Toast.fire({
@@ -124,113 +123,113 @@ function handleEmbarazadasTbc (){
   }
 
   return (
-        <div className='totalesGraphs-container'>
+    <div className='totalesGraphs-container'>
 
-          <div className='totales-page-container'>
-            <div className='recuadro naranja'>
-              Total {anioActual}:
-              <p className='totalNumber'>
-                {numeroTotalNotificadosTuberculosis}
-              </p>
-            </div>
-            <div className='recuadro salmon'>
-              Confirmados:
-              <p className='totalNumber'>
-                {numeroConfirmadosTotalTuberculosis}
-              </p>
-            </div>
-            <div className='recuadro rosa'>
-              Descartados:
-              <p className='totalNumber'>
-                {numeroDescartadosTotalTuberculosis}
-              </p>
-            </div>
-            <div className='recuadro lila'>
-              En estudio:
-              <p className='totalNumber'>
-                {numeroEnEstudioTotalTuberculosis}
-              </p>
-            </div>
-            <div className='recuadro salmon' onClick={handleEmbarazadasTbc}>
-              Gestantes:
-              <p className='totalNumber'>
-                {numeroEmbarazadasNotificadasTotalTuberculosis}
-              </p>
-            </div>
-            <div className='recuadro rosa'>
-              Notificados por Morón:
-              <p className='totalNumber'>
-                {porcentajeNotificadosTuberculosisMoron}%
-              </p>
-            </div>
-          </div>
-
-          <div className='graphs-container'>
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleSexoTbc}
-                datos={totalPorSexoTbc}
-                labels={labelsSexoTbc}
-                backgroundColor={backgroundColorTbc}
-                borderColor={borderColorTbc}
-              />
-            </div>
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleEstablecimientoTbc}
-                datos={notificadosTbcEstablecimientoCarga}
-                labels={labelsEstablecimientoTbc}
-                backgroundColor={backgroundColorEstablecimientoTbc}
-                borderColor={borderColorEstablecimientoTbc}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChart
-                title={titleResultadoTuberculosis}
-                barLabels={labelsRestultadoTuberculosis}
-                label1={label1RestultadoTuberculosis}
-                label2={label2RestultadoTuberculosis}
-                label3={label3RestultadoTuberculosis}
-                data1={dataPositivosTuberculosis}
-                data2={dataNegativosTuberculosis}
-                data3={dataSinResultadosTuberculosis}
-                borderColor1={lila}
-                borderColor2={salmon}
-                borderColor3={rosa}
-                bgColor1={lilaTransparente}
-                bgColor2={salmonTransparente}
-                bgColor3={rosaTransparente}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSexAge
-                title={titleEdadSexoTuberculosis}
-                barLabels={labelsEdadSexoTuberculosis}
-                label1={label1Tuberculosis}
-                label2={label2Tuberculosis}
-                data1={femeninoTuberculosis}
-                data2={masculinoTuberculosis}
-                borderColor1={lila}
-                borderColor2={salmon}
-                bgColor1={lilaTransparente}
-                bgColor2={salmonTransparente}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSe eje={'x'}
-                title={titleSeTuberculosis}
-                barLabels={labelsSeTuberculosis}
-                label1={labelSeTuberculosis}
-                data1={seTuberculosis}
-                borderColor1={salmon}
-                bgColor1={salmonTransparente}
-              />
-            </div>
-          </div>
+      <div className='totales-page-container'>
+        <div className='recuadro naranja'>
+          Total {anioActual}:
+          <p className='totalNumber'>
+            {numeroTotalNotificadosTuberculosis}
+          </p>
         </div>
+        <div className='recuadro salmon'>
+          Confirmados:
+          <p className='totalNumber'>
+            {numeroConfirmadosTotalTuberculosis}
+          </p>
+        </div>
+        <div className='recuadro rosa'>
+          Descartados:
+          <p className='totalNumber'>
+            {numeroDescartadosTotalTuberculosis}
+          </p>
+        </div>
+        <div className='recuadro lila'>
+          En estudio:
+          <p className='totalNumber'>
+            {numeroEnEstudioTotalTuberculosis}
+          </p>
+        </div>
+        <div className='recuadro salmon' onClick={handleEmbarazadasTbc}>
+          Gestantes:
+          <p className='totalNumber'>
+            {numeroEmbarazadasNotificadasTotalTuberculosis}
+          </p>
+        </div>
+        <div className='recuadro rosa'>
+          Notificados por Morón:
+          <p className='totalNumber'>
+            {porcentajeNotificadosTuberculosisMoron}%
+          </p>
+        </div>
+      </div>
+
+      <div className='graphs-container'>
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleSexoTbc}
+            datos={totalPorSexoTbc}
+            labels={labelsSexoTbc}
+            backgroundColor={backgroundColorTbc}
+            borderColor={borderColorTbc}
+          />
+        </div>
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleEstablecimientoTbc}
+            datos={notificadosTbcEstablecimientoCarga}
+            labels={labelsEstablecimientoTbc}
+            backgroundColor={backgroundColorEstablecimientoTbc}
+            borderColor={borderColorEstablecimientoTbc}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChart
+            title={titleResultadoTuberculosis}
+            barLabels={labelsRestultadoTuberculosis}
+            label1={label1RestultadoTuberculosis}
+            label2={label2RestultadoTuberculosis}
+            label3={label3RestultadoTuberculosis}
+            data1={dataPositivosTuberculosis}
+            data2={dataNegativosTuberculosis}
+            data3={dataSinResultadosTuberculosis}
+            borderColor1={lila}
+            borderColor2={salmon}
+            borderColor3={rosa}
+            bgColor1={lilaTransparente}
+            bgColor2={salmonTransparente}
+            bgColor3={rosaTransparente}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartSexAge
+            title={titleEdadSexoTuberculosis}
+            barLabels={labelsEdadSexoTuberculosis}
+            label1={label1Tuberculosis}
+            label2={label2Tuberculosis}
+            data1={femeninoTuberculosis}
+            data2={masculinoTuberculosis}
+            borderColor1={lila}
+            borderColor2={salmon}
+            bgColor1={lilaTransparente}
+            bgColor2={salmonTransparente}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartSe eje={'x'}
+            title={titleSeTuberculosis}
+            barLabels={labelsSeTuberculosis}
+            label1={labelSeTuberculosis}
+            data1={seTuberculosis}
+            borderColor1={salmon}
+            bgColor1={salmonTransparente}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 

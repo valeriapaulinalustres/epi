@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import DoughnutChart from '../../components/DoughnutChart';
 import BarChartFiveData from '../../components/BarChartFiveData';
 import BarChartSexAge from '../../components/BarChartSexAge';
@@ -13,7 +13,6 @@ function DengueTotal() {
   //destructuring from context
   const {
     anioActual,
-    anioBaseActual,
     se,
     semanas,
     numeroTotalNotificadosDengue,
@@ -119,128 +118,128 @@ function DengueTotal() {
   }
 
   return (
-        <div className='totalesGraphs-container'>
-          <div className='totales-page-container'>
-            <div className='recuadro naranja'>
-              Total {anioActual}:
-              <p className='totalNumber'>
-                {numeroTotalNotificadosDengue}
-              </p>
-            </div>
-            <div className='recuadro salmon'>
-              Confirmados:
-              <p className='totalNumber'>
-                {numeroConfirmadosTotalDengue}
-              </p>
-            </div>
-            <div className='recuadro rosa'>
-              Probables:
-              <p className='totalNumber'>
-                {numeroProbablesTotalDengue}
-              </p>
-            </div>
-            <div className='recuadro lila'>
-              Descartados:
-              <p className='totalNumber'>
-                {numeroDescartadosTotalDengue}
-              </p>
-            </div>
-            <div className='recuadro rosa'>
-              Sospechosos:
-              <p className='totalNumber'>
-                {numeroSospechososTotalDengue}
-              </p>
-            </div>
-            <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>
-              Gestantes:
-              <p className='totalNumber'>
-                {numeroEmbarazadasNotificadoTotalDengue}
-              </p>
-            </div>
-            <div className='recuadro lila'>
-              Notificados por Morón:
-              <p className='totalNumber'>
-                {porcentajeNotificadosDengueMoron}%
-              </p>
-            </div>
-          </div>
-          
-          <div className='graphs-container'>
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleSexoDengue}
-                datos={totalPorSexoDengue}
-                labels={labelsSexoDengue}
-                backgroundColor={backgroundColorDengue}
-                borderColor={borderColorDengue}
-              />
-            </div>
-
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleEstablecimientoDengue}
-                datos={notificadosDengueEstablecimientoCarga}
-                labels={labelsEstablecimientoDengue}
-                backgroundColor={backgroundColorEstablecimientoDengue}
-                borderColor={borderColorEstablecimientoDengue}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartFiveData
-                title={titleClasificacionDengue}
-                barLabels={labelsClasificacionDengue}
-                label1={label1ClasificacionDengue}
-                label2={label2ClasificacionDengue}
-                label3={label3ClasificacionDengue}
-                label4={label4ClasificacionDengue}
-                label5={label5ClasificacionDengue}
-                data1={dataConfirmadosClasificacionDengue}
-                data2={dataProbablesClasificacionDengue}
-                data3={dataSospechososNoConcClasificacionDengue}
-                data4={dataSospechososClasificacionDengue}
-                data5={dataDescartadosClasificacionDengue}
-                borderColor1={lila}
-                borderColor2={salmon}
-                borderColor3={rosa}
-                borderColor4={amarillo}
-                borderColor5={verde}
-                bgColor1={lilaTransparente}
-                bgColor2={salmonTransparente}
-                bgColor3={rosaTransparente}
-                bgColor4={amarilloTransparente}
-                bgColor5={verdeTransparente}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSexAge
-                title={titleEdadSexoDengue}
-                barLabels={labelsEdadSexoDengue}
-                label1={label1Dengue}
-                label2={label2Dengue}
-                data1={femeninoDengue}
-                data2={masculinoDengue}
-                borderColor1={lila}
-                borderColor2={salmon}
-                bgColor1={lilaTransparente}
-                bgColor2={salmonTransparente}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSe
-                eje={'x'}
-                title={titleSeDengue}
-                barLabels={labelsSeDengue}
-                label1={labelSeDengue}
-                data1={seDengue}
-                borderColor1={salmon}
-                bgColor1={salmonTransparente}
-              />
-            </div>
-          </div>
+    <div className='totalesGraphs-container'>
+      <div className='totales-page-container'>
+        <div className='recuadro naranja'>
+          Total {anioActual}:
+          <p className='totalNumber'>
+            {numeroTotalNotificadosDengue}
+          </p>
         </div>
+        <div className='recuadro salmon'>
+          Confirmados:
+          <p className='totalNumber'>
+            {numeroConfirmadosTotalDengue}
+          </p>
+        </div>
+        <div className='recuadro rosa'>
+          Probables:
+          <p className='totalNumber'>
+            {numeroProbablesTotalDengue}
+          </p>
+        </div>
+        <div className='recuadro lila'>
+          Descartados:
+          <p className='totalNumber'>
+            {numeroDescartadosTotalDengue}
+          </p>
+        </div>
+        <div className='recuadro rosa'>
+          Sospechosos:
+          <p className='totalNumber'>
+            {numeroSospechososTotalDengue}
+          </p>
+        </div>
+        <div className='recuadro salmon' onClick={detallarEmbarazadasDengue}>
+          Gestantes:
+          <p className='totalNumber'>
+            {numeroEmbarazadasNotificadoTotalDengue}
+          </p>
+        </div>
+        <div className='recuadro lila'>
+          Notificados por Morón:
+          <p className='totalNumber'>
+            {porcentajeNotificadosDengueMoron}%
+          </p>
+        </div>
+      </div>
+
+      <div className='graphs-container'>
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleSexoDengue}
+            datos={totalPorSexoDengue}
+            labels={labelsSexoDengue}
+            backgroundColor={backgroundColorDengue}
+            borderColor={borderColorDengue}
+          />
+        </div>
+
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleEstablecimientoDengue}
+            datos={notificadosDengueEstablecimientoCarga}
+            labels={labelsEstablecimientoDengue}
+            backgroundColor={backgroundColorEstablecimientoDengue}
+            borderColor={borderColorEstablecimientoDengue}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartFiveData
+            title={titleClasificacionDengue}
+            barLabels={labelsClasificacionDengue}
+            label1={label1ClasificacionDengue}
+            label2={label2ClasificacionDengue}
+            label3={label3ClasificacionDengue}
+            label4={label4ClasificacionDengue}
+            label5={label5ClasificacionDengue}
+            data1={dataConfirmadosClasificacionDengue}
+            data2={dataProbablesClasificacionDengue}
+            data3={dataSospechososNoConcClasificacionDengue}
+            data4={dataSospechososClasificacionDengue}
+            data5={dataDescartadosClasificacionDengue}
+            borderColor1={lila}
+            borderColor2={salmon}
+            borderColor3={rosa}
+            borderColor4={amarillo}
+            borderColor5={verde}
+            bgColor1={lilaTransparente}
+            bgColor2={salmonTransparente}
+            bgColor3={rosaTransparente}
+            bgColor4={amarilloTransparente}
+            bgColor5={verdeTransparente}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartSexAge
+            title={titleEdadSexoDengue}
+            barLabels={labelsEdadSexoDengue}
+            label1={label1Dengue}
+            label2={label2Dengue}
+            data1={femeninoDengue}
+            data2={masculinoDengue}
+            borderColor1={lila}
+            borderColor2={salmon}
+            bgColor1={lilaTransparente}
+            bgColor2={salmonTransparente}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartSe
+            eje={'x'}
+            title={titleSeDengue}
+            barLabels={labelsSeDengue}
+            label1={labelSeDengue}
+            data1={seDengue}
+            borderColor1={salmon}
+            bgColor1={salmonTransparente}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 

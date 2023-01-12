@@ -11,8 +11,7 @@ function Sifilis() {
 
   //destructuring from context
   const {
-    anioActual,
-    anioBaseActual,  
+    anioBaseActual,
   } = useContext(DataContext);
 
 
@@ -36,8 +35,8 @@ function Sifilis() {
 
       {ultimoMesSifilis
         ? <SifilisEntreFechas />
-        :    <SifilisTotal />
-      }        
+        : <SifilisTotal />
+      }
     </div>
   )
 }

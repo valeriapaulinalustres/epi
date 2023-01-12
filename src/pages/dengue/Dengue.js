@@ -46,10 +46,10 @@ function Dengue() {
       </div>
 
       {ultimoMesDengue
-        ?  <DengueEntreFechas />
+        ? <DengueEntreFechas />
         : <DengueTotal />
       }
-           </div>
+    </div>
   )
 }
 

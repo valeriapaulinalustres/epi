@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import DoughnutChart from '../../components/DoughnutChart';
 import BarChart from '../../components/BarChart';
 import './sifilis.css';
@@ -7,23 +7,15 @@ import Toast from 'sweetalert2';
 import Colors from '../../components/Colors';
 import BarChartSexAge from '../../components/BarChartSexAge';
 import BarChartSe from '../../components/BarChartSe';
-import {Link} from 'react-router-dom';
-
 
 
 function SifilisTotal() {
 
-  const [ultimoMesSifilis, setUltimoMesSifilis] = useState(false)
-
   //destructuring from context
   const {
     anioActual,
-    anioBaseActual,
     se,
     semanas,
-    semanaInicial,
-    semanaFinal,
-    calendar, 
     numeroTotalGeneralNotificadosSifilis,
     numeroTotalGeneralNotificadosSifilisFemenino,
     numeroTotalGeneralNotificadosSifilisMasculino,
@@ -123,143 +115,143 @@ function SifilisTotal() {
   const labelSeSifilis = "SE";
   const seSifilis = sifilisXse;
 
-  
+
   //--------ALERTS----------------
 
-/*
-  function detallarDescartadosSifilis() {
-    Toast.fire({
-      title: `Descartados en gestantes: ${numeroDescartadosTotalSifilisEmbarazadas}, \n 
-    Descartados en congénitos: ${numeroDescartadosTotalSifilisCongenita}, \n
-    Descartados en restantes: ${numeroDescartadosTotalSifilis}`
-    })
-  }
-
-*/
+  /*
+    function detallarDescartadosSifilis() {
+      Toast.fire({
+        title: `Descartados en gestantes: ${numeroDescartadosTotalSifilisEmbarazadas}, \n 
+      Descartados en congénitos: ${numeroDescartadosTotalSifilisCongenita}, \n
+      Descartados en restantes: ${numeroDescartadosTotalSifilis}`
+      })
+    }
+  
+  */
   return (
-           <div className='totalesGraphs-container'>
-          <div className='totales-page-container'>
-            <div className='recuadro naranja'>
-              Total {anioActual}:
-              <p className='totalNumber'>
-                {numeroTotalGeneralNotificadosSifilis}
-              </p>
-            </div>
-            <div className='recuadro salmon'>
-              Confirmados:
-              <p className='totalNumber'>
-                {numeroConfirmadosTotalGeneralSifilis}
-              </p>
-            </div>
-            <div className='recuadro rosa'>
-              Probables:
-              <p className='totalNumber'>
-                {numeroProbablesTotalGeneralSifilis}
-              </p>
-            </div>
-            <div className='recuadro lila'>
-              Descartados:
-              <p className='totalNumber'>
-                {numeroDescartadosTotalGeneralSifilis}
-              </p>
-            </div>
-            <div className='recuadro salmon'>
-              Gestantes: <p className='totalNumber'>
-                {numeroTotalNotificadosSifilisEmbarazadas}
-              </p>
-            </div>
-            <div className='recuadro rosa'>
-              Congénitos:
-              <p className='totalNumber'>
-                {numeroTotalNotificadosSifilisCongenita}
-              </p>
-            </div>
-          </div>
-          <div className='recuadro lila'>
-            Notificados por Morón:
-            <p className='totalNumber'>
-              {porcentajeNotificadosSifilisMoron}%
-            </p>
-          </div>
-
-
-          <div className='graphs-container'>
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleSexoSifilis}
-                datos={totalPorSexoSifilis}
-                labels={labelsSexoSifilis}
-                backgroundColor={backgroundColorSifilis}
-                borderColor={borderColorSifilis}
-              />
-            </div>
-
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleEmbarazoSifilis}
-                datos={embarazadasEnMujeresSifilis}
-                labels={labelsEmbarazoSifilis}
-                backgroundColor={backgroundColorEmbarazoSifilis}
-                borderColor={borderColorEmbarazoSifilis}
-              />
-            </div>
-
-            <div className='doughnutChart-sifilis'>
-              <DoughnutChart
-                title={titleEstablecimientoSifilis}
-                datos={notificadosSifilisEstablecimientoCarga}
-                labels={labelsEstablecimientoSifilis}
-                backgroundColor={backgroundColorEstablecimientoSifilis}
-                borderColor={borderColorEstablecimientoSifilis}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChart
-                title={titleConfProbSifilis}
-                barLabels={labelsConfProbSifilis}
-                label1={label1Sifilis}
-                label2={label2Sifilis}
-                label3={label3Sifilis}
-                data1={femeninoConfProbSifilis}
-                data2={masculinoConfProbSifilis}
-                data3={sdConfProbSifilis}
-                borderColor1={lila}
-                borderColor2={salmon}
-                borderColor3={rosa}
-                bgColor1={lilaTransparente}
-                bgColor2={salmonTransparente}
-                bgColor3={rosaTransparente}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSexAge
-                title={titleEdadSexoSifilis}
-                barLabels={labelsEdadSexoSifilis}
-                label1={label1Sifilis}
-                label2={label2Sifilis}
-                data1={femeninoSifilis}
-                data2={masculinoSifilis}
-                borderColor1={lila}
-                borderColor2={salmon}
-                bgColor1={lilaTransparente}
-                bgColor2={salmonTransparente}
-              />
-            </div>
-
-            <div className='barChart-sifilis'>
-              <BarChartSe
-                eje={'x'}
-                title={titleSeSifilis}
-                barLabels={labelsSeSifilis}
-                label1={labelSeSifilis}
-                data1={seSifilis}
-                borderColor1={salmon}
-                bgColor1={salmonTransparente} />
-            </div>
-          </div>
+    <div className='totalesGraphs-container'>
+      <div className='totales-page-container'>
+        <div className='recuadro naranja'>
+          Total {anioActual}:
+          <p className='totalNumber'>
+            {numeroTotalGeneralNotificadosSifilis}
+          </p>
         </div>
+        <div className='recuadro salmon'>
+          Confirmados:
+          <p className='totalNumber'>
+            {numeroConfirmadosTotalGeneralSifilis}
+          </p>
+        </div>
+        <div className='recuadro rosa'>
+          Probables:
+          <p className='totalNumber'>
+            {numeroProbablesTotalGeneralSifilis}
+          </p>
+        </div>
+        <div className='recuadro lila'>
+          Descartados:
+          <p className='totalNumber'>
+            {numeroDescartadosTotalGeneralSifilis}
+          </p>
+        </div>
+        <div className='recuadro salmon'>
+          Gestantes: <p className='totalNumber'>
+            {numeroTotalNotificadosSifilisEmbarazadas}
+          </p>
+        </div>
+        <div className='recuadro rosa'>
+          Congénitos:
+          <p className='totalNumber'>
+            {numeroTotalNotificadosSifilisCongenita}
+          </p>
+        </div>
+      </div>
+      <div className='recuadro lila'>
+        Notificados por Morón:
+        <p className='totalNumber'>
+          {porcentajeNotificadosSifilisMoron}%
+        </p>
+      </div>
+
+
+      <div className='graphs-container'>
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleSexoSifilis}
+            datos={totalPorSexoSifilis}
+            labels={labelsSexoSifilis}
+            backgroundColor={backgroundColorSifilis}
+            borderColor={borderColorSifilis}
+          />
+        </div>
+
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleEmbarazoSifilis}
+            datos={embarazadasEnMujeresSifilis}
+            labels={labelsEmbarazoSifilis}
+            backgroundColor={backgroundColorEmbarazoSifilis}
+            borderColor={borderColorEmbarazoSifilis}
+          />
+        </div>
+
+        <div className='doughnutChart-sifilis'>
+          <DoughnutChart
+            title={titleEstablecimientoSifilis}
+            datos={notificadosSifilisEstablecimientoCarga}
+            labels={labelsEstablecimientoSifilis}
+            backgroundColor={backgroundColorEstablecimientoSifilis}
+            borderColor={borderColorEstablecimientoSifilis}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChart
+            title={titleConfProbSifilis}
+            barLabels={labelsConfProbSifilis}
+            label1={label1Sifilis}
+            label2={label2Sifilis}
+            label3={label3Sifilis}
+            data1={femeninoConfProbSifilis}
+            data2={masculinoConfProbSifilis}
+            data3={sdConfProbSifilis}
+            borderColor1={lila}
+            borderColor2={salmon}
+            borderColor3={rosa}
+            bgColor1={lilaTransparente}
+            bgColor2={salmonTransparente}
+            bgColor3={rosaTransparente}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartSexAge
+            title={titleEdadSexoSifilis}
+            barLabels={labelsEdadSexoSifilis}
+            label1={label1Sifilis}
+            label2={label2Sifilis}
+            data1={femeninoSifilis}
+            data2={masculinoSifilis}
+            borderColor1={lila}
+            borderColor2={salmon}
+            bgColor1={lilaTransparente}
+            bgColor2={salmonTransparente}
+          />
+        </div>
+
+        <div className='barChart-sifilis'>
+          <BarChartSe
+            eje={'x'}
+            title={titleSeSifilis}
+            barLabels={labelsSeSifilis}
+            label1={labelSeSifilis}
+            data1={seSifilis}
+            borderColor1={salmon}
+            bgColor1={salmonTransparente} />
+        </div>
+      </div>
+    </div>
   )
 }
 
