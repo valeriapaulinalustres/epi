@@ -5,8 +5,7 @@ Entre fechas HIV y Sífilis está listo.
 
 Falta:
 -mejorar ux/ui de upload
--arreglar código
--entre fechas que sea otra página
--poner bien en los títulos de los gráficos las se entre
+-arregla código de upload
+-arreglar código de context
 -crear pantallas de login
 -continuar con covid y eti
